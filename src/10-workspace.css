@@ -53,7 +53,7 @@ body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-ribbon-action {
   width: 100%;
   height: 38px;
   border-radius: 0;
-  border-top: var(--hc-gap) solid var(--hc-screen);
+  border-top: var(--hc-gap) solid var(--hc-frame);
   background: var(--hc-bar-orange);
   color: var(--hc-on-bar);
   justify-content: flex-end;
@@ -73,7 +73,7 @@ body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-actions .side-d
 }
 
 body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-actions .side-dock-ribbon-action:last-child {
-  border-bottom: var(--hc-gap) solid var(--hc-screen);
+  border-bottom: var(--hc-gap) solid var(--hc-frame);
 }
 
 body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-settings .side-dock-ribbon-action {
@@ -192,7 +192,7 @@ body:not(.hc-plain-ribbon) .workspace-tabs.mod-top-left-space > .workspace-tab-c
 /* Sidebar tabs are icon-only: a smaller pill round the active icon. */
 .workspace-sidedock-vault-profile,
 .workspace-split:is(.mod-left-split, .mod-right-split) .workspace-tab-header-container {
-  background-color: var(--hc-screen);
+  background-color: var(--hc-frame);
 }
 
 .workspace-split:is(.mod-left-split, .mod-right-split) .workspace-tab-header.is-active {

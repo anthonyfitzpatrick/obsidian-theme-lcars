@@ -1,12 +1,8 @@
 /* Dark mode: bright bars on a black screen. Bars carry black text; inks are text drawn
-   on the screen itself. Every pair is contrast-checked by tests/contrast.test.mjs.
-
-   The black frame is the theme's identity, so light mode keeps it: the workspace and
-   status bar take this palette in both modes, and only the pages in the main area
-   (src/03) turn light. */
-.theme-dark,
-.theme-light :is(.workspace, .status-bar) {
+   on the screen itself. Every pair is contrast-checked by tests/contrast.test.mjs. */
+.theme-dark {
   --hc-screen: #000000;
+  --hc-frame: #000000;
   --hc-panel: #0c0a0e;
   --hc-surface: #17141a;
   --hc-surface-hover: #241f29;

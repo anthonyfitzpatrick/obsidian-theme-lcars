@@ -6,7 +6,7 @@ const MODES = { dark: "src/02-palette-dark.css", light: "src/03-palette-light.cs
 const BARS = ["bar-orange", "bar-gold", "bar-peach", "bar-lavender", "bar-violet", "bar-blue", "bar-red"];
 const INKS = ["ink-orange", "ink-gold", "ink-lavender", "ink-violet", "ink-blue", "ink-red", "ink-green"];
 const TEXT = ["text", "text-muted", "text-faint"];
-const GROUNDS = ["screen", "panel", "surface", "code-bg"];
+const GROUNDS = ["screen", "frame", "panel", "surface", "code-bg"];
 
 for (const [mode, file] of Object.entries(MODES)) {
   const { hex, rgb } = palette(file);

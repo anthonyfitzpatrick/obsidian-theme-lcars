@@ -30,24 +30,25 @@ Both modes are designed separately. Neither is generated from the other. Switch 
 **Settings → Appearance → Base colour scheme**.
 
 - **Dark** draws bright bars on a black screen. This is the look the style is known for.
-- **Light** keeps the black frame (ribbon, tab rows, sidebars and status bar look exactly as
-  they do in dark mode) and turns only the pages in the main area light, like a lit display
-  set into the console. Menus and dialogs are light too. Text colours on the page are
-  deepened so they still meet 4.5:1 contrast.
+- **Light** is clean and cool, with no black: a near-white page in a light grey frame (tab
+  rows, ribbon gaps, dividers), with slightly darker grey sidebars. The bars are more
+  saturated so they hold their own on white. Text colours are deepened so they still meet
+  4.5:1 contrast.
 
 ## The palette
 
 | Role | Dark | Light |
 | --- | --- | --- |
-| Screen (light: the page) | `#000000` | `#f8f7f4` |
-| Text | `#f4e8da` | `#1c1612` |
-| Orange bar (active, primary) | `#ff9a52` | `#f2893c` |
-| Gold bar (hover, focus) | `#ffc65c` | `#f0b33f` |
-| Peach bar | `#ffb08a` | `#f3a07b` |
-| Lavender bar (structure) | `#c99ad8` | `#bf8ad0` |
-| Violet bar | `#a493ff` | `#9a8af5` |
-| Blue bar | `#86aeff` | `#7ea4f5` |
-| Red bar (warnings) | `#ff7468` | `#f07a6c` |
+| Screen (the page) | `#000000` | `#fbfbfd` |
+| Frame (tab rows, dividers) | `#000000` | `#e2e2ea` |
+| Text | `#f4e8da` | `#15151b` |
+| Orange bar (active, primary) | `#ff9a52` | `#f58434` |
+| Gold bar (hover, focus) | `#ffc65c` | `#f5b630` |
+| Peach bar | `#ffb08a` | `#f79a72` |
+| Lavender bar (structure) | `#c99ad8` | `#b884d6` |
+| Violet bar | `#a493ff` | `#988af7` |
+| Blue bar | `#86aeff` | `#73a0f7` |
+| Red bar (warnings) | `#ff7468` | `#f2705f` |
 
 Labels on bars are always black. The test suite checks every text and background pair in
 both modes.
@@ -118,7 +119,6 @@ to contain. To enable the pre-commit check, run `git config core.hooksPath .gith
 | --- | --- |
 | `src/00-settings.css` | Style Settings options |
 | `src/01-tokens.css` | Geometry shared by both modes |
-| `src/015-light-mode-zones.css` | Light mode's black frame and light pages: Obsidian's base greys and derived colours re-declared per zone (generated from Obsidian 1.13.7) |
 | `src/02-palette-dark.css` / `03-palette-light.css` | The two palettes |
 | `src/04-obsidian-variables.css` | Palette mapped onto Obsidian's variables |
 | `src/10-workspace.css` | Ribbon, tabs, panels, file explorer, status bar |

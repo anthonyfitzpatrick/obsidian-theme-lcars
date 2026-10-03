@@ -1,27 +1,28 @@
-/* Light mode: a clean, near-white page set into the black frame (see src/02). This
-   palette applies to the body, so menus, dialogs and popovers are light, and to each
-   page in the main area. Bars stay bright enough for black text; inks are deepened so
-   text on the page keeps 4.5:1 or better. */
-.theme-light,
-.theme-light .workspace .mod-root .workspace-leaf-content {
-  --hc-screen: #f8f7f4;
-  --hc-panel: #ecebe6;
+/* Light mode: clean and cool, with no black. A near-white page sits in a light grey
+   frame (tab rows, ribbon gaps, dividers, sidebar headers), with slightly darker
+   sidebars, so the parts of the window stay distinct without dark chrome. The bars are
+   more saturated than in dark mode so they hold their own on white; they still carry
+   black labels. Inks are deep enough for 4.5:1 or better on every light ground. */
+.theme-light {
+  --hc-screen: #fbfbfd;
+  --hc-frame: #e2e2ea;
+  --hc-panel: #ededf2;
   --hc-surface: #ffffff;
-  --hc-surface-hover: #e3e1dc;
-  --hc-code-bg: #ebe9e4;
-  --hc-text: #1c1612;
-  --hc-text-muted: #584a3f;
-  --hc-text-faint: #6f6154;
+  --hc-surface-hover: #dcdce5;
+  --hc-code-bg: #eaeaf0;
+  --hc-text: #15151b;
+  --hc-text-muted: #4a4a58;
+  --hc-text-faint: #5e5e6c;
   --hc-on-bar: #000000;
 
-  --hc-bar-orange: #f2893c;
-  --hc-bar-gold: #f0b33f;
-  --hc-bar-peach: #f3a07b;
-  --hc-bar-lavender: #bf8ad0;
-  --hc-bar-violet: #9a8af5;
-  --hc-bar-blue: #7ea4f5;
-  --hc-bar-red: #f07a6c;
-  --hc-bar-dim: #d9cfe0;
+  --hc-bar-orange: #f58434;
+  --hc-bar-gold: #f5b630;
+  --hc-bar-peach: #f79a72;
+  --hc-bar-lavender: #b884d6;
+  --hc-bar-violet: #988af7;
+  --hc-bar-blue: #73a0f7;
+  --hc-bar-red: #f2705f;
+  --hc-bar-dim: #cfcfdc;
 
   --hc-ink-orange: #a5460b;
   --hc-ink-gold: #7d5600;
