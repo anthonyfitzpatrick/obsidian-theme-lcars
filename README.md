@@ -1,13 +1,19 @@
 # Helm Console
 
-**An LCARS-inspired theme for Obsidian: swept colour bars, rounded end caps and segmented
-panels on a black screen, with a clean, cool light mode alongside.**
+**An unofficial theme for Obsidian inspired by LCARS, the computer interface style from
+*Star Trek: The Next Generation*. Not affiliated with or endorsed by Paramount Global or
+CBS Studios.**
+
+Swept colour bars, rounded end caps and segmented panels on a black screen, with a
+clean, cool light mode alongside.
 
 > **This is an independent, unofficial, fan-made theme.** It is **inspired by** the LCARS
-> console style of late-1980s television science fiction. It is **not affiliated with,
-> endorsed by, sponsored by, or connected to** Paramount Global, CBS Studios, or any
-> other rights-holder. It reproduces no artwork, logos or typefaces from any production.
-> See [Affiliation and intellectual property](#affiliation-and-intellectual-property).
+> interface style seen in *Star Trek: The Next Generation*. It is **not affiliated with,
+> endorsed by, sponsored by, licensed by, or connected to** Paramount Global, CBS Studios,
+> or any other rights-holder. It reproduces no artwork, logos, insignia or typefaces from
+> any production. Star Trek and related marks are trademarks of CBS Studios Inc.; LCARS is
+> a term from that franchise. Both are used here only to describe the style. See
+> [Affiliation and intellectual property](#affiliation-and-intellectual-property).
 
 ---
 
@@ -38,8 +44,8 @@ panels on a black screen, with a clean, cool light mode alongside.**
 Helm Console is an Obsidian theme in the LCARS idiom, built from one idea: draw the
 interface as **flat coloured bars**.
 
-The style comes from the panelled computer consoles of late-1980s and 1990s television
-science fiction. There are no bevels, shadows or gradients. Panels are blocks of solid
+The style comes from LCARS, the panelled computer interface seen on screen in
+*Star Trek: The Next Generation* and the series that followed it. There are no bevels, shadows or gradients. Panels are blocks of solid
 colour. Where two panels meet they join with a curved "elbow". Buttons and tabs are
 pills with rounded ends. Interface labels are short words in capitals. Colour does the
 work that borders and shadows usually do.
@@ -457,13 +463,14 @@ television or film property. No such relationship exists or is implied.
 
 ### Inspired by, not copied from
 
-The theme is **inspired by** a broad visual idiom: flat coloured bars, rounded end caps
-and curved panel joins, as seen in science-fiction set design of the late 1980s and 1990s.
-A general style is not owned by anyone. This theme expresses it in original CSS.
+The theme is **inspired by** the LCARS interface style from *Star Trek: The Next
+Generation*: flat coloured bars, rounded end caps and curved panel joins. A general
+visual style is not owned by anyone. This theme expresses it in original CSS and copies
+nothing from the show.
 
-"LCARS" is used in this README only to describe the style the theme is inspired by. It
-is not the theme's name and does not appear in the theme itself. The theme's own name,
-Helm Console, is original.
+"Star Trek" and "LCARS" appear in this README and the User Guide only to describe the
+style the theme is inspired by. Neither is the theme's name, and neither appears in the
+theme itself. The theme's own name, Helm Console, is original.
 
 The project deliberately avoids:
 
@@ -481,8 +488,10 @@ LCARS included, appears in the manifest, the stylesheet or the package metadata.
 
 ### Trademarks
 
-LCARS is a term from a television franchise owned by Paramount Global / CBS Studios,
-and any rights in it belong to them. It is used here only descriptively. All other
+Star Trek, Star Trek: The Next Generation and related marks are trademarks of CBS Studios
+Inc., part of Paramount Global. LCARS is a term from that franchise, and any rights in it
+belong to its owners. These names are used here only descriptively, to identify the style
+that inspired this independent theme, and imply no endorsement or connection. All other
 trademarks are the property of their respective owners. Obsidian is a trademark of
 Dynalist Inc. This theme is a community theme for Obsidian and is not produced or endorsed by
 Dynalist Inc.

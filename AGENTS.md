@@ -34,7 +34,7 @@ are dev tools.
 - Never edit `theme.css` by hand. Edit `src/` and rebuild.
 - Palettes (`src/02`, `src/03`) hold colours only. Structure goes in the component modules and uses `--hc-*` tokens.
 - Every new text/background pairing goes in `tests/contrast.test.ts` and must pass in both modes.
-- **Naming and IP:** the theme is *LCARS-inspired*. The README may say "LCARS-inspired" to describe the style, and its affiliation section names the rights-holders only to disclaim them. Never put a franchise name, show title or in-universe term (LCARS included) into the manifest, CSS, package metadata or UI strings. `tests/naming.test.ts` enforces this. The theme name stays Helm Console: Obsidian's directory already lists a theme called "LCARS".
+- **Naming and IP:** the README and User Guide may say the theme is *inspired by LCARS, the interface style from Star Trek: The Next Generation*, always with the no-affiliation statement and the trademark notice ("Star Trek and related marks are trademarks of CBS Studios Inc."). Never "official", "licensed" or "the LCARS theme". The README's opening paragraph is the directory excerpt, so it carries the inspiration line and the disclaimer. Never put a franchise name, show title or in-universe term (LCARS and Star Trek included) into the theme name, manifest, CSS, package metadata or UI strings. `tests/naming.test.ts` enforces this. The theme name stays Helm Console: Obsidian's directory already lists a theme called "LCARS".
 - Screenshots come only from the demo vault (`docs/Helm Console Demo`), never from a real vault.
 - `manifest.json` and `package.json` versions must match.
 - Remote `origin` pushes to both GitHub and Gitea. `github` is the fetch-only reference.

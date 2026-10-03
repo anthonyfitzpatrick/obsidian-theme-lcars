@@ -1,6 +1,7 @@
 // The theme is an original work inspired by a style. Its shipped files must not name or
-// borrow from the franchise that style comes from. The README is exempt: it may call the
-// theme LCARS-inspired, and disclaiming a rights-holder requires naming it.
+// borrow from the franchise that style comes from. The README and User Guide are exempt:
+// they may say the theme is inspired by LCARS from Star Trek, with the trademark notice and
+// disclaimer the tests below require.
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { readProjectFile } from "./helpers.ts";
@@ -30,9 +31,20 @@ for (const file of ["manifest.json", "theme.css", "package.json"]) {
   });
 }
 
-test("the README describes the theme as inspired by, never as the original", () => {
+// The README's opening paragraph is the excerpt Obsidian's directory shows, so the
+// "inspired by" wording and the disclaimer must both be in it, not just further down.
+test("the README opens by describing the theme as inspired by LCARS, with a disclaimer", () => {
   const readme = readProjectFile("README.md");
-  assert.match(readme, /inspired by/i);
-  assert.match(readme, /LCARS-inspired/);
-  assert.match(readme, /not affiliated/i);
+  const opening = readme.split("\n\n")[1] ?? "";
+  assert.match(opening, /unofficial/i);
+  assert.match(opening, /inspired by LCARS/);
+  assert.match(opening, /Not affiliated with or endorsed by Paramount Global or\s+CBS Studios/);
+});
+
+test("wherever the README and User Guide name the franchise, they carry the trademark notice", () => {
+  for (const file of ["README.md", "USERGUIDE.md"]) {
+    const text = readProjectFile(file);
+    assert.match(text, /Star Trek and related marks are trademarks of CBS Studios Inc\./, file);
+    assert.match(text, /not affiliated with/i, file);
+  }
 });

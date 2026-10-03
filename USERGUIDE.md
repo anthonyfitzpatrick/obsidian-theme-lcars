@@ -1,7 +1,8 @@
 # Helm Console — User Guide
 
-This guide covers everything you can see and change in Helm Console, an LCARS-inspired
-theme for Obsidian. For a shorter overview, see the [README](README.md).
+This guide covers everything you can see and change in Helm Console, an unofficial
+Obsidian theme inspired by LCARS, the computer interface style from *Star Trek: The Next
+Generation*. For a shorter overview, see the [README](README.md).
 
 Every screenshot comes from the demo vault in
 [`docs/Helm Console Demo`](docs/Helm%20Console%20Demo), which uses Obsidian's default
@@ -10,7 +11,8 @@ fonts. To follow along with the same notes, open that folder as a vault (vault s
 
 > Helm Console is an independent, unofficial, fan-made theme. It is not affiliated with,
 > endorsed by, sponsored by, or connected to Paramount Global, CBS Studios or any other
-> rights-holder.
+> rights-holder. Star Trek and related marks are trademarks of CBS Studios Inc.; LCARS is
+> a term from that franchise. Both are used here only to describe the style.
 
 ## Contents
 
@@ -701,10 +703,15 @@ No. Helm Console is an independent, unofficial, fan-made theme. It isn't affilia
 endorsed by, sponsored by, or connected to Paramount Global, CBS Studios or any other
 rights-holder.
 
+**What is it inspired by?**
+LCARS, the computer interface style seen on screen in *Star Trek: The Next Generation*:
+flat coloured bars, rounded end caps and curved joins between panels. Helm Console
+recreates the general style in original CSS. It copies no graphics from the show.
+
 **Why isn't it called LCARS?**
 Two reasons. Obsidian's community directory already lists a theme named "LCARS", and
-theme names there must be unique. And LCARS is a term owned by a television franchise,
-so the theme uses its own original name and uses "LCARS-inspired" only to describe the
+theme names there must be unique. And LCARS belongs to the Star Trek franchise, so the
+theme uses its own original name and mentions LCARS and Star Trek only to describe the
 style.
 
 **Does the theme include any artwork from the shows?**
