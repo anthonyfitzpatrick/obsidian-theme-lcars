@@ -107,7 +107,7 @@ npm run check    # lint, stale-theme.css check and tests
 HELM_CONSOLE_VAULT=/path/to/vault npm run deploy   # build and copy into a vault
 ```
 
-The build itself needs only Node 20 or later. Linting uses `oxlint` with the
+The build itself needs only Node 22 or later. Linting uses `oxlint` with the
 [anti-slop](https://github.com/dmmulroy/anti-slop) rule set (MIT), copied into
 `tools/oxlint/anti-slop/`. The rules reject the low-evidence patterns AI-written code tends
 to contain. To enable the pre-commit check, run `git config core.hooksPath .githooks`.

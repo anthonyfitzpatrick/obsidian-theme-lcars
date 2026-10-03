@@ -8,12 +8,12 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "lint": "oxlint",
-    "test": "node --test tests/",
-    "check": "oxlint && node scripts/build.mjs --check && node --test tests/",
+    "test": "node --test \"tests/*.test.mjs\"",
+    "check": "oxlint && node scripts/build.mjs --check && node --test \"tests/*.test.mjs\"",
     "deploy": "node scripts/build.mjs && node scripts/deploy.mjs"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "devDependencies": {
     "@oxlint/plugins": "1.78.0",

@@ -5,7 +5,7 @@ An Obsidian community theme. Plain CSS, no runtime JavaScript. The only dependen
 ## Commands
 
 - `npm run build` regenerates `theme.css` from `src/*.css`, which are concatenated in filename order.
-- `npm test` runs the contrast, packaging and naming checks (`node --test tests/`).
+- `npm test` runs the contrast, packaging, naming and font tests (`node --test "tests/*.test.mjs"`; a glob, because Node 22 does not search a directory argument).
 - `npm run lint` runs oxlint with the vendored **anti-slop** rules over `scripts/` and `tests/`.
 - `npm run check` runs lint, then the stale-`theme.css` check, then the tests. CI and the pre-commit hook run this, and a `PostToolUse` hook in `.claude/settings.json` lints after every edit Claude makes.
 - `HELM_CONSOLE_VAULT=<vault> npm run deploy` builds the theme and copies it to `<vault>/.obsidian/themes/Helm Console/`.
