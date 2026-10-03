@@ -1,61 +1,68 @@
 /* Buttons, fields, toggles and sliders. */
 
-/* Buttons are filled bars, except inside dense inline UI where a bright pill would
-   crowd the content: properties, notices, note content, the editor, file tree, status
-   bar and view header. The exclusion is wrapped in :where() so it adds no specificity
-   and a plugin's own state styles still win.
+/* Each button variant only chooses a fill; one rule below paints it. */
+button {
+  --hc-button-fill: var(--hc-bar-lavender);
+  --hc-button-label: var(--hc-on-bar);
+}
 
-   Buttons are filled bars. The colours are set through Obsidian's own variables, scoped
-   to the button, because plugins restyle their buttons with those variables (for example
-   `color: var(--text-normal)` on an active button). Scoped, those still resolve to black
-   label on a bright bar instead of cream text on lavender. */
+button.mod-cta {
+  --hc-button-fill: var(--hc-bar-orange);
+}
+
+button.mod-warning {
+  --hc-button-fill: var(--hc-bar-red);
+}
+
+button:hover {
+  --hc-button-fill: var(--hc-bar-gold);
+}
+
+button:disabled {
+  --hc-button-fill: var(--hc-bar-dim);
+  --hc-button-label: var(--hc-text-muted);
+}
+
+/* Buttons are filled bars, except inside dense inline UI where a bright pill would crowd
+   the content: properties, notices, note content, the editor, the file tree, the status
+   bar and the view header. The exclusion is wrapped in :where() so it adds no
+   specificity, and a plugin's own state styles still win.
+
+   The colours are set through Obsidian's own variables, scoped to the button, because
+   plugins restyle their buttons with those variables (for example
+   `color: var(--text-normal)` on an active button). Scoped, those still resolve to a
+   black label on a bright bar instead of cream text on lavender. */
 button:not(.clickable-icon):not(:where(.metadata-container, .notice, .markdown-rendered, .cm-editor, .tree-item-self, .status-bar, .view-header) *) {
-  --text-color: var(--hc-on-bar);
-  --text-normal: var(--hc-on-bar);
-  --text-muted: var(--hc-on-bar);
-  --text-faint: var(--hc-on-bar);
-  --text-accent: var(--hc-on-bar);
-  --icon-color: var(--hc-on-bar);
-  --icon-color-hover: var(--hc-on-bar);
-  --interactive-normal: var(--hc-bar-lavender);
-  --interactive-hover: var(--hc-bar-gold);
+  --text-color: var(--hc-button-label);
+  --text-normal: var(--hc-button-label);
+  --text-muted: var(--hc-button-label);
+  --text-faint: var(--hc-button-label);
+  --text-accent: var(--hc-button-label);
+  --icon-color: var(--hc-button-label);
+  --icon-color-hover: var(--hc-button-label);
+  --interactive-normal: var(--hc-button-fill);
+  --interactive-hover: var(--hc-button-fill);
+  --interactive-accent: var(--hc-button-fill);
+  --interactive-accent-hover: var(--hc-button-fill);
   font-weight: 600;
   border-radius: var(--hc-pill);
   border: none;
   box-shadow: none;
-  background-color: var(--interactive-normal);
-  color: var(--text-color);
+  background-color: var(--hc-button-fill);
+  color: var(--hc-button-label);
   padding-inline: 1.1em;
-}
-
-button:not(.clickable-icon):not(:where(.metadata-container, .notice, .markdown-rendered, .cm-editor, .tree-item-self, .status-bar, .view-header) *):hover {
-  background-color: var(--interactive-hover);
-}
-
-button.mod-cta:not(:where(.metadata-container, .notice, .markdown-rendered, .cm-editor, .tree-item-self, .status-bar, .view-header) *) {
-  --interactive-normal: var(--hc-bar-orange);
-}
-
-button.mod-warning:not(:where(.metadata-container, .notice, .markdown-rendered, .cm-editor, .tree-item-self, .status-bar, .view-header) *) {
-  --interactive-normal: var(--hc-bar-red);
-}
-
-button:not(.clickable-icon):not(:where(.metadata-container, .notice, .markdown-rendered, .cm-editor, .tree-item-self, .status-bar, .view-header) *):disabled {
-  --text-color: var(--hc-text-muted);
-  --interactive-normal: var(--hc-bar-dim);
-  --interactive-hover: var(--hc-bar-dim);
 }
 
 /* Text fields, dropdowns and property editors keep Obsidian's own shapes and spacing,
    coloured through --background-modifier-form-field and --input-radius. Restyling the
-   elements directly also hit the inline fields in the Properties panel, which
-   squeezed property names into truncated pills. */
-:is(input, textarea, select, .dropdown):focus,
+   elements directly also hit the inline fields in the Properties panel, which squeezed
+   property names into truncated pills. */
 :is(input, textarea, select, .dropdown):focus-visible {
   border-color: var(--hc-bar-gold);
   box-shadow: 0 0 0 2px var(--hc-bar-gold);
 }
 
+/* Toggles: dim with a visible knob when off, orange with a black knob when on. */
 .checkbox-container {
   background: var(--hc-bar-dim);
   border-radius: var(--hc-pill);

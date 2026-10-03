@@ -5,8 +5,8 @@
 cd "$CLAUDE_PROJECT_DIR" || exit 0
 [ -d node_modules/oxlint ] || exit 0
 
-if ! output=$(npx --no-install oxlint 2>&1); then
-	echo "oxlint found violations:" >&2
+if ! output=$(npm run --silent lint 2>&1); then
+	echo "Lint found violations:" >&2
 	echo "$output" >&2
 	exit 2
 fi

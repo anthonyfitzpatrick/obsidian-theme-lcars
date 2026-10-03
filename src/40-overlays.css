@@ -1,4 +1,6 @@
-/* Modals, the command palette, menus, notices, tooltips and settings. */
+/* Dialogs, the command palette, menus, notices, tooltips and settings. Where Obsidian
+   draws a state from a variable (a menu row's highlight, the chosen settings section),
+   the theme sets the variable on that element rather than outranking Obsidian's rule. */
 
 .modal,
 .prompt {
@@ -13,7 +15,7 @@
   border-radius: var(--hc-pill);
 }
 
-/* Command palette and quick switcher: the chosen row is a full bar. */
+/* ---- Command palette and quick switcher: the chosen row is a full bar ---- */
 .prompt-input-container {
   border-bottom: var(--hc-gap) solid var(--hc-bar-dim);
 }
@@ -23,12 +25,16 @@
 }
 
 .suggestion-item.is-selected {
-  background: var(--hc-bar-orange);
-  color: var(--hc-on-bar);
+  --text-normal: var(--hc-on-bar);
   --text-muted: var(--hc-on-bar);
   --text-faint: var(--hc-on-bar);
-  --text-normal: var(--hc-on-bar);
   --icon-color: var(--hc-on-bar);
+  background: var(--hc-bar-orange);
+  color: var(--hc-on-bar);
+}
+
+.suggestion-highlight {
+  color: var(--hc-ink-orange);
 }
 
 .suggestion-item.is-selected .suggestion-highlight {
@@ -36,16 +42,12 @@
   text-decoration: underline;
 }
 
-.suggestion-highlight {
-  color: var(--hc-ink-orange);
-}
-
-.prompt-instructions {
+:where(body:not(.hc-mixed-case)) .prompt-instructions {
   text-transform: uppercase;
   letter-spacing: var(--hc-label-tracking);
 }
 
-/* Menus: rounded panels, hovered rows become bars. */
+/* ---- Menus: rounded panels; the highlighted row becomes a bar ---- */
 .menu {
   border-width: 2px;
 }
@@ -54,37 +56,39 @@
   border-radius: var(--hc-pill);
 }
 
-.menu-item.selected:not(.is-disabled):not(.is-label),
-.menu-item:hover:not(.is-disabled):not(.is-label) {
-  background: var(--hc-bar-lavender);
-  color: var(--hc-on-bar);
+/* Obsidian paints a highlighted row with --background-modifier-hover, and a highlighted
+   warning item (Delete) in --text-error; both are set here for that row only. */
+.menu-item.selected {
+  --background-modifier-hover: var(--hc-bar-lavender);
   --icon-color: var(--hc-on-bar);
-}
-
-.menu-item.selected :is(.menu-item-title, .menu-item-icon),
-.menu-item:hover :is(.menu-item-title, .menu-item-icon) {
   color: var(--hc-on-bar);
 }
 
-.menu-item.is-warning:hover:not(.is-disabled) {
-  background: var(--hc-bar-red);
+.menu-item.is-warning.selected {
+  --background-modifier-hover: var(--hc-bar-red);
+  --text-error: var(--hc-on-bar);
+}
+
+.menu-item.selected :is(.menu-item-title, .menu-item-icon) {
+  color: var(--hc-on-bar);
 }
 
 .menu-separator {
   border-color: var(--hc-bar-dim);
 }
 
-/* Notices and tooltips. */
-/* Notices are dark panels with a gold cap, not gold fills. Obsidian hard-codes notice
-   text near white and draws notice links and buttons in the accent colour, and errors
-   and plugin messages bring colours of their own. On a panel every one stays readable. */
+/* ---- Notices: panels with a gold cap, not gold fills ----
+   Obsidian hard-codes notice text near white and draws notice links and buttons in the
+   accent colour, and errors and plugin messages bring colours of their own. On a panel
+   every one stays readable. */
 .notice {
   color: var(--hc-text);
   border: 2px solid var(--hc-bar-gold);
-  border-left-width: 12px;
-  border-radius: var(--hc-panel-radius) 6px 6px var(--hc-panel-radius);
+  border-left-width: var(--hc-cap-width);
+  border-radius: var(--hc-panel-radius) var(--hc-radius-s) var(--hc-radius-s) var(--hc-panel-radius);
 }
 
+/* ---- Tooltips: peach pills ---- */
 .tooltip {
   background: var(--hc-bar-peach);
   color: var(--hc-on-bar);
@@ -96,7 +100,7 @@
   border-bottom-color: var(--hc-bar-peach);
 }
 
-/* Settings: the chosen section is a bar. */
+/* ---- Settings: the chosen section is a bar ---- */
 .vertical-tab-header {
   background: var(--hc-panel);
 }
@@ -109,12 +113,12 @@
   border-radius: var(--hc-pill);
 }
 
-/* Matches Obsidian's own selector, which outranks a shorter one and would otherwise draw
-   the chosen section as black text on the near-black hover colour. */
-body:not(.is-phone) :is(.vertical-tab-nav-item, .horizontal-tab-nav-item).is-active {
-  background: var(--hc-bar-orange);
-  color: var(--hc-on-bar);
+/* Obsidian paints the chosen section with --background-modifier-hover. */
+:is(.vertical-tab-nav-item, .horizontal-tab-nav-item).is-active {
+  --background-modifier-hover: var(--hc-bar-orange);
+  --text-normal: var(--hc-on-bar);
   --icon-color: var(--hc-on-bar);
+  color: var(--hc-on-bar);
 }
 
 .setting-item-heading .setting-item-name {

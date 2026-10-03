@@ -173,7 +173,7 @@ orange cap on its left edge.*
   edge, centred on the heading text with a clear gap before it. Headings three to six
   are coloured gold, blue, violet and grey.
 - **Horizontal rules** are segmented bars (orange, lavender, blue) with rounded ends.
-- **Quotes** have a rounded lavender bar down the left.
+- **Quotes** have a thick lavender bar down the left.
 - **Callouts** have a thick coloured cap on the left and a light tint of the same
   colour behind them. Their titles are in capitals.
 - **Code blocks** have a rounded blue cap on the left. Inline code and code blocks sit
@@ -316,8 +316,8 @@ If a plugin looks wrong, see the
 - **Contrast:** all text meets 4.5:1 against its background, in both modes. Labels on
   bars meet 4.5:1. Disabled controls meet 3:1. The tests check every pairing.
 - **Keyboard focus** is always visible as a gold outline.
-- **Reduced motion:** if your system asks for reduced motion, the theme turns off
-  transitions and animations.
+- **Reduced motion:** if your system asks for reduced motion, the theme sets Obsidian's
+  animation timings to zero, so panels, menus and dialogs appear without animating.
 - **Increased contrast:** if your system asks for more contrast, muted and faint text
   is drawn at full strength and borders are strengthened.
 - **Printing and PDF export** drop the colour bars, heading caps and screen palette in
@@ -349,16 +349,17 @@ If a plugin looks wrong, see the
 generated file.
 
 ```sh
-npm install      # dev-only lint tools (oxlint)
-npm run build    # regenerate theme.css from src/
-npm run lint     # oxlint with the anti-slop rules
-npm test         # contrast, packaging, naming and font tests
-npm run check    # lint, then the stale-theme.css check, then the tests
+npm install        # dev-only tools: oxlint, stylelint, TypeScript
+npm run build      # regenerate theme.css from src/
+npm run lint       # oxlint (anti-slop rules) on the TypeScript, stylelint on the CSS
+npm run typecheck  # strict TypeScript check of scripts/ and tests/
+npm test           # contrast, packaging, naming, font and token tests
+npm run check      # all of the above, plus a check that theme.css is not stale
 HELM_CONSOLE_VAULT=/path/to/vault npm run deploy   # build, then copy into a vault
 ```
 
-The build needs only Node 22 or later. There are no runtime dependencies. The only
-packages are dev-only lint tools.
+The build needs only Node 22.18 or later, which runs the TypeScript scripts directly with
+no compile step. There are no runtime dependencies. The only packages are dev-only tools.
 
 ### Source layout
 
@@ -375,10 +376,13 @@ packages are dev-only lint tools.
 | `src/40-overlays.css` | Dialogs, command palette, menus, notices, tooltips, settings |
 | `src/90-accessibility.css` | Reduced motion, increased contrast, print |
 | `theme.css` | Generated. Never edit by hand |
-| `scripts/build.mjs` | Concatenates `src/` in filename order. `--check` fails if `theme.css` is stale |
-| `scripts/deploy.mjs` | Copies `manifest.json` and `theme.css` into a vault's theme folder |
-| `tests/` | The test suite |
-| `tools/oxlint/anti-slop/` | Vendored lint rules |
+| `scripts/build.ts` | Concatenates `src/` in filename order. `--check` fails if `theme.css` is stale |
+| `scripts/deploy.ts` | Copies `manifest.json` and `theme.css` into a vault's theme folder |
+| `scripts/json.ts`, `scripts/project.ts` | The single place JSON is parsed, into named types |
+| `tests/` | The test suite (TypeScript, `node --test`) |
+| `.stylelintrc.json` | CSS lint rules: Obsidian's theme guidelines plus slop checks |
+| `tools/oxlint/anti-slop/` | Vendored anti-slop lint rules |
+| `.github/workflows/` | CI on every push; a release workflow that runs only when a version tag is pushed |
 | `docs/Helm Console Demo/` | The demo vault the screenshots are taken from |
 | `docs/images/` | Screenshots for the README and User Guide |
 | `scripts/screenshots.sh` | Captures the screenshots from the demo vault |
@@ -393,13 +397,41 @@ Three layers run the same checks: a pre-commit hook (enable it with
 `git config core.hooksPath .githooks`), GitHub Actions on every push, and a Claude Code
 hook that lints after every AI edit.
 
+### Obsidian's guidelines, enforced
+
+Obsidian's [theme guidelines](https://docs.obsidian.md/Themes/App+themes/Theme+guidelines)
+and [developer policies](https://docs.obsidian.md/Developer+policies) are checked
+automatically rather than by eye:
+
+| Guideline | How it is enforced |
+| --- | --- |
+| Override general variables under `body` and colours under `.theme-light` / `.theme-dark` | The palette and Obsidian-variable modules are split exactly that way. A user's CSS snippet with the same selector overrides the theme |
+| Use low-specificity selectors | stylelint caps every selector at `0,3,0`. Style Settings switches sit inside `:where()` so they add no weight, and where Obsidian draws a state from a variable the theme sets the variable instead of outranking Obsidian's rule |
+| Keep assets local; themes may not load from the network | stylelint allows only `data:` URLs and bans `@import` and `@font-face` |
+| Avoid `!important` | stylelint bans it outright. Reduced motion and print use Obsidian's variables instead |
+| No obfuscation, ads or telemetry | `theme.css` is the readable source modules joined together, with no scripts |
+| README, LICENSE, `manifest.json` and a 512×288 screenshot in the repository root | A packaging test checks all four, and reads the screenshot's real dimensions |
+
+### Anti-slop
+
+The scripts and tests are strict TypeScript, linted by the vendored
+[anti-slop](https://github.com/dmmulroy/anti-slop) oxlint rules. They reject the
+low-evidence patterns AI-written code tends to contain: `unknown` types, unsafe
+dictionaries, unexplained type assertions, `typeof` probing, `Reflect` calls, broad object
+parameters and module mocking. JSON is parsed in exactly one file (`scripts/json.ts`),
+into named types. The CSS gets the same treatment from stylelint (no duplicate selectors
+or properties, no empty blocks, no unknown properties, no hex colours outside the
+palettes) and from a test that every `--hc-*` token is both defined and used.
+
 | Check | What it guards |
 | --- | --- |
-| **Contrast tests** | Every text and background pair in both modes: 4.5:1 for text and bar labels, 3:1 for disabled controls. Callout colours must come from the palette |
+| **Contrast tests** | Every text and background pair in both modes: 4.5:1 for text and bar labels, 3:1 for disabled controls. Callout colours and `--interactive-accent-hsl` must come from the palette |
 | **Naming tests** | No franchise names or in-universe terms (LCARS included) in the manifest, the stylesheet or the package file. The README must say "inspired by", "LCARS-inspired" and "not affiliated" |
-| **Packaging tests** | Manifest fields and matching versions, both modes present, nothing loaded remotely, no `!important` outside the accessibility module, MIT licence, and **no fonts set** |
+| **Packaging tests** | Required files and screenshot size, manifest fields and matching versions, both modes present, MIT licence, and **no fonts set** |
+| **Token tests** | Every `--hc-*` token read is defined, and every one defined is read |
+| **stylelint** | Obsidian's CSS guidelines and CSS slop, as above |
+| **TypeScript and anti-slop** | Strict types and the anti-slop rules on every script and test |
 | **Stale-build check** | `theme.css` must match what `src/` builds |
-| **Anti-slop lint** | The [anti-slop](https://github.com/dmmulroy/anti-slop) oxlint rules reject the low-evidence patterns AI-written code tends to contain: `unknown` types, unsafe dictionaries, chained type assertions, `typeof` probing, `Reflect` calls, broad object parameters and module mocking |
 
 ## Contributing
 
@@ -407,11 +439,12 @@ Issues and pull requests are welcome. Please:
 
 1. Edit `src/`, never `theme.css`, and run `npm run build`.
 2. Run `npm run check` before committing. It must pass.
-3. Add any new text and background pairing to `tests/contrast.test.mjs`, and make it pass
+3. Add any new text and background pairing to `tests/contrast.test.ts`, and make it pass
    in both modes.
 4. Keep the naming rules. No franchise names, show titles or in-universe terms in the
    theme itself.
-5. Don't add fonts, remote resources or `!important` outside the accessibility module.
+5. Don't add fonts, remote resources or `!important`. Keep selectors light: prefer setting
+   an Obsidian variable to outranking Obsidian's rule.
 
 ## Affiliation and intellectual property
 

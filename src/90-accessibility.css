@@ -1,15 +1,20 @@
-/* Reduced motion, higher contrast and print. */
+/* Reduced motion, increased contrast and print. No !important: each preference is met
+   through the variables Obsidian's own rules read, so a user's snippet can still
+   override it. */
 
+/* Obsidian times its transitions and animations with the --anim-duration-* variables. */
 @media (prefers-reduced-motion: reduce) {
-  body * {
-    transition: none !important;
-    animation: none !important;
+  body {
+    --anim-duration-superfast: 0s;
+    --anim-duration-fast: 0s;
+    --anim-duration-moderate: 0s;
+    --anim-duration-slow: 0s;
   }
 }
 
 @media (prefers-contrast: more) {
-  body.theme-light,
-  body.theme-dark {
+  .theme-light,
+  .theme-dark {
     --text-muted: var(--hc-text);
     --text-faint: var(--hc-text-muted);
     --background-modifier-border: var(--hc-text-muted);
@@ -17,8 +22,8 @@
 }
 
 @media print {
-  body.theme-light,
-  body.theme-dark {
+  .theme-light,
+  .theme-dark {
     --background-primary: #ffffff;
     --text-normal: #000000;
     --text-muted: #333333;
@@ -32,7 +37,7 @@
     --code-background: #f2f2f2;
   }
 
-  .markdown-rendered :is(h1, h2)::before {
-    display: none !important;
+  body {
+    --hc-heading-cap-display: none;
   }
 }

@@ -257,7 +257,7 @@ Bullets and numbers are orange. A collapsed list item's marker is gold.
 
 ### Quotes
 
-Block quotes have a rounded lavender bar down their left side.
+Block quotes have a thick lavender bar down their left side.
 
 ### Callouts
 
@@ -535,6 +535,9 @@ body {
 | `--hc-bar` | `6px` | Thickness of the tab-row bar, rules, quote bars and caps on the file explorer |
 | `--hc-gap` | `3px` | Gap between ribbon segments |
 | `--hc-cap` | `0.55em` | Width of the H1 end cap (the H2 cap is 80% of this) |
+| `--hc-cap-width` | `10px` | Width of the cap on callouts and notices |
+| `--hc-radius-s` | `6px` | Small corner radius (checkboxes, the square side of caps) |
+| `--hc-radius-m` | `12px` | Medium corner radius (menus, fields, code blocks, tables) |
 | `--hc-heading-gap` | `0.75em` | Space between a heading cap and its text |
 | `--hc-panel-radius` | `18px` | Corner radius of dialogs, callouts and notices |
 | `--hc-ribbon-width` | `46px` | Width of the ribbon |
@@ -605,7 +608,8 @@ Obsidian's variables. Try this:
 - **Keyboard focus** is always shown as a gold outline, so you can see where you are
   when navigating by keyboard.
 - **Reduced motion.** If you turn on reduced motion in your operating system, Helm
-  Console turns off transitions and animations.
+  Console sets Obsidian's animation timings to zero, so panels, menus and dialogs appear
+  without animating.
   - macOS: **System Settings → Accessibility → Display → Reduce motion**.
   - Windows: **Settings → Accessibility → Visual effects → Animation effects** (off).
 - **Increased contrast.** If you turn on increased contrast in your operating system,

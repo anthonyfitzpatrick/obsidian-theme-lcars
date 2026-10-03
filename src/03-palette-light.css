@@ -32,6 +32,8 @@
   --hc-ink-red: #b3261e;
   --hc-ink-green: #2f6f3e;
 
+  --interactive-accent-hsl: 25, 91%, 58%;
+
   --hc-selection: rgba(242, 137, 60, 0.3);
   --hc-highlight: rgba(240, 179, 63, 0.4);
 

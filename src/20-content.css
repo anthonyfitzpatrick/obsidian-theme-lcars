@@ -1,5 +1,6 @@
-/* Note content in both editing and reading views. Content text keeps its own case:
-   only interface labels are capitalised. */
+/* Note content in both editing and reading views. Content text keeps its own case: only
+   interface labels are capitalised. Quotes, code backgrounds and callouts are drawn by
+   Obsidian from the variables in 04; this module adds only what no variable covers. */
 
 .inline-title {
   letter-spacing: 0.02em;
@@ -10,10 +11,11 @@
    full height of the line box, and Obsidian pads headings unevenly (more above than
    below), so a border cap sat off-centre from the text. Inline, it is sized to the
    text and centred on the capitals whatever the padding. Its corner radius equals its
-   width, so the inner edge stays straight. */
-body:not(.hc-plain-headings) :is(.markdown-rendered :is(h1, h2), .markdown-source-view.mod-cm6 .cm-line:is(.HyperMD-header-1, .HyperMD-header-2))::before {
+   width, so the inner edge stays straight. Print hides it through
+   --hc-heading-cap-display. */
+:where(body:not(.hc-plain-headings)) :is(.markdown-rendered :is(h1, h2), .HyperMD-header-1, .HyperMD-header-2)::before {
   content: "";
-  display: inline-block;
+  display: var(--hc-heading-cap-display, inline-block);
   width: var(--hc-heading-cap);
   height: 1.05em;
   vertical-align: -0.18em;
@@ -22,23 +24,22 @@ body:not(.hc-plain-headings) :is(.markdown-rendered :is(h1, h2), .markdown-sourc
   background-color: var(--hc-heading-cap-color);
 }
 
-body:not(.hc-plain-headings) :is(.markdown-rendered h1, .HyperMD-header-1) {
+:is(.markdown-rendered h1, .HyperMD-header-1) {
   --hc-heading-cap: var(--hc-cap);
   --hc-heading-cap-color: var(--hc-bar-orange);
 }
 
-body:not(.hc-plain-headings) :is(.markdown-rendered h2, .HyperMD-header-2) {
+:is(.markdown-rendered h2, .HyperMD-header-2) {
   --hc-heading-cap: calc(var(--hc-cap) * 0.8);
   --hc-heading-cap-color: var(--hc-bar-lavender);
 }
 
-body:not(.hc-plain-headings) .markdown-rendered h1 {
+:where(body:not(.hc-plain-headings)) .markdown-rendered h1 {
   border-bottom: 2px solid var(--hc-bar-dim);
 }
 
 /* Horizontal rule: a segmented bar with rounded ends. */
-.markdown-rendered hr,
-.markdown-source-view.mod-cm6 .hr hr {
+:is(.markdown-rendered, .markdown-source-view) hr {
   border: none;
   height: var(--hc-bar);
   border-radius: var(--hc-pill);
@@ -52,42 +53,22 @@ body:not(.hc-plain-headings) .markdown-rendered h1 {
   );
 }
 
-/* Quotes: a rounded bar on the left. */
-.markdown-rendered blockquote {
-  border-left: none;
-  position: relative;
-  padding-left: 1.4em;
-}
-
-.markdown-rendered blockquote::before {
-  content: "";
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: var(--hc-bar);
-  border-radius: var(--hc-pill);
-  background: var(--blockquote-border-color);
-}
-
 .callout-title {
   letter-spacing: 0.04em;
 }
 
-body:not(.hc-mixed-case) .callout-title-inner {
+:where(body:not(.hc-mixed-case)) .callout-title-inner {
   text-transform: uppercase;
 }
 
-/* Code */
-.markdown-rendered pre,
-.markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock {
-  background-color: var(--code-background);
-}
-
+/* Code blocks: a blue cap on the left, rounded outside. */
 .markdown-rendered pre {
   border-left: var(--hc-bar) solid var(--hc-bar-blue);
-  border-radius: 14px 6px 6px 14px;
+  border-radius: var(--hc-radius-m) var(--hc-radius-s) var(--hc-radius-s) var(--hc-radius-m);
 }
 
-/* Tables: a coloured header row with rounded outer corners. */
+/* Tables: a coloured header row with a rounded outer corner. Separate borders are what
+   let the corner cells round. */
 .markdown-rendered table {
   border-collapse: separate;
   border-spacing: 0;
@@ -100,14 +81,14 @@ body:not(.hc-mixed-case) .callout-title-inner {
 }
 
 .markdown-rendered thead th:first-child {
-  border-top-left-radius: 14px;
+  border-top-left-radius: var(--hc-radius-m);
 }
 
 .markdown-rendered thead th:last-child {
-  border-top-right-radius: 4px;
+  border-top-right-radius: var(--hc-radius-s);
 }
 
-/* Tags are outlined pills. */
+/* Tags are outlined pills (from the --tag-* variables). */
 .tag {
   letter-spacing: 0.03em;
 }
@@ -119,6 +100,6 @@ body:not(.hc-mixed-case) .callout-title-inner {
 
 .metadata-container {
   border-left: var(--hc-bar) solid var(--hc-bar-dim);
-  border-radius: 12px 0 0 12px;
+  border-radius: var(--hc-radius-m) 0 0 var(--hc-radius-m);
   padding-left: 10px;
 }

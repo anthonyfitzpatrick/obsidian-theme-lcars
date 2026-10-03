@@ -37,4 +37,16 @@ export default defineConfig({
     "anti-slop/no-widen-then-assert": "error",
     "anti-slop/require-safety-comment-for-type-assertion": "error",
   },
+  overrides: [
+    {
+      // The single JSON decoding boundary. Reading manifest.json and package.json means
+      // inspecting a representation somewhere, and the rule's own remedy, "parse input at
+      // its I/O boundary", needs one place where that is allowed. Type guards may use
+      // typeof here and nowhere else.
+      files: ["scripts/json.ts"],
+      rules: {
+        "anti-slop/no-runtime-typeof": ["error", { allowInTypeGuards: true }],
+      },
+    },
+  ],
 });

@@ -1,8 +1,12 @@
-/* Maps the palette onto Obsidian's own variables. Declared on body.theme-* because
-   Obsidian sets its defaults on .theme-light and .theme-dark (0,1,0), and a var() here
-   must resolve against the palette declared on the same element. */
-body.theme-light,
-body.theme-dark {
+/* The palette mapped onto Obsidian's own variables, split the way Obsidian's theme
+   guidelines ask: colours under .theme-light and .theme-dark, general variables under
+   body. Both selectors match the body element, so a var() here resolves against the
+   palette declared there, and both are as light as Obsidian's own, so a user's CSS
+   snippet with the same selector still overrides the theme. */
+
+/* ---- Colours ---- */
+.theme-light,
+.theme-dark {
   --color-red: rgb(var(--color-red-rgb));
   --color-orange: rgb(var(--color-orange-rgb));
   --color-yellow: rgb(var(--color-yellow-rgb));
@@ -27,6 +31,7 @@ body.theme-dark {
   --background-modifier-form-field: var(--hc-surface);
   --background-modifier-error: var(--hc-bar-red);
   --background-modifier-success: var(--hc-ink-green);
+  --background-modifier-message: var(--hc-panel);
 
   --text-normal: var(--hc-text);
   --text-muted: var(--hc-text-muted);
@@ -53,14 +58,6 @@ body.theme-dark {
   --icon-color-active: var(--hc-ink-orange);
   --icon-color-focused: var(--hc-text);
 
-
-  --radius-s: 6px;
-  --radius-m: 10px;
-  --radius-l: var(--hc-panel-radius);
-  --radius-xl: 24px;
-  --button-radius: var(--hc-pill);
-  --input-radius: 12px;
-  --checkbox-radius: 5px;
   --checkbox-color: var(--hc-bar-orange);
   --checkbox-color-hover: var(--hc-bar-gold);
   --checkbox-marker-color: var(--hc-on-bar);
@@ -71,20 +68,12 @@ body.theme-dark {
   --link-external-color: var(--hc-ink-blue);
   --link-external-color-hover: var(--hc-ink-orange);
   --link-unresolved-color: var(--hc-ink-lavender);
-  --link-unresolved-opacity: 1;
   --list-marker-color: var(--hc-ink-orange);
   --list-marker-color-collapsed: var(--hc-ink-gold);
   --hr-color: var(--hc-bar-lavender);
-  --hr-thickness: var(--hc-bar);
   --blockquote-border-color: var(--hc-bar-lavender);
-  --blockquote-border-thickness: var(--hc-bar);
+
   --code-background: var(--hc-code-bg);
-  /* Callouts: a solid cap on the left, rounded outside. Set through Obsidian's own
-     callout variables, which tint the background and colour the border from
-     --callout-color, so the cap follows each callout type. */
-  --callout-border-width: 0 0 0 10px;
-  --callout-border-opacity: 1;
-  --callout-radius: var(--hc-panel-radius) 6px 6px var(--hc-panel-radius);
   --code-normal: var(--hc-text);
   --code-comment: var(--hc-text-faint);
   --code-function: var(--hc-ink-gold);
@@ -96,14 +85,12 @@ body.theme-dark {
   --code-operator: var(--hc-ink-violet);
   --code-punctuation: var(--hc-text-muted);
   --code-important: var(--hc-ink-orange);
-  --code-radius: 10px;
+
   --tag-background: transparent;
   --tag-background-hover: var(--hc-surface-hover);
   --tag-border-color: var(--hc-bar-violet);
-  --tag-border-width: 1px;
   --tag-color: var(--hc-ink-violet);
   --tag-color-hover: var(--hc-text);
-  --tag-radius: var(--hc-pill);
   --table-header-background: var(--hc-bar-lavender);
   --table-header-color: var(--hc-on-bar);
   --table-border-color: var(--hc-bar-dim);
@@ -115,9 +102,6 @@ body.theme-dark {
   --h4-color: var(--hc-ink-blue);
   --h5-color: var(--hc-ink-violet);
   --h6-color: var(--hc-text-muted);
-  --h1-weight: 700;
-  --h2-weight: 700;
-  --h3-weight: 600;
   --inline-title-color: var(--hc-ink-orange);
 
   --titlebar-background: var(--hc-frame);
@@ -131,33 +115,23 @@ body.theme-dark {
   --tab-divider-color: transparent;
   --ribbon-background: var(--hc-frame);
   --ribbon-background-collapsed: var(--hc-frame);
-  --ribbon-width: var(--hc-ribbon-width);
   --divider-color: var(--hc-frame);
   --divider-color-hover: var(--hc-bar-gold);
-  --divider-width: 4px;
   --status-bar-background: var(--hc-bar-orange);
   --status-bar-text-color: var(--hc-on-bar);
-  --status-bar-border-width: 0;
-  --status-bar-radius: var(--hc-pill) 0 0 0;
   --nav-item-color-active: var(--hc-text);
   --nav-item-background-active: var(--hc-bar-dim);
   --nav-item-color-selected: var(--hc-text);
   --nav-item-background-selected: var(--hc-surface-hover);
-  --background-modifier-message: var(--hc-panel);
   --nav-indentation-guide-color: var(--hc-bar-dim);
   --scrollbar-bg: transparent;
   --scrollbar-thumb-bg: var(--hc-bar-dim);
   --scrollbar-active-thumb-bg: var(--hc-bar-lavender);
   --modal-background: var(--hc-screen);
   --modal-border-color: var(--hc-bar-lavender);
-  --modal-border-width: 2px;
-  --modal-radius: var(--hc-panel-radius);
   --prompt-border-color: var(--hc-bar-orange);
-  --prompt-border-width: 2px;
   --menu-background: var(--hc-screen);
   --menu-border-color: var(--hc-bar-lavender);
-  --menu-radius: 14px;
-  --interactive-accent-hsl: 25, 100%, 66%;
 
   --graph-line: var(--hc-bar-dim);
   --graph-node: var(--hc-ink-lavender);
@@ -168,4 +142,37 @@ body.theme-dark {
   --graph-text: var(--hc-text);
   --canvas-background: var(--hc-screen);
   --canvas-dot-pattern: var(--hc-bar-dim);
+}
+
+/* ---- General variables: sizes, radii, weights ---- */
+body {
+  --radius-s: var(--hc-radius-s);
+  --radius-m: var(--hc-radius-m);
+  --radius-l: var(--hc-panel-radius);
+  --radius-xl: calc(var(--hc-panel-radius) + var(--hc-radius-s));
+  --button-radius: var(--hc-pill);
+  --input-radius: var(--hc-radius-m);
+  --checkbox-radius: var(--hc-radius-s);
+  --code-radius: var(--hc-radius-m);
+  --tag-radius: var(--hc-pill);
+  --tag-border-width: 1px;
+  --link-unresolved-opacity: 1;
+  --hr-thickness: var(--hc-bar);
+  --blockquote-border-thickness: var(--hc-bar);
+  /* Callouts: a solid cap on the left, rounded outside. Obsidian tints the background
+     and colours the border from each callout's own --callout-color. */
+  --callout-border-width: 0 0 0 var(--hc-cap-width);
+  --callout-border-opacity: 1;
+  --callout-radius: var(--hc-panel-radius) var(--hc-radius-s) var(--hc-radius-s) var(--hc-panel-radius);
+  --h1-weight: 700;
+  --h2-weight: 700;
+  --h3-weight: 600;
+  --ribbon-width: var(--hc-ribbon-width);
+  --divider-width: 4px;
+  --status-bar-border-width: 0;
+  --status-bar-radius: var(--hc-pill) 0 0 0;
+  --modal-border-width: 2px;
+  --modal-radius: var(--hc-panel-radius);
+  --prompt-border-width: 2px;
+  --menu-radius: var(--hc-radius-m);
 }

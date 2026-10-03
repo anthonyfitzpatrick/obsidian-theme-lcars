@@ -1,12 +1,16 @@
-/* Geometry shared by both modes. Palettes live in 02 and 03. Fonts are left entirely
-   to Obsidian: the theme sets no font family anywhere. */
-:root {
+/* Sizes shared by both modes, set on body as Obsidian's theme guidelines ask for general
+   variables. Palettes live in 02 and 03. Fonts are left entirely to Obsidian: the theme
+   sets no font family anywhere. */
+body {
   --hc-elbow: 28px;
   --hc-bar: 6px;
   --hc-gap: 3px;
   --hc-cap: 0.55em;
+  --hc-cap-width: 10px;
   --hc-heading-gap: 0.75em;
   --hc-pill: 999px;
+  --hc-radius-s: 6px;
+  --hc-radius-m: 12px;
   --hc-panel-radius: 18px;
   --hc-ribbon-width: 46px;
   --hc-label-tracking: 0.07em;

@@ -1,8 +1,13 @@
-/* Window chrome: the swept ribbon column, the top bar it turns into, pill tabs and the
-   capped status bar. */
+/* Window chrome: the swept ribbon column, the bar it turns into, pill tabs and the capped
+   status bar.
+
+   Style Settings switches are body classes, and every check for one is wrapped in
+   :where() so it adds no specificity: each rule weighs only what its target needs to
+   win against Obsidian's own rule for that element (Obsidian's theme guidelines ask for
+   low-specificity selectors). */
 
 /* Interface labels in capitals with open tracking, unless the reader opts out. */
-body:not(.hc-mixed-case) :is(
+:where(body:not(.hc-mixed-case)) :is(
   .workspace-tab-header-inner-title,
   .view-header-title,
   .status-bar,
@@ -10,15 +15,14 @@ body:not(.hc-mixed-case) :is(
   .modal-title,
   .vertical-tab-header-group-title,
   .setting-item-heading .setting-item-name,
-  .tree-item-self.is-clickable.mod-collapsible:not(.nav-file-title) .tree-item-inner,
   button:not(.clickable-icon)
 ) {
   text-transform: uppercase;
   letter-spacing: var(--hc-label-tracking);
 }
 
-/* ---- Ribbon: a column of coloured segments, rounded where it turns into the top bar ---- */
-body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left {
+/* ---- Ribbon: a column of coloured segments, rounded where it turns into the bar ---- */
+:where(body:not(.hc-plain-ribbon)) .workspace-ribbon.mod-left {
   background: var(--hc-bar-lavender);
   border: none;
   border-radius: var(--hc-elbow) 0 0 var(--hc-elbow);
@@ -27,87 +31,88 @@ body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left {
   overflow: hidden;
 }
 
-body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left :is(.side-dock-actions, .side-dock-settings) {
+/* Obsidian clears a header-height strip above the ribbon for the window controls and
+   fills it with ::before. The column instead starts level with the bar under the tab
+   row, so the two meet as one swept shape. */
+:where(body:not(.hc-plain-ribbon)) .workspace-ribbon.mod-left::before {
+  display: none;
+}
+
+:where(body.is-hidden-frameless:not(.hc-plain-ribbon)) .workspace-ribbon.mod-left {
+  margin-top: calc(var(--header-height) - var(--hc-bar));
+}
+
+:where(body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left) :is(.side-dock-actions, .side-dock-settings) {
   gap: 0;
   width: 100%;
 }
 
-/* Obsidian clears a header-height strip above the ribbon for the window controls and
-   fills it with ::before. The column instead starts level with the bar under the tab
-   row, so the two meet as one swept shape. */
-body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left::before {
-  display: none;
-}
-
-body.is-hidden-frameless:not(.hc-plain-ribbon) .workspace-ribbon.mod-left {
-  margin-top: calc(var(--header-height) - var(--hc-bar));
-}
-
-body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-actions {
+:where(body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left) .side-dock-actions {
   margin-top: var(--hc-elbow);
 }
 
-body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-ribbon-action {
+/* One segment per action. Colours repeat orange, peach, blue, gold; settings are violet.
+   Under the pointer, Obsidian's own .clickable-icon:hover rule paints the segment with
+   --background-modifier-hover, which is set to red here, so every segment turns red. */
+:where(body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left) .side-dock-ribbon-action {
   --icon-color: var(--hc-on-bar);
   --icon-color-hover: var(--hc-on-bar);
+  --background-modifier-hover: var(--hc-bar-red);
+  --hc-segment: var(--hc-bar-orange);
   width: 100%;
   height: 38px;
   border-radius: 0;
   border-top: var(--hc-gap) solid var(--hc-frame);
-  background: var(--hc-bar-orange);
+  background: var(--hc-segment);
   color: var(--hc-on-bar);
   justify-content: flex-end;
   padding-right: 8px;
 }
 
-body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-actions .side-dock-ribbon-action:nth-child(4n + 2) {
-  background: var(--hc-bar-peach);
+:where(body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-actions) .side-dock-ribbon-action:nth-child(4n + 2) {
+  --hc-segment: var(--hc-bar-peach);
 }
 
-body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-actions .side-dock-ribbon-action:nth-child(4n + 3) {
-  background: var(--hc-bar-blue);
+:where(body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-actions) .side-dock-ribbon-action:nth-child(4n + 3) {
+  --hc-segment: var(--hc-bar-blue);
 }
 
-body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-actions .side-dock-ribbon-action:nth-child(4n + 4) {
-  background: var(--hc-bar-gold);
+:where(body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-actions) .side-dock-ribbon-action:nth-child(4n + 4) {
+  --hc-segment: var(--hc-bar-gold);
 }
 
-body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-actions .side-dock-ribbon-action:last-child {
+:where(body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-settings) .side-dock-ribbon-action {
+  --hc-segment: var(--hc-bar-violet);
+}
+
+:where(body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left) .side-dock-actions .side-dock-ribbon-action:last-child {
   border-bottom: var(--hc-gap) solid var(--hc-frame);
 }
 
-body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-settings .side-dock-ribbon-action {
-  background: var(--hc-bar-violet);
-}
-
-body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-settings .side-dock-ribbon-action:last-child {
+:where(body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left) .side-dock-settings .side-dock-ribbon-action:last-child {
   height: 56px;
   align-items: flex-start;
   padding-top: 8px;
 }
 
-body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-ribbon-action:hover {
-  background: var(--hc-bar-red);
-}
-
-body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .sidebar-toggle-button {
+:where(body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left) .sidebar-toggle-button {
   --icon-color: var(--hc-on-bar);
   --icon-color-hover: var(--hc-on-bar);
 }
 
-body.hc-plain-ribbon .workspace-ribbon.mod-left {
+:where(body.hc-plain-ribbon) .workspace-ribbon.mod-left {
   background: var(--hc-panel);
   border-right: var(--hc-bar) solid var(--hc-bar-lavender);
 }
 
 /* The bar the ribbon turns into, along the foot of the tab row. Inset, so it never
    shifts the tabs. */
-body:not(.hc-plain-ribbon) .workspace-tab-header-container {
+:where(body:not(.hc-plain-ribbon)) .workspace-tab-header-container {
   box-shadow: inset 0 calc(var(--hc-bar) * -1) 0 var(--hc-bar-lavender);
 }
 
 /* Controls in the tab row are transparent, so the bar runs unbroken to both edges. */
-body:not(.hc-plain-ribbon) .workspace-tab-header-container :is(
+:where(body:not(.hc-plain-ribbon) .workspace-tab-header-container) :is(
   .workspace-tab-header-container-inner,
   .workspace-tab-header-new-tab,
   .workspace-tab-header-tab-list,
@@ -118,18 +123,18 @@ body:not(.hc-plain-ribbon) .workspace-tab-header-container :is(
 
 /* On macOS the sidebar toggles are pinned over the tab row with a solid background, so
    tabs cannot show through them. They carry their own length of the bar instead. */
-body:not(.hc-plain-ribbon) .workspace-tab-header-container .sidebar-toggle-button {
+:where(body:not(.hc-plain-ribbon) .workspace-tab-header-container) .sidebar-toggle-button {
   height: var(--header-height);
   box-shadow: inset 0 calc(var(--hc-bar) * -1) 0 var(--hc-bar-lavender);
 }
 
 /* The inner, concave curve of the elbow, in whichever tab group sits beside the
    ribbon: the left sidebar when it is open, the top-left editor group when not. */
-body:not(.hc-plain-ribbon) .workspace-tabs.mod-top-left-space > .workspace-tab-container {
+:where(body:not(.hc-plain-ribbon) .workspace-tabs.mod-top-left-space) > .workspace-tab-container {
   position: relative;
 }
 
-body:not(.hc-plain-ribbon) .workspace-tabs.mod-top-left-space > .workspace-tab-container::before {
+:where(body:not(.hc-plain-ribbon) .workspace-tabs.mod-top-left-space) > .workspace-tab-container::before {
   content: "";
   position: absolute;
   top: 0;
@@ -152,62 +157,61 @@ body:not(.hc-plain-ribbon) .workspace-tabs.mod-top-left-space > .workspace-tab-c
   display: none;
 }
 
+/* Matches Obsidian's own selector for main-area tabs, which sets their padding and
+   would outrank a lighter one. */
 .workspace .mod-root .workspace-tab-header {
   --tab-text-color: var(--hc-text);
   --tab-text-color-focused: var(--hc-text);
+  --hc-tab-fill: var(--hc-bar-dim);
   border-radius: var(--hc-pill);
   margin: 2px 2px 4px;
   padding: 0 4px;
-  background: var(--hc-bar-dim);
+  background: var(--hc-tab-fill);
 }
 
-.workspace .mod-root .workspace-tab-header-inner {
+.mod-root .workspace-tab-header-inner {
   padding: 0 10px;
 }
 
-.workspace .mod-root .workspace-tab-header:not(.is-active):hover {
-  background: var(--hc-bar-violet);
+/* Hover, then active, then active-in-the-focused-pane: equal weight, so order decides. */
+.mod-root .workspace-tab-header:hover {
+  --hc-tab-fill: var(--hc-bar-violet);
   --tab-text-color: var(--hc-on-bar);
   --tab-text-color-focused: var(--hc-on-bar);
   --icon-color: var(--hc-on-bar);
 }
 
-.workspace .mod-root .workspace-tab-header.is-active {
-  background: var(--hc-bar-peach);
+.mod-root .workspace-tab-header.is-active {
+  --hc-tab-fill: var(--hc-bar-peach);
   --tab-text-color-focused: var(--hc-on-bar);
   --icon-color: var(--hc-on-bar);
   --icon-color-hover: var(--hc-on-bar);
   color: var(--hc-on-bar);
 }
 
-.workspace .mod-root .workspace-tabs.mod-active .workspace-tab-header.is-active {
-  background: var(--hc-bar-orange);
+:where(.mod-root) .mod-active .workspace-tab-header.is-active {
+  --hc-tab-fill: var(--hc-bar-orange);
 }
 
-.workspace .mod-root .workspace-tab-header.is-active .workspace-tab-header-inner-title {
+:where(.mod-root .workspace-tab-header.is-active) .workspace-tab-header-inner-title {
   color: var(--hc-on-bar);
   font-weight: 600;
 }
 
-/* Sidebar tabs are icon-only: a smaller pill round the active icon. */
+/* Sidebar tab rows sit on the frame; the active icon gets a lavender pill. */
 .workspace-sidedock-vault-profile,
-.workspace-split:is(.mod-left-split, .mod-right-split) .workspace-tab-header-container {
+:is(.mod-left-split, .mod-right-split) .workspace-tab-header-container {
   background-color: var(--hc-frame);
 }
 
-.workspace-split:is(.mod-left-split, .mod-right-split) .workspace-tab-header.is-active {
+:is(.mod-left-split, .mod-right-split) .workspace-tab-header.is-active {
   --icon-color: var(--hc-on-bar);
   --icon-color-hover: var(--hc-on-bar);
   background: var(--hc-bar-lavender);
   border-radius: var(--hc-pill);
 }
 
-/* ---- Panels ---- */
-.workspace-split:is(.mod-left-split, .mod-right-split) .workspace-leaf-content,
-.workspace-split:is(.mod-left-split, .mod-right-split) .view-content {
-  background: var(--hc-panel);
-}
-
+/* ---- View headers ---- */
 .view-header {
   border-bottom: none;
 }
@@ -225,16 +229,13 @@ body:not(.hc-plain-ribbon) .workspace-tabs.mod-top-left-space > .workspace-tab-c
   color: var(--hc-ink-gold);
 }
 
-.nav-file-title,
-.nav-folder-title,
 .tree-item-self {
   border-radius: var(--hc-pill);
 }
 
-/* The open file is a dim bar with an orange end cap, not a bright fill. File-colour
-   plugins set name colours inline, which a theme cannot override cleanly, so a bright
-   fill would hide them. Text in any colour stays readable on the dim bar. */
-.nav-file-title.is-active,
+/* The open file is a dim bar (from --nav-item-background-active) with an orange end
+   cap, not a bright fill. File-colour plugins set name colours inline, which a theme
+   cannot override cleanly, so a bright fill would hide them. */
 .tree-item-self.is-active {
   font-weight: 600;
   box-shadow: inset var(--hc-bar) 0 0 var(--hc-bar-orange);
@@ -244,15 +245,14 @@ body:not(.hc-plain-ribbon) .workspace-tabs.mod-top-left-space > .workspace-tab-c
   box-shadow: inset var(--hc-bar) 0 0 var(--hc-bar-gold);
 }
 
-.nav-folder-collapse-indicator,
 .tree-item-icon.collapse-icon {
   color: var(--hc-ink-orange);
 }
 
-/* ---- Status bar: a capped orange bar in the lower right ---- */
+/* ---- Status bar: a capped orange bar in the lower right (colours, radius and border
+   come from the --status-bar-* variables) ---- */
 .status-bar {
   font-weight: 600;
-  border: none;
   padding-left: 18px;
 }
 
@@ -264,11 +264,4 @@ body:not(.hc-plain-ribbon) .workspace-tabs.mod-top-left-space > .workspace-tab-c
 .status-bar-item.mod-clickable:hover {
   background: var(--hc-bar-gold);
   border-radius: var(--hc-pill);
-}
-
-/* ---- Scrollbars: rounded thumbs ---- */
-body ::-webkit-scrollbar-thumb {
-  border-radius: var(--hc-pill);
-  border: 3px solid transparent;
-  background-clip: padding-box;
 }
