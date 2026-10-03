@@ -12,14 +12,19 @@ body:not(.hc-plain-headings) :is(.markdown-rendered h1, .HyperMD-header-1) {
   --hc-heading-cap: var(--hc-cap);
   border-left: var(--hc-heading-cap) solid var(--hc-bar-orange);
   border-radius: var(--hc-heading-cap) 0 0 var(--hc-heading-cap);
-  padding-left: 0.45em;
 }
 
 body:not(.hc-plain-headings) :is(.markdown-rendered h2, .HyperMD-header-2) {
   --hc-heading-cap: calc(var(--hc-cap) * 0.8);
   border-left: var(--hc-heading-cap) solid var(--hc-bar-lavender);
   border-radius: var(--hc-heading-cap) 0 0 var(--hc-heading-cap);
-  padding-left: 0.45em;
+}
+
+/* The gap between cap and text. Live preview needs its own selector: Obsidian's
+   `.cm-s-obsidian .cm-line.HyperMD-header` resets heading padding and outranks a
+   shorter one. Only the start side is set, so the editor keeps its vertical padding. */
+body:not(.hc-plain-headings) :is(.markdown-rendered :is(h1, h2), .markdown-source-view.mod-cm6 .cm-line:is(.HyperMD-header-1, .HyperMD-header-2)) {
+  padding-inline-start: var(--hc-heading-gap);
 }
 
 body:not(.hc-plain-headings) .markdown-rendered h1 {
