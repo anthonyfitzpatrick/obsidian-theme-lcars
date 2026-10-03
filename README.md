@@ -99,14 +99,18 @@ and the Style Settings option **Mixed-case interface labels** turns that off.
 `theme.css` is generated from the modules in `src/`. Edit those modules, never the generated file.
 
 ```sh
+npm install      # dev-only lint tools (oxlint)
 npm run build    # regenerate theme.css from src/
-npm test         # contrast, packaging and naming checks
-npm run check    # both, and fail if theme.css is stale
+npm run lint     # oxlint with the anti-slop rules
+npm test         # contrast, packaging, naming and font checks
+npm run check    # lint, stale-theme.css check and tests
 HELM_CONSOLE_VAULT=/path/to/vault npm run deploy   # build and copy into a vault
 ```
 
-The build needs no dependencies, only Node 20 or later. To enable the pre-commit check, run
-`git config core.hooksPath .githooks`.
+The build itself needs only Node 20 or later. Linting uses `oxlint` with the
+[anti-slop](https://github.com/dmmulroy/anti-slop) rule set (MIT), copied into
+`tools/oxlint/anti-slop/`. The rules reject the low-evidence patterns AI-written code tends
+to contain. To enable the pre-commit check, run `git config core.hooksPath .githooks`.
 
 | Module | Contents |
 | --- | --- |
@@ -168,6 +172,9 @@ be dealt with promptly and without argument.
 
 ## Licence
 
-Released under the **MIT Licence**. See [LICENSE](LICENSE). The licence covers only the
-original CSS and documentation in this repository. It grants no rights in any third
+Released under the **MIT Licence**. See [LICENSE](LICENSE). That licence covers only the
+original CSS and documentation in this repository, and grants no rights in any third
 party's trademarks or copyrighted works.
+
+The lint rules in `tools/oxlint/anti-slop/` are © Dillon Mulroy, also under the MIT
+Licence. See [their LICENSE](tools/oxlint/anti-slop/LICENSE).

@@ -7,11 +7,16 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
+    "lint": "oxlint",
     "test": "node --test tests/",
-    "check": "node scripts/build.mjs --check && node --test tests/",
+    "check": "oxlint && node scripts/build.mjs --check && node --test tests/",
     "deploy": "node scripts/build.mjs && node scripts/deploy.mjs"
   },
   "engines": {
     "node": ">=20"
+  },
+  "devDependencies": {
+    "@oxlint/plugins": "1.78.0",
+    "oxlint": "1.78.0"
   }
 }

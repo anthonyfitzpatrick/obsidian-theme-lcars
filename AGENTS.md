@@ -1,16 +1,18 @@
 # Helm Console — repository guide
 
-An Obsidian community theme. Plain CSS, no runtime JavaScript, no dependencies.
+An Obsidian community theme. Plain CSS, no runtime JavaScript. The only dependencies are dev-only lint tools.
 
 ## Commands
 
 - `npm run build` regenerates `theme.css` from `src/*.css`, which are concatenated in filename order.
 - `npm test` runs the contrast, packaging and naming checks (`node --test tests/`).
-- `npm run check` runs both and fails if `theme.css` is stale. CI and the pre-commit hook run this.
+- `npm run lint` runs oxlint with the vendored **anti-slop** rules over `scripts/` and `tests/`.
+- `npm run check` runs lint, then the stale-`theme.css` check, then the tests. CI and the pre-commit hook run this, and a `PostToolUse` hook in `.claude/settings.json` lints after every edit Claude makes.
 - `HELM_CONSOLE_VAULT=<vault> npm run deploy` builds the theme and copies it to `<vault>/.obsidian/themes/Helm Console/`.
 
 ## Rules
 
+- **Anti-slop:** `tools/oxlint/anti-slop/` is vendored from the Developmental Editor and is not an npm package, so edit the rules to suit. Do not silence a rule with a disable comment. Fix the code: parse input at its boundary, use named domain types, and give any type assertion a safety comment.
 - Never edit `theme.css` by hand. Edit `src/` and rebuild.
 - Palettes (`src/02`, `src/03`) hold colours only. Structure goes in the component modules and uses `--hc-*` tokens.
 - Every new text/background pairing must be added to `tests/contrast.test.mjs` and must pass in both modes.
@@ -19,3 +21,7 @@ An Obsidian community theme. Plain CSS, no runtime JavaScript, no dependencies.
 - Do not load remote resources (`@import`, remote `url()`). The community theme directory forbids it.
 - `manifest.json` and `package.json` versions must match. Do not push tags unless a release is explicitly requested.
 - Remote `origin` pushes to both GitHub and Gitea. `github` is the fetch-only reference.
+
+## Project notes
+
+Planning, design, decisions and backlog live in the Wolf 359 Press AB vault under `Software Development/Obsidian Plugins and Themes/LCARS Theme/` (start at `LCARS Theme.md`). Update them when a decision or the backlog changes.
