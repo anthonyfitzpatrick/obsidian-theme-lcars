@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: User Guide
+    url: https://github.com/anthonyfitzpatrick/obsidian-theme-lcars/blob/main/USERGUIDE.md
+    about: Installing, choosing light or dark, what the theme changes, options, accessibility, and troubleshooting.
+  - name: Overview
+    url: https://github.com/anthonyfitzpatrick/obsidian-theme-lcars#readme
+    about: What this theme is, the palette it uses, and the geometry of its bars and elbows.
+  - name: Theme page
+    url: https://wolf359.app/starship-helm-console/
+    about: The product page for Starship Helm Console on wolf359.app.
