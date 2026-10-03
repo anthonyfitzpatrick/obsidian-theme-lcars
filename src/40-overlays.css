@@ -61,8 +61,8 @@
   --icon-color: var(--hc-on-bar);
 }
 
-.menu-item.selected .menu-item-title,
-.menu-item:hover .menu-item-title {
+.menu-item.selected :is(.menu-item-title, .menu-item-icon),
+.menu-item:hover :is(.menu-item-title, .menu-item-icon) {
   color: var(--hc-on-bar);
 }
 
@@ -109,7 +109,9 @@
   border-radius: var(--hc-pill);
 }
 
-.vertical-tab-nav-item.is-active {
+/* Matches Obsidian's own selector, which outranks a shorter one and would otherwise draw
+   the chosen section as black text on the near-black hover colour. */
+body:not(.is-phone) :is(.vertical-tab-nav-item, .horizontal-tab-nav-item).is-active {
   background: var(--hc-bar-orange);
   color: var(--hc-on-bar);
   --icon-color: var(--hc-on-bar);

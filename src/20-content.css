@@ -68,14 +68,6 @@ body:not(.hc-plain-headings) .markdown-rendered h1 {
   background: var(--blockquote-border-color);
 }
 
-/* Callouts: a coloured cap on the left, square on the right. */
-.callout {
-  border: none;
-  border-left: 10px solid rgb(var(--callout-color));
-  border-radius: var(--hc-panel-radius) 6px 6px var(--hc-panel-radius);
-  background: rgba(var(--callout-color), 0.1);
-}
-
 .callout-title {
   letter-spacing: 0.04em;
 }

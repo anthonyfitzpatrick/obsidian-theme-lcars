@@ -3,6 +3,11 @@
 This guide covers everything you can see and change in Helm Console, an LCARS-inspired
 theme for Obsidian. For a shorter overview, see the [README](README.md).
 
+Every screenshot comes from the demo vault in
+[`docs/Helm Console Demo`](docs/Helm%20Console%20Demo), which uses Obsidian's default
+fonts. To follow along with the same notes, open that folder as a vault (vault switcher →
+**Open folder as vault**) and install the theme into it as described in section 1.
+
 > Helm Console is an independent, unofficial, fan-made theme. It is not affiliated with,
 > endorsed by, sponsored by, or connected to Paramount Global, CBS Studios or any other
 > rights-holder.
@@ -65,7 +70,7 @@ notice when its file changes, so after updating either:
 
 ## 2. Choosing dark or light
 
-Open **Settings → Appearance → Base color scheme** and choose **Dark**, **Light**, or
+Open **Settings → Appearance → Base colour scheme** and choose **Dark**, **Light**, or
 **Adapt to system** to follow your operating system.
 
 **Dark mode** is the look the style is known for: bright bars on black. Use it if you
@@ -77,11 +82,45 @@ prefer dark text on a light page for long reading.
 
 Both modes use the same shapes. Only the colours change.
 
+<p align="center"><img src="docs/images/01-overview-dark.png" alt="The workspace in dark mode" width="900"></p>
+
+<p align="center"><img src="docs/images/01-overview-light.png" alt="The workspace in light mode" width="900"></p>
+
+**What to compare between the two:**
+
+1. **The page.** Pure black in dark mode, near-white in light mode.
+2. **The frame**, meaning the tab row along the top and the strip between the sidebar
+   and the page. Black in dark mode, a light cool grey in light mode.
+3. **The sidebar.** A near-black panel in dark mode and a slightly darker grey than the
+   frame in light mode. Either way it reads as its own surface.
+4. **The bars** (ribbon segments, the active tab, the status bar). The same hues in both
+   modes, a little more saturated in light mode. Labels on them are always black.
+5. **Coloured text** (the note title, headings, links, folder names). Bright in dark
+   mode, deeper in light mode, so it meets the same 4.5:1 contrast on white.
+
+**Try it:** open **Settings → Appearance**, set **Base colour scheme** to **Light**,
+then back to **Dark**. Nothing moves; only the colours change.
+
 ---
 
 ## 3. A tour of the window
 
 ### The ribbon and the elbow
+
+<table><tr>
+<td><img src="docs/images/06-elbow-dark.png" alt="Ribbon, elbow and file explorer in dark mode" width="420"></td>
+<td><img src="docs/images/06-elbow-light.png" alt="Ribbon, elbow and file explorer in light mode" width="420"></td>
+</tr></table>
+
+**What you're looking at, from left to right:**
+
+1. **The ribbon segments.** One coloured block per ribbon icon, separated by thin gaps
+   in the frame colour.
+2. **The elbow.** The ribbon's rounded top-left corner, which turns into the lavender bar
+   running under the tab row. Look at the inside of the bend, where the sidebar begins:
+   a small concave curve completes the shape.
+3. **The file explorer.** Folder names in gold capitals, notes in normal text, and the
+   open note (**Welcome**) as a dim bar with an orange cap on its left.
 
 The **ribbon** is the column of icons at the far left of the window. Helm Console draws
 it as a stack of coloured segments, one per icon, separated by thin gaps. The colours
@@ -103,6 +142,17 @@ If you'd rather have a plain ribbon, turn on **Plain ribbon** (see
 ### Tabs
 
 Every tab is a **pill** with rounded ends, and labels are in capitals.
+
+<p align="center"><img src="docs/images/07-tabs-dark.png" alt="The tab row in dark mode" width="900"></p>
+<p align="center"><img src="docs/images/07-tabs-light.png" alt="The tab row in light mode" width="900"></p>
+
+In these strips, **WELCOME** is the active tab in the pane you're working in, so it is
+orange. **GLOSSARY** and **SURVEY STATION** are inactive, so they are dim pills. The
+lavender line beneath them is the bar the ribbon's elbow turns into.
+
+**Try it:** move the pointer over an inactive tab and it turns violet. Split the window
+(**right-click a tab → Split right**) and click in the other pane: the tab you left turns
+peach, and the pane you're in gets the orange one.
 
 | Tab state | Looks like |
 | --- | --- |
@@ -138,6 +188,12 @@ it is muted.
 The status bar in the lower right is an **orange bar with a rounded left end**. Its
 text and icons are black. Clickable items turn gold under the pointer.
 
+<p align="center"><img src="docs/images/08-status-bar-dark.png" alt="The status bar in dark mode" width="560"></p>
+<p align="center"><img src="docs/images/08-status-bar-light.png" alt="The status bar in light mode" width="560"></p>
+
+The labels (backlinks, properties, word and character counts) come from Obsidian and
+any plugins you use. The theme only draws the bar around them and capitalises them.
+
 ### Dividers and scrollbars
 
 The gaps between panes take the frame colour: black in dark mode, light grey in light
@@ -150,6 +206,28 @@ drag them.
 
 Helm Console never changes your note text. Its font is your font, and its case is your
 case. Only the decorations around it change.
+
+The overview screenshots in [section 2](#2-choosing-dark-or-light) show the top of the
+demo note `Welcome` in live preview: the title, the properties block, the H1 and H2
+caps, emphasis, highlighted text, inline code, both kinds of link, tags and lists. The
+screenshots below show the rest of it in reading view.
+
+<p align="center"><img src="docs/images/02-content-dark.png" alt="Callouts, a rule, a table and code in dark mode" width="900"></p>
+<p align="center"><img src="docs/images/02-content-light.png" alt="Callouts, a rule, a table and code in light mode" width="900"></p>
+
+**What you're looking at, from top to bottom:**
+
+1. **An H2 heading** ("Callouts") with its lavender end cap. The cap is centred on the
+   heading text and stands clear of it.
+2. **Four callouts:** note and tip in blue, warning in orange, failure in red. Each has a
+   thick cap in its own colour on the left and a light tint of the same colour behind it.
+   The titles are capitals.
+3. **A horizontal rule**, drawn as a segmented bar: orange, lavender, blue.
+4. **A table** with a lavender header row and black labels, and tinted alternate rows.
+5. **The start of a code block**, with its blue cap on the left and its own background.
+
+**Try it:** in the demo vault, open `Welcome` and press **Cmd/Ctrl + E** to switch between
+live preview and reading view. The caps, callouts, rule and table look the same in both.
 
 ### Headings
 
@@ -259,11 +337,35 @@ Toggles are pills: orange with a black knob when on, dim with a lighter knob whe
 The selected result is a full **orange bar** with black text. The letters that match
 what you typed are underlined on the selected row and orange on the others.
 
+<table><tr>
+<td><a href="docs/images/03-palette-dark.png"><img src="docs/images/03-palette-dark.png" alt="The command palette in dark mode" width="420"></a></td>
+<td><a href="docs/images/03-palette-light.png"><img src="docs/images/03-palette-light.png" alt="The command palette in light mode" width="420"></a></td>
+</tr></table>
+
+**What you're looking at:** the palette after typing "toggle". The thick orange edge at
+the top marks the palette as the active panel. **Toggle pin** is selected, so it is the
+orange bar and its matching letters are underlined. In every other result, "Toggle" is
+picked out in orange (dark) or a deep orange (light). Keyboard shortcuts sit at the right
+as small keys, and the hints along the bottom are capitals.
+
+**Try it:** press **Cmd/Ctrl + P**, type a few letters, and use the arrow keys. The orange
+bar follows your selection.
+
 ### Menus
 
 Right-click menus are rounded panels with a lavender border. The row under the pointer
 becomes a lavender bar. Destructive items (such as **Delete**) become a red bar under the
 pointer.
+
+<table><tr>
+<td><img src="docs/images/09-menu-dark.png" alt="A file menu in dark mode" width="300"></td>
+<td><img src="docs/images/09-menu-light.png" alt="A file menu in light mode" width="300"></td>
+</tr></table>
+
+**What you're looking at:** the menu for the note **Survey Station**, opened by
+right-clicking it in the file explorer. The gold outline around **Survey Station** shows
+which file the menu belongs to. **Rename…** is under the pointer, so it is a lavender
+bar with a black label and icon. **Delete** is red, because it can't be undone.
 
 ### Dialogs
 
@@ -274,11 +376,40 @@ Dialogs have a lavender border with a thicker top edge, and an orange title.
 The section list on the left shows the selected section as an orange bar. Group titles
 are gold, and setting headings are orange.
 
+<table><tr>
+<td><a href="docs/images/04-settings-dark.png"><img src="docs/images/04-settings-dark.png" alt="Settings in dark mode" width="420"></a></td>
+<td><a href="docs/images/04-settings-light.png"><img src="docs/images/04-settings-light.png" alt="Settings in light mode" width="420"></a></td>
+</tr></table>
+
+**What you're looking at:** **Settings → Appearance**.
+
+1. **Appearance** in the section list is the orange bar, because it is the open section.
+   **OPTIONS** and **CORE PLUGINS** are gold group titles.
+2. **MANAGE** and **CHECK FOR UPDATES** are ordinary buttons: lavender pills with black
+   capitals.
+3. **FONT** is a setting heading, in orange.
+4. The **font size slider** has an orange thumb, and the toggle at the bottom shows its
+   off state: a dim pill with a visible knob.
+5. The **Accent colour** swatch shows Obsidian's own accent setting. Helm Console sets its
+   accents itself, so changing this has no effect (see
+   [Troubleshooting](#the-accent-colour-setting-does-nothing)).
+
+Obsidian can open Settings in a window of its own (**Settings → Interface → Open settings
+in new window**). The theme styles it the same way in either place.
+
 ### Notices (pop-up messages)
 
 Obsidian's pop-up messages, including errors and sync messages, appear as panels with a
 **gold border and a thick gold cap** on the left. The background is the theme's panel
 colour, so the message text, links and buttons inside stay readable in both modes.
+
+<table><tr>
+<td><img src="docs/images/10-notice-dark.png" alt="A notice in dark mode" width="280"></td>
+<td><img src="docs/images/10-notice-light.png" alt="A notice in light mode" width="280"></td>
+</tr></table>
+
+Notices appear in the top-right corner of the window and disappear by themselves after a
+few seconds. Click one to dismiss it sooner.
 
 ### Tooltips
 
@@ -530,7 +661,7 @@ font, adjust them with `--hc-cap` and `--hc-heading-gap` in a snippet, or turn o
 ### The ribbon's elbow looks misaligned
 
 The elbow is tuned for Obsidian's default window frame on macOS, where the title bar is
-hidden. With a native title bar (**Settings → Appearance → Window frame style**), or on
+hidden. With a native title bar (**Settings → Interface → Window frame style**), or on
 Windows and Linux, the ribbon may start slightly differently. Turn on **Plain ribbon** if
 it bothers you, and please open an issue with a screenshot.
 
@@ -541,9 +672,15 @@ See [If a plugin looks wrong](#if-a-plugin-looks-wrong).
 ### The accent colour setting does nothing
 
 Helm Console sets its own accent colours (orange, gold and the other bars), so Obsidian's
-**Accent color** setting has no effect. To change the accent, use a snippet that sets
+**Accent colour** setting has no effect. To change the accent, use a snippet that sets
 `--hc-bar-orange` and `--hc-ink-orange` (see
 [Changing colours](#changing-colours)).
+
+### Menus look different from the screenshots
+
+On macOS, Obsidian can use the system's native menus instead of its own. Native menus
+are drawn by macOS, so no theme can style them. To get the theme's menus, turn off
+**Settings → Interface → Native menus** (in the **Advanced** group).
 
 ### Something looks wrong after an Obsidian update
 
@@ -578,7 +715,7 @@ It hasn't been tested on mobile yet. It is plain CSS, so it should load, but som
 may look different.
 
 **Can I use only the dark mode?**
-Yes. Set **Settings → Appearance → Base color scheme** to **Dark**.
+Yes. Set **Settings → Appearance → Base colour scheme** to **Dark**.
 
 **Can I change the colours?**
 Yes, with a CSS snippet. See

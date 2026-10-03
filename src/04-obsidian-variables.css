@@ -79,6 +79,12 @@ body.theme-dark {
   --blockquote-border-color: var(--hc-bar-lavender);
   --blockquote-border-thickness: var(--hc-bar);
   --code-background: var(--hc-code-bg);
+  /* Callouts: a solid cap on the left, rounded outside. Set through Obsidian's own
+     callout variables, which tint the background and colour the border from
+     --callout-color, so the cap follows each callout type. */
+  --callout-border-width: 0 0 0 10px;
+  --callout-border-opacity: 1;
+  --callout-radius: var(--hc-panel-radius) 6px 6px var(--hc-panel-radius);
   --code-normal: var(--hc-text);
   --code-comment: var(--hc-text-faint);
   --code-function: var(--hc-ink-gold);

@@ -210,6 +210,12 @@ body.theme-dark {
   --blockquote-border-color: var(--hc-bar-lavender);
   --blockquote-border-thickness: var(--hc-bar);
   --code-background: var(--hc-code-bg);
+  /* Callouts: a solid cap on the left, rounded outside. Set through Obsidian's own
+     callout variables, which tint the background and colour the border from
+     --callout-color, so the cap follows each callout type. */
+  --callout-border-width: 0 0 0 10px;
+  --callout-border-opacity: 1;
+  --callout-radius: var(--hc-panel-radius) 6px 6px var(--hc-panel-radius);
   --code-normal: var(--hc-text);
   --code-comment: var(--hc-text-faint);
   --code-function: var(--hc-ink-gold);
@@ -640,14 +646,6 @@ body:not(.hc-plain-headings) .markdown-rendered h1 {
   background: var(--blockquote-border-color);
 }
 
-/* Callouts: a coloured cap on the left, square on the right. */
-.callout {
-  border: none;
-  border-left: 10px solid rgb(var(--callout-color));
-  border-radius: var(--hc-panel-radius) 6px 6px var(--hc-panel-radius);
-  background: rgba(var(--callout-color), 0.1);
-}
-
 .callout-title {
   letter-spacing: 0.04em;
 }
@@ -857,8 +855,8 @@ input[type="range"]::-webkit-slider-thumb {
   --icon-color: var(--hc-on-bar);
 }
 
-.menu-item.selected .menu-item-title,
-.menu-item:hover .menu-item-title {
+.menu-item.selected :is(.menu-item-title, .menu-item-icon),
+.menu-item:hover :is(.menu-item-title, .menu-item-icon) {
   color: var(--hc-on-bar);
 }
 
@@ -905,7 +903,9 @@ input[type="range"]::-webkit-slider-thumb {
   border-radius: var(--hc-pill);
 }
 
-.vertical-tab-nav-item.is-active {
+/* Matches Obsidian's own selector, which outranks a shorter one and would otherwise draw
+   the chosen section as black text on the near-black hover colour. */
+body:not(.is-phone) :is(.vertical-tab-nav-item, .horizontal-tab-nav-item).is-active {
   background: var(--hc-bar-orange);
   color: var(--hc-on-bar);
   --icon-color: var(--hc-on-bar);

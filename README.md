@@ -15,6 +15,7 @@ panels on a black screen, with a clean, cool light mode alongside.**
 
 - [What this is](#what-this-is)
 - [At a glance](#at-a-glance)
+- [Screenshots](#screenshots)
 - [Dark and light](#dark-and-light)
 - [What the theme changes](#what-the-theme-changes)
 - [The palette](#the-palette)
@@ -59,10 +60,49 @@ over it, and every text colour meets the WCAG 4.5:1 contrast standard.
 | **Obsidian version** | 1.6.0 or later |
 | **Licence** | MIT |
 
+## Screenshots
+
+All screenshots come from the demo vault in [`docs/Helm Console Demo`](docs/Helm%20Console%20Demo).
+It holds a handful of sample notes that between them use every element the theme styles,
+so you can open it yourself and compare. Obsidian's own fonts are used throughout,
+because the theme sets none.
+
+### The workspace
+
+<p align="center">
+  <img src="docs/images/01-overview-dark.png" alt="Helm Console in dark mode: the segmented ribbon, file explorer, pill tabs and a note with heading caps" width="900">
+</p>
+
+<p align="center"><em><strong>Dark mode.</strong> From left to right: the segmented
+ribbon, whose top curves into the lavender bar under the tab row; the file explorer with
+gold folder names and the open file marked by an orange cap; the pill tabs, with the
+active one in orange; and the note, with its orange and lavender heading caps. The
+orange status bar sits in the lower right.</em></p>
+
+<p align="center">
+  <img src="docs/images/01-overview-light.png" alt="Helm Console in light mode: the same layout on a near-white page with a light grey frame" width="900">
+</p>
+
+<p align="center"><em><strong>Light mode.</strong> The same window. The page is
+near-white, the tab row and dividers are a light cool grey, and the sidebar is a shade
+darker so the parts of the window stay distinct. The bars keep their black labels;
+headings and links switch to deeper inks so they stay readable on white.</em></p>
+
+### Gallery
+
+Each row shows the same scene in both modes. Select an image to open it full size.
+
+| | Dark | Light |
+| --- | --- | --- |
+| **Note content** in reading view: callouts with coloured caps and tints, the segmented rule, a table with a lavender header, and a code block with a blue cap | [<img src="docs/images/02-content-dark.png" alt="Note content in dark mode" width="400">](docs/images/02-content-dark.png) | [<img src="docs/images/02-content-light.png" alt="Note content in light mode" width="400">](docs/images/02-content-light.png) |
+| **Command palette**, searching for "toggle": the chosen command is a full orange bar, and the letters you typed are picked out in every result | [<img src="docs/images/03-palette-dark.png" alt="Command palette in dark mode" width="400">](docs/images/03-palette-dark.png) | [<img src="docs/images/03-palette-light.png" alt="Command palette in light mode" width="400">](docs/images/03-palette-light.png) |
+| **Settings**: the chosen section is an orange bar, buttons are lavender pills, and the font-size slider and toggles are pills too | [<img src="docs/images/04-settings-dark.png" alt="Settings in dark mode" width="400">](docs/images/04-settings-dark.png) | [<img src="docs/images/04-settings-light.png" alt="Settings in light mode" width="400">](docs/images/04-settings-light.png) |
+| **A file's menu and a notice**: the row under the pointer is a lavender bar, Delete is red, and the notice has a gold cap | [<img src="docs/images/05-menu-notice-dark.png" alt="Context menu and notice in dark mode" width="400">](docs/images/05-menu-notice-dark.png) | [<img src="docs/images/05-menu-notice-light.png" alt="Context menu and notice in light mode" width="400">](docs/images/05-menu-notice-light.png) |
+
 ## Dark and light
 
 Each mode was designed on its own; neither is an automatic inversion of the other.
-Switch between them with **Settings → Appearance → Base color scheme**.
+Switch between them with **Settings → Appearance → Base colour scheme**.
 
 ### Dark
 
@@ -94,6 +134,16 @@ The theme styles the whole application, not just the editor.
 
 ### The window
 
+| Dark | Light |
+| --- | --- |
+| <img src="docs/images/06-elbow-dark.png" alt="The ribbon, elbow and file explorer in dark mode" width="420"> | <img src="docs/images/06-elbow-light.png" alt="The ribbon, elbow and file explorer in light mode" width="420"> |
+
+*The ribbon and the elbow. Each ribbon icon sits on its own coloured segment, and the
+segments are separated by thin gaps. At the top, the column's rounded corner joins the
+lavender bar under the tab row, and a small concave curve fills the inside of the bend.
+In the file explorer, folders are gold capitals and the open file is a dim bar with an
+orange cap on its left edge.*
+
 - **The ribbon** (the column of icons at the far left) is a stack of coloured segments
   separated by thin gaps. The order is orange, peach, blue, gold, repeating, with the
   settings buttons at the foot in violet. The column's rounded top corner joins a
@@ -101,12 +151,18 @@ The theme styles the whole application, not just the editor.
   completes the elbow.
 - **Tabs** are pills. Inactive tabs are dim, and turn violet with black labels on
   hover. The active tab is peach, or orange in the pane you are working in.
+
+  <img src="docs/images/07-tabs-dark.png" alt="The tab row in dark mode" width="700"><br>
+  <img src="docs/images/07-tabs-light.png" alt="The tab row in light mode" width="700">
 - **Sidebars** sit on a panel colour of their own. Sidebar tabs are icons, and the active
   one sits in a lavender pill.
 - **The file explorer** shows folder names in gold. The open file is a dim bar with an
   orange end cap, and other selected files carry a gold cap.
 - **The status bar** is an orange bar with a rounded left end, in the lower right of the
   window.
+
+  <img src="docs/images/08-status-bar-dark.png" alt="The status bar in dark mode" width="420">
+  <img src="docs/images/08-status-bar-light.png" alt="The status bar in light mode" width="420">
 - **Interface labels** (tab titles, view headers, folder names, buttons, settings
   headings) are shown in capitals with open letter spacing.
 
@@ -140,11 +196,21 @@ case. Only interface labels are capitalised.
 - **Toggles** are pills. On is orange; off is dim with a visible knob.
 - **The command palette and quick switcher** show the selected row as a full orange bar
   with black text.
-- **Menus** are rounded panels. The row under the pointer becomes a lavender bar.
+- **Menus** are rounded panels. The row under the pointer becomes a lavender bar, with a
+  black label and icon.
 - **Settings** shows the selected section as an orange bar.
 - **Notices** (Obsidian's pop-up messages, including errors) are panels with a gold cap
   and border, so their text and links stay readable.
 - **Tooltips** are peach pills.
+
+| Dark | Light |
+| --- | --- |
+| <img src="docs/images/09-menu-dark.png" alt="A file menu in dark mode" width="240"> <img src="docs/images/10-notice-dark.png" alt="A notice in dark mode" width="240"> | <img src="docs/images/09-menu-light.png" alt="A file menu in light mode" width="240"> <img src="docs/images/10-notice-light.png" alt="A notice in light mode" width="240"> |
+
+*A file's right-click menu, with **Rename…** under the pointer, and a notice. Menus keep
+Obsidian's grouping and icons; the theme adds the rounded frame and the bar for the row
+you're pointing at. Notices are dark or light panels with a thick gold cap, so error
+messages and any links in them stay readable.*
 
 ## The palette
 
@@ -272,8 +338,10 @@ If a plugin looks wrong, see the
 
 ## Documentation
 
-- **[User Guide](USERGUIDE.md)**: a full walkthrough of the theme, customisation with
-  CSS snippets, plugin notes, troubleshooting and a FAQ.
+- **[User Guide](USERGUIDE.md)**: a full, illustrated walkthrough of the theme,
+  customisation with CSS snippets, plugin notes, troubleshooting and a FAQ.
+- **[Regenerating the screenshots](docs/SCREENSHOTS.md)**: how the images are made from
+  the demo vault.
 
 ## Building from source
 
@@ -311,6 +379,10 @@ packages are dev-only lint tools.
 | `scripts/deploy.mjs` | Copies `manifest.json` and `theme.css` into a vault's theme folder |
 | `tests/` | The test suite |
 | `tools/oxlint/anti-slop/` | Vendored lint rules |
+| `docs/Helm Console Demo/` | The demo vault the screenshots are taken from |
+| `docs/images/` | Screenshots for the README and User Guide |
+| `scripts/screenshots.sh` | Captures the screenshots from the demo vault |
+| `screenshot.png` | The 512×288 image for Obsidian's community theme directory |
 
 Palettes hold colours only. Structure lives in the component modules and refers to the
 palette through `--hc-*` variables, so a colour change never touches structure.
