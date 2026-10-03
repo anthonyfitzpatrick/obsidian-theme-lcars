@@ -74,13 +74,15 @@
   border-color: var(--hc-bar-dim);
 }
 
-/* Notices and tooltips: short bars. */
+/* Notices and tooltips. */
+/* Notices are dark panels with a gold cap, not gold fills. Obsidian hard-codes notice
+   text near white and draws notice links and buttons in the accent colour, and errors
+   and plugin messages bring colours of their own. On a panel every one stays readable. */
 .notice {
-  background: var(--hc-bar-gold);
-  color: var(--hc-on-bar);
-  border-radius: var(--hc-pill) 8px 8px var(--hc-pill);
-  font-weight: 600;
-  padding-left: 1.4em;
+  color: var(--hc-text);
+  border: 2px solid var(--hc-bar-gold);
+  border-left-width: 12px;
+  border-radius: var(--hc-panel-radius) 6px 6px var(--hc-panel-radius);
 }
 
 .tooltip {

@@ -256,10 +256,11 @@ body.theme-dark {
   --status-bar-text-color: var(--hc-on-bar);
   --status-bar-border-width: 0;
   --status-bar-radius: var(--hc-pill) 0 0 0;
-  --nav-item-color-active: var(--hc-on-bar);
-  --nav-item-background-active: var(--hc-bar-orange);
-  --nav-item-color-selected: var(--hc-on-bar);
-  --nav-item-background-selected: var(--hc-bar-gold);
+  --nav-item-color-active: var(--hc-text);
+  --nav-item-background-active: var(--hc-bar-dim);
+  --nav-item-color-selected: var(--hc-text);
+  --nav-item-background-selected: var(--hc-surface-hover);
+  --background-modifier-message: var(--hc-panel);
   --nav-indentation-guide-color: var(--hc-bar-dim);
   --scrollbar-bg: transparent;
   --scrollbar-thumb-bg: var(--hc-bar-dim);
@@ -519,9 +520,17 @@ body:not(.hc-plain-ribbon) .workspace-tabs.mod-top-left-space > .workspace-tab-c
   border-radius: var(--hc-pill);
 }
 
+/* The open file is a dim bar with an orange end cap, not a bright fill. File-colour
+   plugins set name colours inline, which a theme cannot override cleanly, so a bright
+   fill would hide them. Text in any colour stays readable on the dim bar. */
 .nav-file-title.is-active,
 .tree-item-self.is-active {
   font-weight: 600;
+  box-shadow: inset var(--hc-bar) 0 0 var(--hc-bar-orange);
+}
+
+.tree-item-self.is-selected:not(.is-active) {
+  box-shadow: inset var(--hc-bar) 0 0 var(--hc-bar-gold);
 }
 
 .nav-folder-collapse-indicator,
@@ -560,17 +569,21 @@ body ::-webkit-scrollbar-thumb {
   letter-spacing: 0.02em;
 }
 
-/* First- and second-level headings carry a rounded end cap, like a labelled bar. */
+/* First- and second-level headings carry a rounded end cap, like a labelled bar. The
+   corner radius equals the cap's width: any larger and the inner edge of the border
+   curves too, which draws a crescent that runs into the heading text. */
 body:not(.hc-plain-headings) :is(.markdown-rendered h1, .HyperMD-header-1) {
-  border-left: var(--hc-cap) solid var(--hc-bar-orange);
-  border-radius: var(--hc-pill) 0 0 var(--hc-pill);
-  padding-left: 0.4em;
+  --hc-heading-cap: var(--hc-cap);
+  border-left: var(--hc-heading-cap) solid var(--hc-bar-orange);
+  border-radius: var(--hc-heading-cap) 0 0 var(--hc-heading-cap);
+  padding-left: 0.45em;
 }
 
 body:not(.hc-plain-headings) :is(.markdown-rendered h2, .HyperMD-header-2) {
-  border-left: calc(var(--hc-cap) * 0.8) solid var(--hc-bar-lavender);
-  border-radius: var(--hc-pill) 0 0 var(--hc-pill);
-  padding-left: 0.4em;
+  --hc-heading-cap: calc(var(--hc-cap) * 0.8);
+  border-left: var(--hc-heading-cap) solid var(--hc-bar-lavender);
+  border-radius: var(--hc-heading-cap) 0 0 var(--hc-heading-cap);
+  padding-left: 0.45em;
 }
 
 body:not(.hc-plain-headings) .markdown-rendered h1 {
@@ -674,11 +687,16 @@ body:not(.hc-mixed-case) .callout-title-inner {
 
 /* Buttons, fields, toggles and sliders. */
 
-/* Buttons are filled bars. The colours are set through Obsidian's own variables, scoped
+/* Buttons are filled bars, except inside dense inline UI where a bright pill would
+   crowd the content: properties, notices, note content, the editor, file tree, status
+   bar and view header. The exclusion is wrapped in :where() so it adds no specificity
+   and a plugin's own state styles still win.
+
+   Buttons are filled bars. The colours are set through Obsidian's own variables, scoped
    to the button, because plugins restyle their buttons with those variables (for example
    `color: var(--text-normal)` on an active button). Scoped, those still resolve to black
    label on a bright bar instead of cream text on lavender. */
-button:not(.clickable-icon) {
+button:not(.clickable-icon):not(:where(.metadata-container, .notice, .markdown-rendered, .cm-editor, .tree-item-self, .status-bar, .view-header) *) {
   --text-color: var(--hc-on-bar);
   --text-normal: var(--hc-on-bar);
   --text-muted: var(--hc-on-bar);
@@ -697,50 +715,28 @@ button:not(.clickable-icon) {
   padding-inline: 1.1em;
 }
 
-button:not(.clickable-icon):hover {
+button:not(.clickable-icon):not(:where(.metadata-container, .notice, .markdown-rendered, .cm-editor, .tree-item-self, .status-bar, .view-header) *):hover {
   background-color: var(--interactive-hover);
 }
 
-button.mod-cta {
+button.mod-cta:not(:where(.metadata-container, .notice, .markdown-rendered, .cm-editor, .tree-item-self, .status-bar, .view-header) *) {
   --interactive-normal: var(--hc-bar-orange);
 }
 
-button.mod-warning {
+button.mod-warning:not(:where(.metadata-container, .notice, .markdown-rendered, .cm-editor, .tree-item-self, .status-bar, .view-header) *) {
   --interactive-normal: var(--hc-bar-red);
 }
 
-button:not(.clickable-icon):disabled {
+button:not(.clickable-icon):not(:where(.metadata-container, .notice, .markdown-rendered, .cm-editor, .tree-item-self, .status-bar, .view-header) *):disabled {
   --text-color: var(--hc-text-muted);
   --interactive-normal: var(--hc-bar-dim);
   --interactive-hover: var(--hc-bar-dim);
 }
 
-input[type="text"],
-input[type="search"],
-input[type="email"],
-input[type="password"],
-input[type="number"],
-input[type="url"],
-textarea,
-select,
-.dropdown {
-  border: 1px solid var(--hc-bar-dim);
-  /* background-color only: the shorthand would reset the dropdown's chevron image. */
-  background-color: var(--hc-surface);
-}
-
-input[type="text"],
-input[type="search"],
-input[type="email"],
-input[type="password"],
-input[type="number"],
-input[type="url"],
-select,
-.dropdown {
-  border-radius: var(--hc-pill);
-  padding-inline-start: 0.9em;
-}
-
+/* Text fields, dropdowns and property editors keep Obsidian's own shapes and spacing,
+   coloured through --background-modifier-form-field and --input-radius. Restyling the
+   elements directly also hit the inline fields in the Properties panel, which
+   squeezed property names into truncated pills. */
 :is(input, textarea, select, .dropdown):focus,
 :is(input, textarea, select, .dropdown):focus-visible {
   border-color: var(--hc-bar-gold);
@@ -856,13 +852,15 @@ input[type="range"]::-webkit-slider-thumb {
   border-color: var(--hc-bar-dim);
 }
 
-/* Notices and tooltips: short bars. */
+/* Notices and tooltips. */
+/* Notices are dark panels with a gold cap, not gold fills. Obsidian hard-codes notice
+   text near white and draws notice links and buttons in the accent colour, and errors
+   and plugin messages bring colours of their own. On a panel every one stays readable. */
 .notice {
-  background: var(--hc-bar-gold);
-  color: var(--hc-on-bar);
-  border-radius: var(--hc-pill) 8px 8px var(--hc-pill);
-  font-weight: 600;
-  padding-left: 1.4em;
+  color: var(--hc-text);
+  border: 2px solid var(--hc-bar-gold);
+  border-left-width: 12px;
+  border-radius: var(--hc-panel-radius) 6px 6px var(--hc-panel-radius);
 }
 
 .tooltip {

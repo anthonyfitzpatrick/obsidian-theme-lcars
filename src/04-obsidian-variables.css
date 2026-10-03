@@ -133,10 +133,11 @@ body.theme-dark {
   --status-bar-text-color: var(--hc-on-bar);
   --status-bar-border-width: 0;
   --status-bar-radius: var(--hc-pill) 0 0 0;
-  --nav-item-color-active: var(--hc-on-bar);
-  --nav-item-background-active: var(--hc-bar-orange);
-  --nav-item-color-selected: var(--hc-on-bar);
-  --nav-item-background-selected: var(--hc-bar-gold);
+  --nav-item-color-active: var(--hc-text);
+  --nav-item-background-active: var(--hc-bar-dim);
+  --nav-item-color-selected: var(--hc-text);
+  --nav-item-background-selected: var(--hc-surface-hover);
+  --background-modifier-message: var(--hc-panel);
   --nav-indentation-guide-color: var(--hc-bar-dim);
   --scrollbar-bg: transparent;
   --scrollbar-thumb-bg: var(--hc-bar-dim);

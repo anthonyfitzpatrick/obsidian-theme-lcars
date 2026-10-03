@@ -5,17 +5,21 @@
   letter-spacing: 0.02em;
 }
 
-/* First- and second-level headings carry a rounded end cap, like a labelled bar. */
+/* First- and second-level headings carry a rounded end cap, like a labelled bar. The
+   corner radius equals the cap's width: any larger and the inner edge of the border
+   curves too, which draws a crescent that runs into the heading text. */
 body:not(.hc-plain-headings) :is(.markdown-rendered h1, .HyperMD-header-1) {
-  border-left: var(--hc-cap) solid var(--hc-bar-orange);
-  border-radius: var(--hc-pill) 0 0 var(--hc-pill);
-  padding-left: 0.4em;
+  --hc-heading-cap: var(--hc-cap);
+  border-left: var(--hc-heading-cap) solid var(--hc-bar-orange);
+  border-radius: var(--hc-heading-cap) 0 0 var(--hc-heading-cap);
+  padding-left: 0.45em;
 }
 
 body:not(.hc-plain-headings) :is(.markdown-rendered h2, .HyperMD-header-2) {
-  border-left: calc(var(--hc-cap) * 0.8) solid var(--hc-bar-lavender);
-  border-radius: var(--hc-pill) 0 0 var(--hc-pill);
-  padding-left: 0.4em;
+  --hc-heading-cap: calc(var(--hc-cap) * 0.8);
+  border-left: var(--hc-heading-cap) solid var(--hc-bar-lavender);
+  border-radius: var(--hc-heading-cap) 0 0 var(--hc-heading-cap);
+  padding-left: 0.45em;
 }
 
 body:not(.hc-plain-headings) .markdown-rendered h1 {

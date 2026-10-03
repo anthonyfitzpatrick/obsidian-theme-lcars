@@ -231,9 +231,17 @@ body:not(.hc-plain-ribbon) .workspace-tabs.mod-top-left-space > .workspace-tab-c
   border-radius: var(--hc-pill);
 }
 
+/* The open file is a dim bar with an orange end cap, not a bright fill. File-colour
+   plugins set name colours inline, which a theme cannot override cleanly, so a bright
+   fill would hide them. Text in any colour stays readable on the dim bar. */
 .nav-file-title.is-active,
 .tree-item-self.is-active {
   font-weight: 600;
+  box-shadow: inset var(--hc-bar) 0 0 var(--hc-bar-orange);
+}
+
+.tree-item-self.is-selected:not(.is-active) {
+  box-shadow: inset var(--hc-bar) 0 0 var(--hc-bar-gold);
 }
 
 .nav-folder-collapse-indicator,

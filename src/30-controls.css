@@ -1,10 +1,15 @@
 /* Buttons, fields, toggles and sliders. */
 
-/* Buttons are filled bars. The colours are set through Obsidian's own variables, scoped
+/* Buttons are filled bars, except inside dense inline UI where a bright pill would
+   crowd the content: properties, notices, note content, the editor, file tree, status
+   bar and view header. The exclusion is wrapped in :where() so it adds no specificity
+   and a plugin's own state styles still win.
+
+   Buttons are filled bars. The colours are set through Obsidian's own variables, scoped
    to the button, because plugins restyle their buttons with those variables (for example
    `color: var(--text-normal)` on an active button). Scoped, those still resolve to black
    label on a bright bar instead of cream text on lavender. */
-button:not(.clickable-icon) {
+button:not(.clickable-icon):not(:where(.metadata-container, .notice, .markdown-rendered, .cm-editor, .tree-item-self, .status-bar, .view-header) *) {
   --text-color: var(--hc-on-bar);
   --text-normal: var(--hc-on-bar);
   --text-muted: var(--hc-on-bar);
@@ -23,50 +28,28 @@ button:not(.clickable-icon) {
   padding-inline: 1.1em;
 }
 
-button:not(.clickable-icon):hover {
+button:not(.clickable-icon):not(:where(.metadata-container, .notice, .markdown-rendered, .cm-editor, .tree-item-self, .status-bar, .view-header) *):hover {
   background-color: var(--interactive-hover);
 }
 
-button.mod-cta {
+button.mod-cta:not(:where(.metadata-container, .notice, .markdown-rendered, .cm-editor, .tree-item-self, .status-bar, .view-header) *) {
   --interactive-normal: var(--hc-bar-orange);
 }
 
-button.mod-warning {
+button.mod-warning:not(:where(.metadata-container, .notice, .markdown-rendered, .cm-editor, .tree-item-self, .status-bar, .view-header) *) {
   --interactive-normal: var(--hc-bar-red);
 }
 
-button:not(.clickable-icon):disabled {
+button:not(.clickable-icon):not(:where(.metadata-container, .notice, .markdown-rendered, .cm-editor, .tree-item-self, .status-bar, .view-header) *):disabled {
   --text-color: var(--hc-text-muted);
   --interactive-normal: var(--hc-bar-dim);
   --interactive-hover: var(--hc-bar-dim);
 }
 
-input[type="text"],
-input[type="search"],
-input[type="email"],
-input[type="password"],
-input[type="number"],
-input[type="url"],
-textarea,
-select,
-.dropdown {
-  border: 1px solid var(--hc-bar-dim);
-  /* background-color only: the shorthand would reset the dropdown's chevron image. */
-  background-color: var(--hc-surface);
-}
-
-input[type="text"],
-input[type="search"],
-input[type="email"],
-input[type="password"],
-input[type="number"],
-input[type="url"],
-select,
-.dropdown {
-  border-radius: var(--hc-pill);
-  padding-inline-start: 0.9em;
-}
-
+/* Text fields, dropdowns and property editors keep Obsidian's own shapes and spacing,
+   coloured through --background-modifier-form-field and --input-radius. Restyling the
+   elements directly also hit the inline fields in the Properties panel, which
+   squeezed property names into truncated pills. */
 :is(input, textarea, select, .dropdown):focus,
 :is(input, textarea, select, .dropdown):focus-visible {
   border-color: var(--hc-bar-gold);
