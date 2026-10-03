@@ -1,0 +1,41 @@
+/* Light mode: the same bars on a warm paper screen. Bars stay bright enough for black
+   text; inks are deepened so text on the screen keeps 4.5:1 or better. */
+.theme-light {
+  --hc-screen: #f5f0e8;
+  --hc-panel: #ebe3d7;
+  --hc-surface: #fffaf2;
+  --hc-surface-hover: #e2d8ca;
+  --hc-text: #1c1612;
+  --hc-text-muted: #584a3f;
+  --hc-text-faint: #6f6154;
+  --hc-on-bar: #000000;
+
+  --hc-bar-orange: #f2893c;
+  --hc-bar-gold: #f0b33f;
+  --hc-bar-peach: #f3a07b;
+  --hc-bar-lavender: #bf8ad0;
+  --hc-bar-violet: #9a8af5;
+  --hc-bar-blue: #7ea4f5;
+  --hc-bar-red: #f07a6c;
+  --hc-bar-dim: #d9cfe0;
+
+  --hc-ink-orange: #a5460b;
+  --hc-ink-gold: #7d5600;
+  --hc-ink-lavender: #7a3f93;
+  --hc-ink-violet: #5440c8;
+  --hc-ink-blue: #2c56b6;
+  --hc-ink-red: #b3261e;
+  --hc-ink-green: #2f6f3e;
+
+  --hc-selection: rgba(242, 137, 60, 0.3);
+  --hc-highlight: rgba(240, 179, 63, 0.4);
+
+  --color-red-rgb: 179, 38, 30;
+  --color-orange-rgb: 165, 70, 11;
+  --color-yellow-rgb: 125, 86, 0;
+  --color-green-rgb: 47, 111, 62;
+  --color-cyan-rgb: 44, 86, 182;
+  --color-blue-rgb: 44, 86, 182;
+  --color-purple-rgb: 122, 63, 147;
+  --color-pink-rgb: 165, 70, 11;
+}

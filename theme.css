@@ -1,0 +1,934 @@
+/* Helm Console for Obsidian. Generated from src/ by scripts/build.mjs. Do not edit directly. */
+
+/* @settings
+name: Helm Console
+id: helm-console
+settings:
+  -
+    id: hc-mixed-case
+    title: Mixed-case interface labels
+    description: Keep tab, header and button labels in their original case instead of capitals.
+    type: class-toggle
+    default: false
+  -
+    id: hc-plain-ribbon
+    title: Plain ribbon
+    description: Draw the left ribbon as one bar instead of the swept, segmented column.
+    type: class-toggle
+    default: false
+  -
+    id: hc-plain-headings
+    title: Plain headings
+    description: Remove the rounded end caps from first- and second-level headings.
+    type: class-toggle
+    default: false
+*/
+
+/* Geometry and type shared by both modes. Palettes live in 02 and 03. */
+:root {
+  --hc-elbow: 28px;
+  --hc-bar: 6px;
+  --hc-gap: 3px;
+  --hc-cap: 0.55em;
+  --hc-pill: 999px;
+  --hc-panel-radius: 18px;
+  --hc-ribbon-width: 46px;
+  --hc-label-tracking: 0.07em;
+
+  /* Condensed faces when installed, falling back to ordinary system sans. Nothing is
+     downloaded: community themes may not load remote resources. */
+  --hc-display-font: "Antonio", "Oswald", "Roboto Condensed", "Arial Narrow", "Helvetica Neue", system-ui, sans-serif;
+  --hc-text-font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --hc-code-font: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+
+/* Dark mode: bright bars on a black screen. Bars carry black text; inks are text drawn
+   on the screen itself. Every pair is contrast-checked by tests/contrast.test.mjs. */
+.theme-dark {
+  --hc-screen: #000000;
+  --hc-panel: #0c0a0e;
+  --hc-surface: #17141a;
+  --hc-surface-hover: #241f29;
+  --hc-text: #f4e8da;
+  --hc-text-muted: #bcab9a;
+  --hc-text-faint: #948472;
+  --hc-on-bar: #000000;
+
+  --hc-bar-orange: #ff9a52;
+  --hc-bar-gold: #ffc65c;
+  --hc-bar-peach: #ffb08a;
+  --hc-bar-lavender: #c99ad8;
+  --hc-bar-violet: #a493ff;
+  --hc-bar-blue: #86aeff;
+  --hc-bar-red: #ff7468;
+  --hc-bar-dim: #3a2f44;
+
+  --hc-ink-orange: #ff9a52;
+  --hc-ink-gold: #ffc65c;
+  --hc-ink-lavender: #c99ad8;
+  --hc-ink-violet: #a493ff;
+  --hc-ink-blue: #86aeff;
+  --hc-ink-red: #ff7468;
+  --hc-ink-green: #8fd6a0;
+
+  --hc-selection: rgba(255, 154, 82, 0.32);
+  --hc-highlight: rgba(255, 198, 92, 0.3);
+
+  --color-red-rgb: 255, 116, 104;
+  --color-orange-rgb: 255, 154, 82;
+  --color-yellow-rgb: 255, 198, 92;
+  --color-green-rgb: 143, 214, 160;
+  --color-cyan-rgb: 134, 174, 255;
+  --color-blue-rgb: 134, 174, 255;
+  --color-purple-rgb: 201, 154, 216;
+  --color-pink-rgb: 255, 176, 138;
+}
+
+/* Light mode: the same bars on a warm paper screen. Bars stay bright enough for black
+   text; inks are deepened so text on the screen keeps 4.5:1 or better. */
+.theme-light {
+  --hc-screen: #f5f0e8;
+  --hc-panel: #ebe3d7;
+  --hc-surface: #fffaf2;
+  --hc-surface-hover: #e2d8ca;
+  --hc-text: #1c1612;
+  --hc-text-muted: #584a3f;
+  --hc-text-faint: #6f6154;
+  --hc-on-bar: #000000;
+
+  --hc-bar-orange: #f2893c;
+  --hc-bar-gold: #f0b33f;
+  --hc-bar-peach: #f3a07b;
+  --hc-bar-lavender: #bf8ad0;
+  --hc-bar-violet: #9a8af5;
+  --hc-bar-blue: #7ea4f5;
+  --hc-bar-red: #f07a6c;
+  --hc-bar-dim: #d9cfe0;
+
+  --hc-ink-orange: #a5460b;
+  --hc-ink-gold: #7d5600;
+  --hc-ink-lavender: #7a3f93;
+  --hc-ink-violet: #5440c8;
+  --hc-ink-blue: #2c56b6;
+  --hc-ink-red: #b3261e;
+  --hc-ink-green: #2f6f3e;
+
+  --hc-selection: rgba(242, 137, 60, 0.3);
+  --hc-highlight: rgba(240, 179, 63, 0.4);
+
+  --color-red-rgb: 179, 38, 30;
+  --color-orange-rgb: 165, 70, 11;
+  --color-yellow-rgb: 125, 86, 0;
+  --color-green-rgb: 47, 111, 62;
+  --color-cyan-rgb: 44, 86, 182;
+  --color-blue-rgb: 44, 86, 182;
+  --color-purple-rgb: 122, 63, 147;
+  --color-pink-rgb: 165, 70, 11;
+}
+
+/* Maps the palette onto Obsidian's own variables. Declared on body.theme-* because
+   Obsidian sets its defaults on .theme-light and .theme-dark (0,1,0), and a var() here
+   must resolve against the palette declared on the same element. */
+body.theme-light,
+body.theme-dark {
+  --color-red: rgb(var(--color-red-rgb));
+  --color-orange: rgb(var(--color-orange-rgb));
+  --color-yellow: rgb(var(--color-yellow-rgb));
+  --color-green: rgb(var(--color-green-rgb));
+  --color-cyan: rgb(var(--color-cyan-rgb));
+  --color-blue: rgb(var(--color-blue-rgb));
+  --color-purple: rgb(var(--color-purple-rgb));
+  --color-pink: rgb(var(--color-pink-rgb));
+  --color-accent: var(--hc-bar-orange);
+  --color-accent-1: var(--hc-bar-gold);
+  --color-accent-2: var(--hc-bar-peach);
+
+  --background-primary: var(--hc-screen);
+  --background-primary-alt: var(--hc-panel);
+  --background-secondary: var(--hc-panel);
+  --background-secondary-alt: var(--hc-screen);
+  --background-modifier-border: var(--hc-bar-dim);
+  --background-modifier-border-hover: var(--hc-bar-lavender);
+  --background-modifier-border-focus: var(--hc-bar-gold);
+  --background-modifier-hover: var(--hc-surface-hover);
+  --background-modifier-active-hover: var(--hc-surface-hover);
+  --background-modifier-form-field: var(--hc-surface);
+  --background-modifier-error: var(--hc-bar-red);
+  --background-modifier-success: var(--hc-ink-green);
+
+  --text-normal: var(--hc-text);
+  --text-muted: var(--hc-text-muted);
+  --text-faint: var(--hc-text-faint);
+  --text-on-accent: var(--hc-on-bar);
+  --text-on-accent-inverted: var(--hc-on-bar);
+  --text-accent: var(--hc-ink-orange);
+  --text-accent-hover: var(--hc-ink-gold);
+  --text-error: var(--hc-ink-red);
+  --text-success: var(--hc-ink-green);
+  --text-warning: var(--hc-ink-gold);
+  --text-selection: var(--hc-selection);
+  --text-highlight-bg: var(--hc-highlight);
+  --text-highlight-bg-active: var(--hc-selection);
+  --caret-color: var(--hc-ink-orange);
+
+  --interactive-normal: var(--hc-surface);
+  --interactive-hover: var(--hc-surface-hover);
+  --interactive-accent: var(--hc-bar-orange);
+  --interactive-accent-hover: var(--hc-bar-gold);
+
+  --icon-color: var(--hc-text-muted);
+  --icon-color-hover: var(--hc-text);
+  --icon-color-active: var(--hc-ink-orange);
+  --icon-color-focused: var(--hc-text);
+
+  --font-interface-theme: var(--hc-display-font);
+  --font-text-theme: var(--hc-text-font);
+  --font-monospace-theme: var(--hc-code-font);
+
+  --radius-s: 6px;
+  --radius-m: 10px;
+  --radius-l: var(--hc-panel-radius);
+  --radius-xl: 24px;
+  --button-radius: var(--hc-pill);
+  --input-radius: 12px;
+  --checkbox-radius: 5px;
+  --checkbox-color: var(--hc-bar-orange);
+  --checkbox-color-hover: var(--hc-bar-gold);
+  --checkbox-marker-color: var(--hc-on-bar);
+  --checkbox-border-color: var(--hc-bar-lavender);
+  --toggle-thumb-color: var(--hc-on-bar);
+
+  --link-color: var(--hc-ink-blue);
+  --link-color-hover: var(--hc-ink-orange);
+  --link-external-color: var(--hc-ink-blue);
+  --link-external-color-hover: var(--hc-ink-orange);
+  --link-unresolved-color: var(--hc-ink-lavender);
+  --link-unresolved-opacity: 1;
+  --list-marker-color: var(--hc-ink-orange);
+  --list-marker-color-collapsed: var(--hc-ink-gold);
+  --hr-color: var(--hc-bar-lavender);
+  --hr-thickness: var(--hc-bar);
+  --blockquote-border-color: var(--hc-bar-lavender);
+  --blockquote-border-thickness: var(--hc-bar);
+  --code-background: var(--hc-surface);
+  --code-normal: var(--hc-text);
+  --code-comment: var(--hc-text-faint);
+  --code-function: var(--hc-ink-gold);
+  --code-keyword: var(--hc-ink-lavender);
+  --code-string: var(--hc-ink-green);
+  --code-value: var(--hc-ink-orange);
+  --code-property: var(--hc-ink-blue);
+  --code-tag: var(--hc-ink-red);
+  --code-operator: var(--hc-ink-violet);
+  --code-punctuation: var(--hc-text-muted);
+  --code-important: var(--hc-ink-orange);
+  --code-radius: 10px;
+  --tag-background: transparent;
+  --tag-background-hover: var(--hc-surface-hover);
+  --tag-border-color: var(--hc-bar-violet);
+  --tag-border-width: 1px;
+  --tag-color: var(--hc-ink-violet);
+  --tag-color-hover: var(--hc-text);
+  --tag-radius: var(--hc-pill);
+  --table-header-background: var(--hc-bar-lavender);
+  --table-header-color: var(--hc-on-bar);
+  --table-border-color: var(--hc-bar-dim);
+  --table-row-alt-background: var(--hc-panel);
+
+  --h1-color: var(--hc-ink-orange);
+  --h2-color: var(--hc-ink-lavender);
+  --h3-color: var(--hc-ink-gold);
+  --h4-color: var(--hc-ink-blue);
+  --h5-color: var(--hc-ink-violet);
+  --h6-color: var(--hc-text-muted);
+  --h1-font: var(--font-interface);
+  --h2-font: var(--font-interface);
+  --h3-font: var(--font-interface);
+  --h4-font: var(--font-interface);
+  --h5-font: var(--font-interface);
+  --h6-font: var(--font-interface);
+  --h1-weight: 700;
+  --h2-weight: 700;
+  --h3-weight: 600;
+  --inline-title-color: var(--hc-ink-orange);
+  --inline-title-font: var(--font-interface);
+
+  --titlebar-background: var(--hc-screen);
+  --titlebar-background-focused: var(--hc-screen);
+  --tab-container-background: var(--hc-screen);
+  --tab-text-color: var(--hc-text-muted);
+  --tab-text-color-focused: var(--hc-text);
+  --tab-text-color-focused-active: var(--hc-on-bar);
+  --tab-text-color-focused-active-current: var(--hc-on-bar);
+  --tab-outline-color: transparent;
+  --tab-divider-color: transparent;
+  --ribbon-background: var(--hc-screen);
+  --ribbon-background-collapsed: var(--hc-screen);
+  --ribbon-width: var(--hc-ribbon-width);
+  --divider-color: var(--hc-screen);
+  --divider-color-hover: var(--hc-bar-gold);
+  --divider-width: 4px;
+  --status-bar-background: var(--hc-bar-orange);
+  --status-bar-text-color: var(--hc-on-bar);
+  --status-bar-border-width: 0;
+  --status-bar-radius: var(--hc-pill) 0 0 0;
+  --nav-item-color-active: var(--hc-on-bar);
+  --nav-item-background-active: var(--hc-bar-orange);
+  --nav-item-color-selected: var(--hc-on-bar);
+  --nav-item-background-selected: var(--hc-bar-gold);
+  --nav-indentation-guide-color: var(--hc-bar-dim);
+  --scrollbar-bg: transparent;
+  --scrollbar-thumb-bg: var(--hc-bar-dim);
+  --scrollbar-active-thumb-bg: var(--hc-bar-lavender);
+  --modal-background: var(--hc-screen);
+  --modal-border-color: var(--hc-bar-lavender);
+  --modal-border-width: 2px;
+  --modal-radius: var(--hc-panel-radius);
+  --prompt-border-color: var(--hc-bar-orange);
+  --prompt-border-width: 2px;
+  --menu-background: var(--hc-screen);
+  --menu-border-color: var(--hc-bar-lavender);
+  --menu-radius: 14px;
+  --interactive-accent-hsl: 25, 100%, 66%;
+
+  --graph-line: var(--hc-bar-dim);
+  --graph-node: var(--hc-ink-lavender);
+  --graph-node-unresolved: var(--hc-text-faint);
+  --graph-node-focused: var(--hc-ink-orange);
+  --graph-node-tag: var(--hc-ink-gold);
+  --graph-node-attachment: var(--hc-ink-blue);
+  --graph-text: var(--hc-text);
+  --canvas-background: var(--hc-screen);
+  --canvas-dot-pattern: var(--hc-bar-dim);
+}
+
+/* Window chrome: the swept ribbon column, the top bar it turns into, pill tabs and the
+   capped status bar. */
+
+/* Interface labels in capitals with open tracking, unless the reader opts out. */
+body:not(.hc-mixed-case) :is(
+  .workspace-tab-header-inner-title,
+  .view-header-title,
+  .status-bar,
+  .nav-folder-title,
+  .modal-title,
+  .vertical-tab-header-group-title,
+  .setting-item-heading .setting-item-name,
+  .tree-item-self.is-clickable.mod-collapsible:not(.nav-file-title) .tree-item-inner,
+  button:not(.clickable-icon)
+) {
+  text-transform: uppercase;
+  letter-spacing: var(--hc-label-tracking);
+}
+
+/* ---- Ribbon: a column of coloured segments, rounded where it turns into the top bar ---- */
+body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left {
+  background: var(--hc-bar-lavender);
+  border: none;
+  border-radius: var(--hc-elbow) 0 0 var(--hc-elbow);
+  padding: 0;
+  gap: 0;
+  overflow: hidden;
+}
+
+body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left :is(.side-dock-actions, .side-dock-settings) {
+  gap: 0;
+  width: 100%;
+}
+
+/* Obsidian clears a header-height strip above the ribbon for the window controls and
+   fills it with ::before. The column instead starts level with the bar under the tab
+   row, so the two meet as one swept shape. */
+body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left::before {
+  display: none;
+}
+
+body.is-hidden-frameless:not(.hc-plain-ribbon) .workspace-ribbon.mod-left {
+  margin-top: calc(var(--header-height) - var(--hc-bar));
+}
+
+body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-actions {
+  margin-top: var(--hc-elbow);
+}
+
+body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-ribbon-action {
+  --icon-color: var(--hc-on-bar);
+  --icon-color-hover: var(--hc-on-bar);
+  width: 100%;
+  height: 38px;
+  border-radius: 0;
+  border-top: var(--hc-gap) solid var(--hc-screen);
+  background: var(--hc-bar-orange);
+  color: var(--hc-on-bar);
+  justify-content: flex-end;
+  padding-right: 8px;
+}
+
+body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-actions .side-dock-ribbon-action:nth-child(4n + 2) {
+  background: var(--hc-bar-peach);
+}
+
+body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-actions .side-dock-ribbon-action:nth-child(4n + 3) {
+  background: var(--hc-bar-blue);
+}
+
+body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-actions .side-dock-ribbon-action:nth-child(4n + 4) {
+  background: var(--hc-bar-gold);
+}
+
+body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-actions .side-dock-ribbon-action:last-child {
+  border-bottom: var(--hc-gap) solid var(--hc-screen);
+}
+
+body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-settings .side-dock-ribbon-action {
+  background: var(--hc-bar-violet);
+}
+
+body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-settings .side-dock-ribbon-action:last-child {
+  height: 56px;
+  align-items: flex-start;
+  padding-top: 8px;
+}
+
+body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-ribbon-action:hover {
+  background: var(--hc-bar-red);
+}
+
+body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .sidebar-toggle-button {
+  --icon-color: var(--hc-on-bar);
+  --icon-color-hover: var(--hc-on-bar);
+}
+
+body.hc-plain-ribbon .workspace-ribbon.mod-left {
+  background: var(--hc-panel);
+  border-right: var(--hc-bar) solid var(--hc-bar-lavender);
+}
+
+/* The bar the ribbon turns into, along the foot of the tab row. Inset, so it never
+   shifts the tabs. */
+body:not(.hc-plain-ribbon) .workspace-tab-header-container {
+  box-shadow: inset 0 calc(var(--hc-bar) * -1) 0 var(--hc-bar-lavender);
+}
+
+/* The inner, concave curve of the elbow, in whichever tab group sits beside the
+   ribbon: the left sidebar when it is open, the top-left editor group when not. */
+body:not(.hc-plain-ribbon) .workspace-tabs.mod-top-left-space > .workspace-tab-container {
+  position: relative;
+}
+
+body:not(.hc-plain-ribbon) .workspace-tabs.mod-top-left-space > .workspace-tab-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(circle at 100% 100%, transparent 15.5px, var(--hc-bar-lavender) 16px);
+}
+
+/* ---- Tabs: pills. The curved "tab" flares Obsidian draws are removed. ---- */
+.workspace-tab-header-container {
+  border-bottom: none;
+  padding-bottom: var(--hc-bar);
+}
+
+.workspace-tab-header::before,
+.workspace-tab-header::after {
+  display: none;
+}
+
+.workspace .mod-root .workspace-tab-header {
+  border-radius: var(--hc-pill);
+  margin: 2px 2px 4px;
+  padding: 0 4px;
+  background: var(--hc-surface);
+}
+
+.workspace .mod-root .workspace-tab-header-inner {
+  padding: 0 10px;
+}
+
+.workspace .mod-root .workspace-tab-header:hover {
+  background: var(--hc-surface-hover);
+}
+
+.workspace .mod-root .workspace-tab-header.is-active {
+  background: var(--hc-bar-peach);
+  --tab-text-color-focused: var(--hc-on-bar);
+  --icon-color: var(--hc-on-bar);
+  --icon-color-hover: var(--hc-on-bar);
+  color: var(--hc-on-bar);
+}
+
+.workspace .mod-root .workspace-tabs.mod-active .workspace-tab-header.is-active {
+  background: var(--hc-bar-orange);
+}
+
+.workspace .mod-root .workspace-tab-header.is-active .workspace-tab-header-inner-title {
+  color: var(--hc-on-bar);
+  font-weight: 600;
+}
+
+/* Sidebar tabs are icon-only: a smaller pill round the active icon. */
+.workspace-sidedock-vault-profile,
+.workspace-split:is(.mod-left-split, .mod-right-split) .workspace-tab-header-container {
+  background-color: var(--hc-screen);
+}
+
+.workspace-split:is(.mod-left-split, .mod-right-split) .workspace-tab-header.is-active {
+  --icon-color: var(--hc-on-bar);
+  --icon-color-hover: var(--hc-on-bar);
+  background: var(--hc-bar-lavender);
+  border-radius: var(--hc-pill);
+}
+
+/* ---- Panels ---- */
+.workspace-split:is(.mod-left-split, .mod-right-split) .workspace-leaf-content,
+.workspace-split:is(.mod-left-split, .mod-right-split) .view-content {
+  background: var(--hc-panel);
+}
+
+.view-header {
+  border-bottom: none;
+}
+
+.view-header-title {
+  color: var(--hc-ink-gold);
+  font-family: var(--font-interface);
+}
+
+.view-header-breadcrumb {
+  color: var(--hc-text-muted);
+  font-family: var(--font-interface);
+}
+
+/* ---- File explorer ---- */
+.nav-folder-title {
+  font-family: var(--font-interface);
+  color: var(--hc-ink-gold);
+}
+
+.nav-file-title,
+.nav-folder-title,
+.tree-item-self {
+  border-radius: var(--hc-pill);
+}
+
+.nav-file-title.is-active,
+.tree-item-self.is-active {
+  font-weight: 600;
+}
+
+.nav-folder-collapse-indicator,
+.tree-item-icon.collapse-icon {
+  color: var(--hc-ink-orange);
+}
+
+/* ---- Status bar: a capped orange bar in the lower right ---- */
+.status-bar {
+  font-family: var(--font-interface);
+  font-weight: 600;
+  border: none;
+  padding-left: 18px;
+}
+
+.status-bar-item {
+  --icon-color: var(--hc-on-bar);
+  color: var(--hc-on-bar);
+}
+
+.status-bar-item.mod-clickable:hover {
+  background: var(--hc-bar-gold);
+  border-radius: var(--hc-pill);
+}
+
+/* ---- Scrollbars: rounded thumbs ---- */
+body ::-webkit-scrollbar-thumb {
+  border-radius: var(--hc-pill);
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+
+/* Note content in both editing and reading views. Content text keeps its own case:
+   only interface labels are capitalised. */
+
+.inline-title {
+  letter-spacing: 0.02em;
+}
+
+/* First- and second-level headings carry a rounded end cap, like a labelled bar. */
+body:not(.hc-plain-headings) :is(.markdown-rendered h1, .HyperMD-header-1) {
+  border-left: var(--hc-cap) solid var(--hc-bar-orange);
+  border-radius: var(--hc-pill) 0 0 var(--hc-pill);
+  padding-left: 0.4em;
+}
+
+body:not(.hc-plain-headings) :is(.markdown-rendered h2, .HyperMD-header-2) {
+  border-left: calc(var(--hc-cap) * 0.8) solid var(--hc-bar-lavender);
+  border-radius: var(--hc-pill) 0 0 var(--hc-pill);
+  padding-left: 0.4em;
+}
+
+body:not(.hc-plain-headings) .markdown-rendered h1 {
+  border-bottom: 2px solid var(--hc-bar-dim);
+}
+
+/* Horizontal rule: a segmented bar with rounded ends. */
+.markdown-rendered hr,
+.markdown-source-view.mod-cm6 .hr hr {
+  border: none;
+  height: var(--hc-bar);
+  border-radius: var(--hc-pill);
+  background: linear-gradient(
+    90deg,
+    var(--hc-bar-orange) 0 18%,
+    transparent 18% 19%,
+    var(--hc-bar-lavender) 19% 72%,
+    transparent 72% 73%,
+    var(--hc-bar-blue) 73% 100%
+  );
+}
+
+/* Quotes: a rounded bar on the left. */
+.markdown-rendered blockquote {
+  border-left: none;
+  position: relative;
+  padding-left: 1.4em;
+}
+
+.markdown-rendered blockquote::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--hc-bar);
+  border-radius: var(--hc-pill);
+  background: var(--blockquote-border-color);
+}
+
+/* Callouts: a coloured cap on the left, square on the right. */
+.callout {
+  border: none;
+  border-left: 10px solid rgb(var(--callout-color));
+  border-radius: var(--hc-panel-radius) 6px 6px var(--hc-panel-radius);
+  background: rgba(var(--callout-color), 0.1);
+}
+
+.callout-title {
+  font-family: var(--font-interface);
+  letter-spacing: 0.04em;
+}
+
+body:not(.hc-mixed-case) .callout-title-inner {
+  text-transform: uppercase;
+}
+
+/* Code */
+.markdown-rendered pre,
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock {
+  background-color: var(--code-background);
+}
+
+.markdown-rendered pre {
+  border-left: var(--hc-bar) solid var(--hc-bar-blue);
+  border-radius: 14px 6px 6px 14px;
+}
+
+/* Tables: a coloured header row with rounded outer corners. */
+.markdown-rendered table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.markdown-rendered th {
+  font-family: var(--font-interface);
+  letter-spacing: 0.04em;
+  font-weight: 700;
+  border-color: var(--hc-screen);
+}
+
+.markdown-rendered thead th:first-child {
+  border-top-left-radius: 14px;
+}
+
+.markdown-rendered thead th:last-child {
+  border-top-right-radius: 4px;
+}
+
+/* Tags are outlined pills. */
+.tag {
+  font-family: var(--font-interface);
+  letter-spacing: 0.03em;
+}
+
+/* Properties: keys in the interface face, set apart like panel labels. */
+.metadata-property-key {
+  font-family: var(--font-interface);
+  color: var(--hc-ink-gold);
+}
+
+.metadata-container {
+  border-left: var(--hc-bar) solid var(--hc-bar-dim);
+  border-radius: 12px 0 0 12px;
+  padding-left: 10px;
+}
+
+/* Buttons, fields, toggles and sliders. */
+
+button:not(.clickable-icon) {
+  font-family: var(--font-interface);
+  font-weight: 600;
+  border-radius: var(--hc-pill);
+  border: none;
+  box-shadow: none;
+  background: var(--hc-bar-lavender);
+  color: var(--hc-on-bar);
+  padding-inline: 1.1em;
+}
+
+button:not(.clickable-icon):hover {
+  background: var(--hc-bar-gold);
+  color: var(--hc-on-bar);
+}
+
+button.mod-cta {
+  background: var(--hc-bar-orange);
+  color: var(--hc-on-bar);
+}
+
+button.mod-warning {
+  background: var(--hc-bar-red);
+  color: var(--hc-on-bar);
+}
+
+button:not(.clickable-icon):disabled {
+  background: var(--hc-bar-dim);
+  color: var(--hc-text-muted);
+}
+
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="url"],
+textarea,
+select,
+.dropdown {
+  border: 1px solid var(--hc-bar-dim);
+  background: var(--hc-surface);
+}
+
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="url"],
+select,
+.dropdown {
+  border-radius: var(--hc-pill);
+  padding-inline: 0.9em;
+}
+
+:is(input, textarea, select, .dropdown):focus,
+:is(input, textarea, select, .dropdown):focus-visible {
+  border-color: var(--hc-bar-gold);
+  box-shadow: 0 0 0 2px var(--hc-bar-gold);
+}
+
+.checkbox-container {
+  background: var(--hc-bar-dim);
+  border-radius: var(--hc-pill);
+}
+
+.checkbox-container.is-enabled {
+  background: var(--hc-bar-orange);
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  border-radius: var(--hc-pill);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  background: var(--hc-bar-orange);
+  border: none;
+  border-radius: var(--hc-pill);
+}
+
+/* Keyboard focus is always visible, in gold. */
+:focus-visible {
+  outline: 2px solid var(--hc-bar-gold);
+  outline-offset: 2px;
+}
+
+/* Modals, the command palette, menus, notices, tooltips and settings. */
+
+.modal,
+.prompt {
+  border-top-width: calc(var(--hc-bar) * 2);
+}
+
+.modal-title {
+  font-family: var(--font-interface);
+  color: var(--hc-ink-orange);
+}
+
+.modal-close-button {
+  border-radius: var(--hc-pill);
+}
+
+/* Command palette and quick switcher: the chosen row is a full bar. */
+.prompt-input-container {
+  border-bottom: var(--hc-gap) solid var(--hc-bar-dim);
+}
+
+.suggestion-item {
+  border-radius: var(--hc-pill);
+}
+
+.suggestion-item.is-selected {
+  background: var(--hc-bar-orange);
+  color: var(--hc-on-bar);
+  --text-muted: var(--hc-on-bar);
+  --text-faint: var(--hc-on-bar);
+  --text-normal: var(--hc-on-bar);
+  --icon-color: var(--hc-on-bar);
+}
+
+.suggestion-item.is-selected .suggestion-highlight {
+  color: var(--hc-on-bar);
+  text-decoration: underline;
+}
+
+.suggestion-highlight {
+  color: var(--hc-ink-orange);
+}
+
+.prompt-instructions {
+  font-family: var(--font-interface);
+  text-transform: uppercase;
+  letter-spacing: var(--hc-label-tracking);
+}
+
+/* Menus: rounded panels, hovered rows become bars. */
+.menu {
+  border-width: 2px;
+}
+
+.menu-item {
+  border-radius: var(--hc-pill);
+}
+
+.menu-item.selected:not(.is-disabled):not(.is-label),
+.menu-item:hover:not(.is-disabled):not(.is-label) {
+  background: var(--hc-bar-lavender);
+  color: var(--hc-on-bar);
+  --icon-color: var(--hc-on-bar);
+}
+
+.menu-item.selected .menu-item-title,
+.menu-item:hover .menu-item-title {
+  color: var(--hc-on-bar);
+}
+
+.menu-item.is-warning:hover:not(.is-disabled) {
+  background: var(--hc-bar-red);
+}
+
+.menu-separator {
+  border-color: var(--hc-bar-dim);
+}
+
+/* Notices and tooltips: short bars. */
+.notice {
+  background: var(--hc-bar-gold);
+  color: var(--hc-on-bar);
+  border-radius: var(--hc-pill) 8px 8px var(--hc-pill);
+  font-family: var(--font-interface);
+  font-weight: 600;
+  padding-left: 1.4em;
+}
+
+.tooltip {
+  background: var(--hc-bar-peach);
+  color: var(--hc-on-bar);
+  border-radius: var(--hc-pill);
+  font-family: var(--font-interface);
+  font-weight: 600;
+}
+
+.tooltip .tooltip-arrow {
+  border-bottom-color: var(--hc-bar-peach);
+}
+
+/* Settings: the chosen section is a bar. */
+.vertical-tab-header {
+  background: var(--hc-panel);
+}
+
+.vertical-tab-header-group-title {
+  color: var(--hc-ink-gold);
+  font-family: var(--font-interface);
+}
+
+.vertical-tab-nav-item {
+  border-radius: var(--hc-pill);
+  font-family: var(--font-interface);
+}
+
+.vertical-tab-nav-item.is-active {
+  background: var(--hc-bar-orange);
+  color: var(--hc-on-bar);
+  --icon-color: var(--hc-on-bar);
+}
+
+.setting-item-heading .setting-item-name {
+  color: var(--hc-ink-orange);
+  font-family: var(--font-interface);
+}
+
+.setting-item {
+  border-top-color: var(--hc-bar-dim);
+}
+
+/* Reduced motion, higher contrast and print. */
+
+@media (prefers-reduced-motion: reduce) {
+  body * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+@media (prefers-contrast: more) {
+  body.theme-light,
+  body.theme-dark {
+    --text-muted: var(--hc-text);
+    --text-faint: var(--hc-text-muted);
+    --background-modifier-border: var(--hc-text-muted);
+  }
+}
+
+@media print {
+  body.theme-light,
+  body.theme-dark {
+    --background-primary: #ffffff;
+    --text-normal: #000000;
+    --text-muted: #333333;
+    --h1-color: #000000;
+    --h2-color: #000000;
+    --h3-color: #000000;
+    --h4-color: #000000;
+    --h5-color: #000000;
+    --h6-color: #000000;
+    --link-color: #000000;
+    --code-background: #f2f2f2;
+  }
+
+  .markdown-rendered :is(h1, h2) {
+    border-left: none !important;
+    padding-left: 0 !important;
+  }
+}

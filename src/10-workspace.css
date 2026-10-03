@@ -1,0 +1,248 @@
+/* Window chrome: the swept ribbon column, the top bar it turns into, pill tabs and the
+   capped status bar. */
+
+/* Interface labels in capitals with open tracking, unless the reader opts out. */
+body:not(.hc-mixed-case) :is(
+  .workspace-tab-header-inner-title,
+  .view-header-title,
+  .status-bar,
+  .nav-folder-title,
+  .modal-title,
+  .vertical-tab-header-group-title,
+  .setting-item-heading .setting-item-name,
+  .tree-item-self.is-clickable.mod-collapsible:not(.nav-file-title) .tree-item-inner,
+  button:not(.clickable-icon)
+) {
+  text-transform: uppercase;
+  letter-spacing: var(--hc-label-tracking);
+}
+
+/* ---- Ribbon: a column of coloured segments, rounded where it turns into the top bar ---- */
+body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left {
+  background: var(--hc-bar-lavender);
+  border: none;
+  border-radius: var(--hc-elbow) 0 0 var(--hc-elbow);
+  padding: 0;
+  gap: 0;
+  overflow: hidden;
+}
+
+body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left :is(.side-dock-actions, .side-dock-settings) {
+  gap: 0;
+  width: 100%;
+}
+
+/* Obsidian clears a header-height strip above the ribbon for the window controls and
+   fills it with ::before. The column instead starts level with the bar under the tab
+   row, so the two meet as one swept shape. */
+body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left::before {
+  display: none;
+}
+
+body.is-hidden-frameless:not(.hc-plain-ribbon) .workspace-ribbon.mod-left {
+  margin-top: calc(var(--header-height) - var(--hc-bar));
+}
+
+body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-actions {
+  margin-top: var(--hc-elbow);
+}
+
+body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-ribbon-action {
+  --icon-color: var(--hc-on-bar);
+  --icon-color-hover: var(--hc-on-bar);
+  width: 100%;
+  height: 38px;
+  border-radius: 0;
+  border-top: var(--hc-gap) solid var(--hc-screen);
+  background: var(--hc-bar-orange);
+  color: var(--hc-on-bar);
+  justify-content: flex-end;
+  padding-right: 8px;
+}
+
+body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-actions .side-dock-ribbon-action:nth-child(4n + 2) {
+  background: var(--hc-bar-peach);
+}
+
+body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-actions .side-dock-ribbon-action:nth-child(4n + 3) {
+  background: var(--hc-bar-blue);
+}
+
+body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-actions .side-dock-ribbon-action:nth-child(4n + 4) {
+  background: var(--hc-bar-gold);
+}
+
+body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-actions .side-dock-ribbon-action:last-child {
+  border-bottom: var(--hc-gap) solid var(--hc-screen);
+}
+
+body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-settings .side-dock-ribbon-action {
+  background: var(--hc-bar-violet);
+}
+
+body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-settings .side-dock-ribbon-action:last-child {
+  height: 56px;
+  align-items: flex-start;
+  padding-top: 8px;
+}
+
+body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .side-dock-ribbon-action:hover {
+  background: var(--hc-bar-red);
+}
+
+body:not(.hc-plain-ribbon) .workspace-ribbon.mod-left .sidebar-toggle-button {
+  --icon-color: var(--hc-on-bar);
+  --icon-color-hover: var(--hc-on-bar);
+}
+
+body.hc-plain-ribbon .workspace-ribbon.mod-left {
+  background: var(--hc-panel);
+  border-right: var(--hc-bar) solid var(--hc-bar-lavender);
+}
+
+/* The bar the ribbon turns into, along the foot of the tab row. Inset, so it never
+   shifts the tabs. */
+body:not(.hc-plain-ribbon) .workspace-tab-header-container {
+  box-shadow: inset 0 calc(var(--hc-bar) * -1) 0 var(--hc-bar-lavender);
+}
+
+/* The inner, concave curve of the elbow, in whichever tab group sits beside the
+   ribbon: the left sidebar when it is open, the top-left editor group when not. */
+body:not(.hc-plain-ribbon) .workspace-tabs.mod-top-left-space > .workspace-tab-container {
+  position: relative;
+}
+
+body:not(.hc-plain-ribbon) .workspace-tabs.mod-top-left-space > .workspace-tab-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(circle at 100% 100%, transparent 15.5px, var(--hc-bar-lavender) 16px);
+}
+
+/* ---- Tabs: pills. The curved "tab" flares Obsidian draws are removed. ---- */
+.workspace-tab-header-container {
+  border-bottom: none;
+  padding-bottom: var(--hc-bar);
+}
+
+.workspace-tab-header::before,
+.workspace-tab-header::after {
+  display: none;
+}
+
+.workspace .mod-root .workspace-tab-header {
+  border-radius: var(--hc-pill);
+  margin: 2px 2px 4px;
+  padding: 0 4px;
+  background: var(--hc-surface);
+}
+
+.workspace .mod-root .workspace-tab-header-inner {
+  padding: 0 10px;
+}
+
+.workspace .mod-root .workspace-tab-header:hover {
+  background: var(--hc-surface-hover);
+}
+
+.workspace .mod-root .workspace-tab-header.is-active {
+  background: var(--hc-bar-peach);
+  --tab-text-color-focused: var(--hc-on-bar);
+  --icon-color: var(--hc-on-bar);
+  --icon-color-hover: var(--hc-on-bar);
+  color: var(--hc-on-bar);
+}
+
+.workspace .mod-root .workspace-tabs.mod-active .workspace-tab-header.is-active {
+  background: var(--hc-bar-orange);
+}
+
+.workspace .mod-root .workspace-tab-header.is-active .workspace-tab-header-inner-title {
+  color: var(--hc-on-bar);
+  font-weight: 600;
+}
+
+/* Sidebar tabs are icon-only: a smaller pill round the active icon. */
+.workspace-sidedock-vault-profile,
+.workspace-split:is(.mod-left-split, .mod-right-split) .workspace-tab-header-container {
+  background-color: var(--hc-screen);
+}
+
+.workspace-split:is(.mod-left-split, .mod-right-split) .workspace-tab-header.is-active {
+  --icon-color: var(--hc-on-bar);
+  --icon-color-hover: var(--hc-on-bar);
+  background: var(--hc-bar-lavender);
+  border-radius: var(--hc-pill);
+}
+
+/* ---- Panels ---- */
+.workspace-split:is(.mod-left-split, .mod-right-split) .workspace-leaf-content,
+.workspace-split:is(.mod-left-split, .mod-right-split) .view-content {
+  background: var(--hc-panel);
+}
+
+.view-header {
+  border-bottom: none;
+}
+
+.view-header-title {
+  color: var(--hc-ink-gold);
+  font-family: var(--font-interface);
+}
+
+.view-header-breadcrumb {
+  color: var(--hc-text-muted);
+  font-family: var(--font-interface);
+}
+
+/* ---- File explorer ---- */
+.nav-folder-title {
+  font-family: var(--font-interface);
+  color: var(--hc-ink-gold);
+}
+
+.nav-file-title,
+.nav-folder-title,
+.tree-item-self {
+  border-radius: var(--hc-pill);
+}
+
+.nav-file-title.is-active,
+.tree-item-self.is-active {
+  font-weight: 600;
+}
+
+.nav-folder-collapse-indicator,
+.tree-item-icon.collapse-icon {
+  color: var(--hc-ink-orange);
+}
+
+/* ---- Status bar: a capped orange bar in the lower right ---- */
+.status-bar {
+  font-family: var(--font-interface);
+  font-weight: 600;
+  border: none;
+  padding-left: 18px;
+}
+
+.status-bar-item {
+  --icon-color: var(--hc-on-bar);
+  color: var(--hc-on-bar);
+}
+
+.status-bar-item.mod-clickable:hover {
+  background: var(--hc-bar-gold);
+  border-radius: var(--hc-pill);
+}
+
+/* ---- Scrollbars: rounded thumbs ---- */
+body ::-webkit-scrollbar-thumb {
+  border-radius: var(--hc-pill);
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}

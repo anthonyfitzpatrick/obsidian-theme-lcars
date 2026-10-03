@@ -1,0 +1,129 @@
+/* Modals, the command palette, menus, notices, tooltips and settings. */
+
+.modal,
+.prompt {
+  border-top-width: calc(var(--hc-bar) * 2);
+}
+
+.modal-title {
+  font-family: var(--font-interface);
+  color: var(--hc-ink-orange);
+}
+
+.modal-close-button {
+  border-radius: var(--hc-pill);
+}
+
+/* Command palette and quick switcher: the chosen row is a full bar. */
+.prompt-input-container {
+  border-bottom: var(--hc-gap) solid var(--hc-bar-dim);
+}
+
+.suggestion-item {
+  border-radius: var(--hc-pill);
+}
+
+.suggestion-item.is-selected {
+  background: var(--hc-bar-orange);
+  color: var(--hc-on-bar);
+  --text-muted: var(--hc-on-bar);
+  --text-faint: var(--hc-on-bar);
+  --text-normal: var(--hc-on-bar);
+  --icon-color: var(--hc-on-bar);
+}
+
+.suggestion-item.is-selected .suggestion-highlight {
+  color: var(--hc-on-bar);
+  text-decoration: underline;
+}
+
+.suggestion-highlight {
+  color: var(--hc-ink-orange);
+}
+
+.prompt-instructions {
+  font-family: var(--font-interface);
+  text-transform: uppercase;
+  letter-spacing: var(--hc-label-tracking);
+}
+
+/* Menus: rounded panels, hovered rows become bars. */
+.menu {
+  border-width: 2px;
+}
+
+.menu-item {
+  border-radius: var(--hc-pill);
+}
+
+.menu-item.selected:not(.is-disabled):not(.is-label),
+.menu-item:hover:not(.is-disabled):not(.is-label) {
+  background: var(--hc-bar-lavender);
+  color: var(--hc-on-bar);
+  --icon-color: var(--hc-on-bar);
+}
+
+.menu-item.selected .menu-item-title,
+.menu-item:hover .menu-item-title {
+  color: var(--hc-on-bar);
+}
+
+.menu-item.is-warning:hover:not(.is-disabled) {
+  background: var(--hc-bar-red);
+}
+
+.menu-separator {
+  border-color: var(--hc-bar-dim);
+}
+
+/* Notices and tooltips: short bars. */
+.notice {
+  background: var(--hc-bar-gold);
+  color: var(--hc-on-bar);
+  border-radius: var(--hc-pill) 8px 8px var(--hc-pill);
+  font-family: var(--font-interface);
+  font-weight: 600;
+  padding-left: 1.4em;
+}
+
+.tooltip {
+  background: var(--hc-bar-peach);
+  color: var(--hc-on-bar);
+  border-radius: var(--hc-pill);
+  font-family: var(--font-interface);
+  font-weight: 600;
+}
+
+.tooltip .tooltip-arrow {
+  border-bottom-color: var(--hc-bar-peach);
+}
+
+/* Settings: the chosen section is a bar. */
+.vertical-tab-header {
+  background: var(--hc-panel);
+}
+
+.vertical-tab-header-group-title {
+  color: var(--hc-ink-gold);
+  font-family: var(--font-interface);
+}
+
+.vertical-tab-nav-item {
+  border-radius: var(--hc-pill);
+  font-family: var(--font-interface);
+}
+
+.vertical-tab-nav-item.is-active {
+  background: var(--hc-bar-orange);
+  color: var(--hc-on-bar);
+  --icon-color: var(--hc-on-bar);
+}
+
+.setting-item-heading .setting-item-name {
+  color: var(--hc-ink-orange);
+  font-family: var(--font-interface);
+}
+
+.setting-item {
+  border-top-color: var(--hc-bar-dim);
+}

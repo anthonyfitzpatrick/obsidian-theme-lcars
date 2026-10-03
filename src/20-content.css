@@ -1,0 +1,122 @@
+/* Note content in both editing and reading views. Content text keeps its own case:
+   only interface labels are capitalised. */
+
+.inline-title {
+  letter-spacing: 0.02em;
+}
+
+/* First- and second-level headings carry a rounded end cap, like a labelled bar. */
+body:not(.hc-plain-headings) :is(.markdown-rendered h1, .HyperMD-header-1) {
+  border-left: var(--hc-cap) solid var(--hc-bar-orange);
+  border-radius: var(--hc-pill) 0 0 var(--hc-pill);
+  padding-left: 0.4em;
+}
+
+body:not(.hc-plain-headings) :is(.markdown-rendered h2, .HyperMD-header-2) {
+  border-left: calc(var(--hc-cap) * 0.8) solid var(--hc-bar-lavender);
+  border-radius: var(--hc-pill) 0 0 var(--hc-pill);
+  padding-left: 0.4em;
+}
+
+body:not(.hc-plain-headings) .markdown-rendered h1 {
+  border-bottom: 2px solid var(--hc-bar-dim);
+}
+
+/* Horizontal rule: a segmented bar with rounded ends. */
+.markdown-rendered hr,
+.markdown-source-view.mod-cm6 .hr hr {
+  border: none;
+  height: var(--hc-bar);
+  border-radius: var(--hc-pill);
+  background: linear-gradient(
+    90deg,
+    var(--hc-bar-orange) 0 18%,
+    transparent 18% 19%,
+    var(--hc-bar-lavender) 19% 72%,
+    transparent 72% 73%,
+    var(--hc-bar-blue) 73% 100%
+  );
+}
+
+/* Quotes: a rounded bar on the left. */
+.markdown-rendered blockquote {
+  border-left: none;
+  position: relative;
+  padding-left: 1.4em;
+}
+
+.markdown-rendered blockquote::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--hc-bar);
+  border-radius: var(--hc-pill);
+  background: var(--blockquote-border-color);
+}
+
+/* Callouts: a coloured cap on the left, square on the right. */
+.callout {
+  border: none;
+  border-left: 10px solid rgb(var(--callout-color));
+  border-radius: var(--hc-panel-radius) 6px 6px var(--hc-panel-radius);
+  background: rgba(var(--callout-color), 0.1);
+}
+
+.callout-title {
+  font-family: var(--font-interface);
+  letter-spacing: 0.04em;
+}
+
+body:not(.hc-mixed-case) .callout-title-inner {
+  text-transform: uppercase;
+}
+
+/* Code */
+.markdown-rendered pre,
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock {
+  background-color: var(--code-background);
+}
+
+.markdown-rendered pre {
+  border-left: var(--hc-bar) solid var(--hc-bar-blue);
+  border-radius: 14px 6px 6px 14px;
+}
+
+/* Tables: a coloured header row with rounded outer corners. */
+.markdown-rendered table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.markdown-rendered th {
+  font-family: var(--font-interface);
+  letter-spacing: 0.04em;
+  font-weight: 700;
+  border-color: var(--hc-screen);
+}
+
+.markdown-rendered thead th:first-child {
+  border-top-left-radius: 14px;
+}
+
+.markdown-rendered thead th:last-child {
+  border-top-right-radius: 4px;
+}
+
+/* Tags are outlined pills. */
+.tag {
+  font-family: var(--font-interface);
+  letter-spacing: 0.03em;
+}
+
+/* Properties: keys in the interface face, set apart like panel labels. */
+.metadata-property-key {
+  font-family: var(--font-interface);
+  color: var(--hc-ink-gold);
+}
+
+.metadata-container {
+  border-left: var(--hc-bar) solid var(--hc-bar-dim);
+  border-radius: 12px 0 0 12px;
+  padding-left: 10px;
+}

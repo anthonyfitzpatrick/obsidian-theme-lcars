@@ -1,0 +1,17 @@
+{
+  "name": "obsidian-theme-helm-console",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Helm Console: an Obsidian theme of swept colour bars, rounded end caps and segmented panels, inspired by late-1980s television science-fiction console graphics.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/",
+    "check": "node scripts/build.mjs --check && node --test tests/",
+    "deploy": "node scripts/build.mjs && node scripts/deploy.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

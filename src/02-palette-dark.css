@@ -1,0 +1,41 @@
+/* Dark mode: bright bars on a black screen. Bars carry black text; inks are text drawn
+   on the screen itself. Every pair is contrast-checked by tests/contrast.test.mjs. */
+.theme-dark {
+  --hc-screen: #000000;
+  --hc-panel: #0c0a0e;
+  --hc-surface: #17141a;
+  --hc-surface-hover: #241f29;
+  --hc-text: #f4e8da;
+  --hc-text-muted: #bcab9a;
+  --hc-text-faint: #948472;
+  --hc-on-bar: #000000;
+
+  --hc-bar-orange: #ff9a52;
+  --hc-bar-gold: #ffc65c;
+  --hc-bar-peach: #ffb08a;
+  --hc-bar-lavender: #c99ad8;
+  --hc-bar-violet: #a493ff;
+  --hc-bar-blue: #86aeff;
+  --hc-bar-red: #ff7468;
+  --hc-bar-dim: #3a2f44;
+
+  --hc-ink-orange: #ff9a52;
+  --hc-ink-gold: #ffc65c;
+  --hc-ink-lavender: #c99ad8;
+  --hc-ink-violet: #a493ff;
+  --hc-ink-blue: #86aeff;
+  --hc-ink-red: #ff7468;
+  --hc-ink-green: #8fd6a0;
+
+  --hc-selection: rgba(255, 154, 82, 0.32);
+  --hc-highlight: rgba(255, 198, 92, 0.3);
+
+  --color-red-rgb: 255, 116, 104;
+  --color-orange-rgb: 255, 154, 82;
+  --color-yellow-rgb: 255, 198, 92;
+  --color-green-rgb: 143, 214, 160;
+  --color-cyan-rgb: 134, 174, 255;
+  --color-blue-rgb: 134, 174, 255;
+  --color-purple-rgb: 201, 154, 216;
+  --color-pink-rgb: 255, 176, 138;
+}

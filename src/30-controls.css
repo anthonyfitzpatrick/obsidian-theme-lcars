@@ -1,0 +1,88 @@
+/* Buttons, fields, toggles and sliders. */
+
+button:not(.clickable-icon) {
+  font-family: var(--font-interface);
+  font-weight: 600;
+  border-radius: var(--hc-pill);
+  border: none;
+  box-shadow: none;
+  background: var(--hc-bar-lavender);
+  color: var(--hc-on-bar);
+  padding-inline: 1.1em;
+}
+
+button:not(.clickable-icon):hover {
+  background: var(--hc-bar-gold);
+  color: var(--hc-on-bar);
+}
+
+button.mod-cta {
+  background: var(--hc-bar-orange);
+  color: var(--hc-on-bar);
+}
+
+button.mod-warning {
+  background: var(--hc-bar-red);
+  color: var(--hc-on-bar);
+}
+
+button:not(.clickable-icon):disabled {
+  background: var(--hc-bar-dim);
+  color: var(--hc-text-muted);
+}
+
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="url"],
+textarea,
+select,
+.dropdown {
+  border: 1px solid var(--hc-bar-dim);
+  background: var(--hc-surface);
+}
+
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="url"],
+select,
+.dropdown {
+  border-radius: var(--hc-pill);
+  padding-inline: 0.9em;
+}
+
+:is(input, textarea, select, .dropdown):focus,
+:is(input, textarea, select, .dropdown):focus-visible {
+  border-color: var(--hc-bar-gold);
+  box-shadow: 0 0 0 2px var(--hc-bar-gold);
+}
+
+.checkbox-container {
+  background: var(--hc-bar-dim);
+  border-radius: var(--hc-pill);
+}
+
+.checkbox-container.is-enabled {
+  background: var(--hc-bar-orange);
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  border-radius: var(--hc-pill);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  background: var(--hc-bar-orange);
+  border: none;
+  border-radius: var(--hc-pill);
+}
+
+/* Keyboard focus is always visible, in gold. */
+:focus-visible {
+  outline: 2px solid var(--hc-bar-gold);
+  outline-offset: 2px;
+}

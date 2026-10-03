@@ -1,0 +1,39 @@
+/* Reduced motion, higher contrast and print. */
+
+@media (prefers-reduced-motion: reduce) {
+  body * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+@media (prefers-contrast: more) {
+  body.theme-light,
+  body.theme-dark {
+    --text-muted: var(--hc-text);
+    --text-faint: var(--hc-text-muted);
+    --background-modifier-border: var(--hc-text-muted);
+  }
+}
+
+@media print {
+  body.theme-light,
+  body.theme-dark {
+    --background-primary: #ffffff;
+    --text-normal: #000000;
+    --text-muted: #333333;
+    --h1-color: #000000;
+    --h2-color: #000000;
+    --h3-color: #000000;
+    --h4-color: #000000;
+    --h5-color: #000000;
+    --h6-color: #000000;
+    --link-color: #000000;
+    --code-background: #f2f2f2;
+  }
+
+  .markdown-rendered :is(h1, h2) {
+    border-left: none !important;
+    padding-left: 0 !important;
+  }
+}

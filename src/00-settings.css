@@ -1,0 +1,23 @@
+/* @settings
+name: Helm Console
+id: helm-console
+settings:
+  -
+    id: hc-mixed-case
+    title: Mixed-case interface labels
+    description: Keep tab, header and button labels in their original case instead of capitals.
+    type: class-toggle
+    default: false
+  -
+    id: hc-plain-ribbon
+    title: Plain ribbon
+    description: Draw the left ribbon as one bar instead of the swept, segmented column.
+    type: class-toggle
+    default: false
+  -
+    id: hc-plain-headings
+    title: Plain headings
+    description: Remove the rounded end caps from first- and second-level headings.
+    type: class-toggle
+    default: false
+*/

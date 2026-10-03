@@ -1,0 +1,17 @@
+/* Geometry and type shared by both modes. Palettes live in 02 and 03. */
+:root {
+  --hc-elbow: 28px;
+  --hc-bar: 6px;
+  --hc-gap: 3px;
+  --hc-cap: 0.55em;
+  --hc-pill: 999px;
+  --hc-panel-radius: 18px;
+  --hc-ribbon-width: 46px;
+  --hc-label-tracking: 0.07em;
+
+  /* Condensed faces when installed, falling back to ordinary system sans. Nothing is
+     downloaded: community themes may not load remote resources. */
+  --hc-display-font: "Antonio", "Oswald", "Roboto Condensed", "Arial Narrow", "Helvetica Neue", system-ui, sans-serif;
+  --hc-text-font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --hc-code-font: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
