@@ -1,10 +1,14 @@
-/* Light mode: the same bars on a warm paper screen. Bars stay bright enough for black
-   text; inks are deepened so text on the screen keeps 4.5:1 or better. */
-.theme-light {
-  --hc-screen: #f5f0e8;
-  --hc-panel: #ebe3d7;
-  --hc-surface: #fffaf2;
-  --hc-surface-hover: #e2d8ca;
+/* Light mode: a clean, near-white page set into the black frame (see src/02). This
+   palette applies to the body, so menus, dialogs and popovers are light, and to each
+   page in the main area. Bars stay bright enough for black text; inks are deepened so
+   text on the page keeps 4.5:1 or better. */
+.theme-light,
+.theme-light .workspace .mod-root .workspace-leaf-content {
+  --hc-screen: #f8f7f4;
+  --hc-panel: #ecebe6;
+  --hc-surface: #ffffff;
+  --hc-surface-hover: #e3e1dc;
+  --hc-code-bg: #ebe9e4;
   --hc-text: #1c1612;
   --hc-text-muted: #584a3f;
   --hc-text-faint: #6f6154;

@@ -9,7 +9,9 @@
 
 @media (prefers-contrast: more) {
   body.theme-light,
-  body.theme-dark {
+  body.theme-dark,
+  .theme-light :is(.workspace, .status-bar),
+  .theme-light .workspace .mod-root .workspace-leaf-content {
     --text-muted: var(--hc-text);
     --text-faint: var(--hc-text-muted);
     --background-modifier-border: var(--hc-text-muted);

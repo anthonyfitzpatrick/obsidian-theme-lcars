@@ -1,7 +1,7 @@
 # Helm Console
 
 **An LCARS-inspired theme for Obsidian: swept colour bars, rounded end caps and segmented
-panels on a black screen — or on warm paper.**
+panels on a black screen.**
 
 > **This is an independent, unofficial, fan-made theme.** It is **inspired by** the LCARS
 > console style of late-1980s television science fiction. It is **not affiliated with,
@@ -30,14 +30,16 @@ Both modes are designed separately. Neither is generated from the other. Switch 
 **Settings → Appearance → Base colour scheme**.
 
 - **Dark** draws bright bars on a black screen. This is the look the style is known for.
-- **Light** puts the same bars on a warm paper screen. The text colours are deepened so
-  that text still meets 4.5:1 contrast.
+- **Light** keeps the black frame (ribbon, tab rows, sidebars and status bar look exactly as
+  they do in dark mode) and turns only the pages in the main area light, like a lit display
+  set into the console. Menus and dialogs are light too. Text colours on the page are
+  deepened so they still meet 4.5:1 contrast.
 
 ## The palette
 
 | Role | Dark | Light |
 | --- | --- | --- |
-| Screen | `#000000` | `#f5f0e8` |
+| Screen (light: the page) | `#000000` | `#f8f7f4` |
 | Text | `#f4e8da` | `#1c1612` |
 | Orange bar (active, primary) | `#ff9a52` | `#f2893c` |
 | Gold bar (hover, focus) | `#ffc65c` | `#f0b33f` |
@@ -116,6 +118,7 @@ to contain. To enable the pre-commit check, run `git config core.hooksPath .gith
 | --- | --- |
 | `src/00-settings.css` | Style Settings options |
 | `src/01-tokens.css` | Geometry shared by both modes |
+| `src/015-light-mode-zones.css` | Light mode's black frame and light pages: Obsidian's base greys and derived colours re-declared per zone (generated from Obsidian 1.13.7) |
 | `src/02-palette-dark.css` / `03-palette-light.css` | The two palettes |
 | `src/04-obsidian-variables.css` | Palette mapped onto Obsidian's variables |
 | `src/10-workspace.css` | Ribbon, tabs, panels, file explorer, status bar |

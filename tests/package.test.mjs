@@ -13,8 +13,8 @@ test("manifest has the fields Obsidian's theme directory requires", () => {
 });
 
 test("theme.css defines both light and dark modes", () => {
-  assert.match(css, /\.theme-dark\s*\{/);
-  assert.match(css, /\.theme-light\s*\{/);
+  assert.match(css, /\.theme-dark\s*[,{]/);
+  assert.match(css, /\.theme-light\s*[,{]/);
 });
 
 test("theme.css loads nothing remote", () => {
@@ -36,4 +36,19 @@ test("fonts are left to Obsidian: no font family is set anywhere", () => {
   assert.doesNotMatch(css, /font-family\s*:/);
   assert.doesNotMatch(css, /--font-(interface|text|monospace)(-theme)?\s*:/);
   assert.doesNotMatch(css, /--(h[1-6]|inline-title)-font\s*:/);
+});
+
+test("light mode's frame and page zones are declared consistently in every module that needs them", () => {
+  const FRAME = ".theme-light :is(.workspace, .status-bar)";
+  const PAGE = ".theme-light .workspace .mod-root .workspace-leaf-content";
+  const zones = {
+    "src/015-light-mode-zones.css": [FRAME, PAGE],
+    "src/02-palette-dark.css": [FRAME],
+    "src/03-palette-light.css": [PAGE],
+    "src/04-obsidian-variables.css": [FRAME, PAGE],
+  };
+  for (const [file, selectors] of Object.entries(zones)) {
+    const source = read(file);
+    for (const selector of selectors) assert.ok(source.includes(selector), `${file} does not declare ${selector}`);
+  }
 });

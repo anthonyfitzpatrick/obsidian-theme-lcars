@@ -1,8 +1,12 @@
 /* Maps the palette onto Obsidian's own variables. Declared on body.theme-* because
    Obsidian sets its defaults on .theme-light and .theme-dark (0,1,0), and a var() here
-   must resolve against the palette declared on the same element. */
+   must resolve against the palette declared on the same element. For the same reason
+   it is repeated on the light-mode frame and pages, which declare a palette of their
+   own: without it they would inherit values already resolved against the body's. */
 body.theme-light,
-body.theme-dark {
+body.theme-dark,
+.theme-light :is(.workspace, .status-bar),
+.theme-light .workspace .mod-root .workspace-leaf-content {
   --color-red: rgb(var(--color-red-rgb));
   --color-orange: rgb(var(--color-orange-rgb));
   --color-yellow: rgb(var(--color-yellow-rgb));
@@ -78,7 +82,7 @@ body.theme-dark {
   --hr-thickness: var(--hc-bar);
   --blockquote-border-color: var(--hc-bar-lavender);
   --blockquote-border-thickness: var(--hc-bar);
-  --code-background: var(--hc-surface);
+  --code-background: var(--hc-code-bg);
   --code-normal: var(--hc-text);
   --code-comment: var(--hc-text-faint);
   --code-function: var(--hc-ink-gold);
@@ -162,4 +166,11 @@ body.theme-dark {
   --graph-text: var(--hc-text);
   --canvas-background: var(--hc-screen);
   --canvas-dot-pattern: var(--hc-bar-dim);
+}
+
+/* Plain text that sets no colour of its own inherits the body's computed colour, which
+   in light mode is dark ink. Each light-mode zone restates it from its own palette. */
+.theme-light :is(.workspace, .status-bar),
+.theme-light .workspace .mod-root .workspace-leaf-content {
+  color: var(--text-normal);
 }
