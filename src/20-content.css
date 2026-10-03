@@ -63,7 +63,6 @@ body:not(.hc-plain-headings) .markdown-rendered h1 {
 }
 
 .callout-title {
-  font-family: var(--font-interface);
   letter-spacing: 0.04em;
 }
 
@@ -89,7 +88,6 @@ body:not(.hc-mixed-case) .callout-title-inner {
 }
 
 .markdown-rendered th {
-  font-family: var(--font-interface);
   letter-spacing: 0.04em;
   font-weight: 700;
   border-color: var(--hc-screen);
@@ -105,13 +103,11 @@ body:not(.hc-mixed-case) .callout-title-inner {
 
 /* Tags are outlined pills. */
 .tag {
-  font-family: var(--font-interface);
   letter-spacing: 0.03em;
 }
 
-/* Properties: keys in the interface face, set apart like panel labels. */
+/* Properties: keys set apart like panel labels. */
 .metadata-property-key {
-  font-family: var(--font-interface);
   color: var(--hc-ink-gold);
 }
 

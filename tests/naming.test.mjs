@@ -1,6 +1,6 @@
 // The theme is an original work inspired by a style. Its shipped files must not name or
-// borrow from the franchise that style comes from. The README's affiliation notice is
-// exempt: disclaiming a rights-holder requires naming it.
+// borrow from the franchise that style comes from. The README is exempt: it may call the
+// theme LCARS-inspired, and disclaiming a rights-holder requires naming it.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { read } from "./helpers.mjs";
@@ -21,5 +21,6 @@ for (const file of ["manifest.json", "theme.css", "package.json"]) {
 test("the README describes the theme as inspired by, never as the original", () => {
   const readme = read("README.md");
   assert.match(readme, /inspired by/i);
+  assert.match(readme, /LCARS-inspired/);
   assert.match(readme, /not affiliated/i);
 });

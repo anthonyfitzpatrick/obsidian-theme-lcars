@@ -31,3 +31,9 @@ test("the licence is MIT", () => {
   assert.match(read("LICENSE"), /^MIT License/);
   assert.equal(pkg.license, "MIT");
 });
+
+test("fonts are left to Obsidian: no font family is set anywhere", () => {
+  assert.doesNotMatch(css, /font-family\s*:/);
+  assert.doesNotMatch(css, /--font-(interface|text|monospace)(-theme)?\s*:/);
+  assert.doesNotMatch(css, /--(h[1-6]|inline-title)-font\s*:/);
+});

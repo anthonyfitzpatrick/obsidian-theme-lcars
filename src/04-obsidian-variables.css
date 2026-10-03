@@ -53,9 +53,6 @@ body.theme-dark {
   --icon-color-active: var(--hc-ink-orange);
   --icon-color-focused: var(--hc-text);
 
-  --font-interface-theme: var(--hc-display-font);
-  --font-text-theme: var(--hc-text-font);
-  --font-monospace-theme: var(--hc-code-font);
 
   --radius-s: 6px;
   --radius-m: 10px;
@@ -68,7 +65,6 @@ body.theme-dark {
   --checkbox-color-hover: var(--hc-bar-gold);
   --checkbox-marker-color: var(--hc-on-bar);
   --checkbox-border-color: var(--hc-bar-lavender);
-  --toggle-thumb-color: var(--hc-on-bar);
 
   --link-color: var(--hc-ink-blue);
   --link-color-hover: var(--hc-ink-orange);
@@ -113,17 +109,10 @@ body.theme-dark {
   --h4-color: var(--hc-ink-blue);
   --h5-color: var(--hc-ink-violet);
   --h6-color: var(--hc-text-muted);
-  --h1-font: var(--font-interface);
-  --h2-font: var(--font-interface);
-  --h3-font: var(--font-interface);
-  --h4-font: var(--font-interface);
-  --h5-font: var(--font-interface);
-  --h6-font: var(--font-interface);
   --h1-weight: 700;
   --h2-weight: 700;
   --h3-weight: 600;
   --inline-title-color: var(--hc-ink-orange);
-  --inline-title-font: var(--font-interface);
 
   --titlebar-background: var(--hc-screen);
   --titlebar-background-focused: var(--hc-screen);

@@ -106,6 +106,23 @@ body:not(.hc-plain-ribbon) .workspace-tab-header-container {
   box-shadow: inset 0 calc(var(--hc-bar) * -1) 0 var(--hc-bar-lavender);
 }
 
+/* Controls in the tab row are transparent, so the bar runs unbroken to both edges. */
+body:not(.hc-plain-ribbon) .workspace-tab-header-container :is(
+  .workspace-tab-header-container-inner,
+  .workspace-tab-header-new-tab,
+  .workspace-tab-header-tab-list,
+  .workspace-tab-header-spacer
+) {
+  background-color: transparent;
+}
+
+/* On macOS the sidebar toggles are pinned over the tab row with a solid background, so
+   tabs cannot show through them. They carry their own length of the bar instead. */
+body:not(.hc-plain-ribbon) .workspace-tab-header-container .sidebar-toggle-button {
+  height: var(--header-height);
+  box-shadow: inset 0 calc(var(--hc-bar) * -1) 0 var(--hc-bar-lavender);
+}
+
 /* The inner, concave curve of the elbow, in whichever tab group sits beside the
    ribbon: the left sidebar when it is open, the top-left editor group when not. */
 body:not(.hc-plain-ribbon) .workspace-tabs.mod-top-left-space > .workspace-tab-container {
@@ -136,18 +153,23 @@ body:not(.hc-plain-ribbon) .workspace-tabs.mod-top-left-space > .workspace-tab-c
 }
 
 .workspace .mod-root .workspace-tab-header {
+  --tab-text-color: var(--hc-text);
+  --tab-text-color-focused: var(--hc-text);
   border-radius: var(--hc-pill);
   margin: 2px 2px 4px;
   padding: 0 4px;
-  background: var(--hc-surface);
+  background: var(--hc-bar-dim);
 }
 
 .workspace .mod-root .workspace-tab-header-inner {
   padding: 0 10px;
 }
 
-.workspace .mod-root .workspace-tab-header:hover {
-  background: var(--hc-surface-hover);
+.workspace .mod-root .workspace-tab-header:not(.is-active):hover {
+  background: var(--hc-bar-violet);
+  --tab-text-color: var(--hc-on-bar);
+  --tab-text-color-focused: var(--hc-on-bar);
+  --icon-color: var(--hc-on-bar);
 }
 
 .workspace .mod-root .workspace-tab-header.is-active {
@@ -192,17 +214,14 @@ body:not(.hc-plain-ribbon) .workspace-tabs.mod-top-left-space > .workspace-tab-c
 
 .view-header-title {
   color: var(--hc-ink-gold);
-  font-family: var(--font-interface);
 }
 
 .view-header-breadcrumb {
   color: var(--hc-text-muted);
-  font-family: var(--font-interface);
 }
 
 /* ---- File explorer ---- */
 .nav-folder-title {
-  font-family: var(--font-interface);
   color: var(--hc-ink-gold);
 }
 
@@ -224,7 +243,6 @@ body:not(.hc-plain-ribbon) .workspace-tabs.mod-top-left-space > .workspace-tab-c
 
 /* ---- Status bar: a capped orange bar in the lower right ---- */
 .status-bar {
-  font-family: var(--font-interface);
   font-weight: 600;
   border: none;
   padding-left: 18px;

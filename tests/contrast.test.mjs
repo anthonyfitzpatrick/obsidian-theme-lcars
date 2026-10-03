@@ -28,7 +28,11 @@ for (const [mode, file] of Object.entries(MODES)) {
     for (const bg of BARS) check("on-bar", bg, 4.5);
   });
 
-  test(`${mode}: disabled controls stay legible at 3:1`, () => {
+  test(`${mode}: inactive tab labels meet 4.5:1 on their dim bar`, () => {
+    check("text", "bar-dim", 4.5);
+  });
+
+  test(`${mode}: disabled controls and off toggles stay legible at 3:1`, () => {
     check("text-muted", "bar-dim", 3);
   });
 

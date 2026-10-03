@@ -1,34 +1,44 @@
 /* Buttons, fields, toggles and sliders. */
 
+/* Buttons are filled bars. The colours are set through Obsidian's own variables, scoped
+   to the button, because plugins restyle their buttons with those variables (for example
+   `color: var(--text-normal)` on an active button). Scoped, those still resolve to black
+   label on a bright bar instead of cream text on lavender. */
 button:not(.clickable-icon) {
-  font-family: var(--font-interface);
+  --text-color: var(--hc-on-bar);
+  --text-normal: var(--hc-on-bar);
+  --text-muted: var(--hc-on-bar);
+  --text-faint: var(--hc-on-bar);
+  --text-accent: var(--hc-on-bar);
+  --icon-color: var(--hc-on-bar);
+  --icon-color-hover: var(--hc-on-bar);
+  --interactive-normal: var(--hc-bar-lavender);
+  --interactive-hover: var(--hc-bar-gold);
   font-weight: 600;
   border-radius: var(--hc-pill);
   border: none;
   box-shadow: none;
-  background: var(--hc-bar-lavender);
-  color: var(--hc-on-bar);
+  background-color: var(--interactive-normal);
+  color: var(--text-color);
   padding-inline: 1.1em;
 }
 
 button:not(.clickable-icon):hover {
-  background: var(--hc-bar-gold);
-  color: var(--hc-on-bar);
+  background-color: var(--interactive-hover);
 }
 
 button.mod-cta {
-  background: var(--hc-bar-orange);
-  color: var(--hc-on-bar);
+  --interactive-normal: var(--hc-bar-orange);
 }
 
 button.mod-warning {
-  background: var(--hc-bar-red);
-  color: var(--hc-on-bar);
+  --interactive-normal: var(--hc-bar-red);
 }
 
 button:not(.clickable-icon):disabled {
-  background: var(--hc-bar-dim);
-  color: var(--hc-text-muted);
+  --text-color: var(--hc-text-muted);
+  --interactive-normal: var(--hc-bar-dim);
+  --interactive-hover: var(--hc-bar-dim);
 }
 
 input[type="text"],
@@ -41,7 +51,8 @@ textarea,
 select,
 .dropdown {
   border: 1px solid var(--hc-bar-dim);
-  background: var(--hc-surface);
+  /* background-color only: the shorthand would reset the dropdown's chevron image. */
+  background-color: var(--hc-surface);
 }
 
 input[type="text"],
@@ -53,7 +64,7 @@ input[type="url"],
 select,
 .dropdown {
   border-radius: var(--hc-pill);
-  padding-inline: 0.9em;
+  padding-inline-start: 0.9em;
 }
 
 :is(input, textarea, select, .dropdown):focus,
@@ -67,8 +78,16 @@ select,
   border-radius: var(--hc-pill);
 }
 
+.checkbox-container::after {
+  background-color: var(--hc-text-muted);
+}
+
 .checkbox-container.is-enabled {
   background: var(--hc-bar-orange);
+}
+
+.checkbox-container.is-enabled::after {
+  background-color: var(--hc-on-bar);
 }
 
 input[type="range"]::-webkit-slider-runnable-track {

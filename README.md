@@ -1,18 +1,19 @@
 # Helm Console
 
-**Swept colour bars, rounded end caps and segmented panels on a black screen — or on warm paper.**
+**An LCARS-inspired theme for Obsidian: swept colour bars, rounded end caps and segmented
+panels on a black screen — or on warm paper.**
 
-> **This is an independent, unofficial theme.** It is **inspired by** the panelled
-> computer-console graphics of late-1980s television science fiction. It is **not
-> affiliated with, endorsed by, sponsored by, or connected to** any studio, network,
-> franchise or rights-holder. It reproduces no artwork, logos, typefaces or names from any
-> production. See [Affiliation and intellectual property](#affiliation-and-intellectual-property).
+> **This is an independent, unofficial, fan-made theme.** It is **inspired by** the LCARS
+> console style of late-1980s television science fiction. It is **not affiliated with,
+> endorsed by, sponsored by, or connected to** Paramount Global, CBS Studios, or any
+> other rights-holder. It reproduces no artwork, logos or typefaces from any production.
+> See [Affiliation and intellectual property](#affiliation-and-intellectual-property).
 
 ---
 
 ## What this is
 
-Helm Console is an Obsidian theme built from one idea: an interface drawn as **flat
+Helm Console is an Obsidian theme in the LCARS idiom, built from one idea: an interface drawn as **flat
 coloured bars**. Panels are joined by a curved elbow, buttons are pills, labels sit in a
 condensed face in capitals, and colour does the work that borders and shadows usually do.
 
@@ -74,14 +75,11 @@ Without the plugin the theme uses its defaults. The theme needs no plugins.
 
 ## Fonts
 
-The theme follows your **Settings → Appearance** font choices. If you have not set any,
-it uses a condensed face when one is installed, trying **Antonio**, then **Oswald**, then
-**Roboto Condensed**, then **Arial Narrow**. Otherwise it falls back to your system's
-sans-serif. Antonio and Oswald are free under the SIL Open Font License from Google Fonts,
-and installing either gives the intended look. The theme never downloads fonts.
+The theme sets no fonts. It uses Obsidian's default fonts, or whatever you choose under
+**Settings → Appearance → Font**. The tests fail if a font is ever added.
 
-The text of your notes stays in a normal reading font, and its case is never changed.
-Only interface labels are capitalised.
+The case of your note text never changes. Only interface labels are shown in capitals,
+and the Style Settings option **Mixed-case interface labels** turns that off.
 
 ## Accessibility
 
@@ -113,7 +111,7 @@ The build needs no dependencies, only Node 20 or later. To enable the pre-commit
 | Module | Contents |
 | --- | --- |
 | `src/00-settings.css` | Style Settings options |
-| `src/01-tokens.css` | Geometry and fonts shared by both modes |
+| `src/01-tokens.css` | Geometry shared by both modes |
 | `src/02-palette-dark.css` / `03-palette-light.css` | The two palettes |
 | `src/04-obsidian-variables.css` | Palette mapped onto Obsidian's variables |
 | `src/10-workspace.css` | Ribbon, tabs, panels, file explorer, status bar |
@@ -137,11 +135,14 @@ The theme is **inspired by** a broad visual idiom: flat coloured bars, rounded e
 and curved panel joins, as seen in science-fiction set design of the late 1980s and 1990s.
 A general style is not owned by anyone. This theme expresses it in original CSS.
 
+"LCARS" is used in this README only to describe the style the theme is inspired by. It
+is not the theme's name and does not appear in the theme itself. The theme's own name,
+Helm Console, is original.
+
 The project deliberately avoids:
 
-- any franchise name, show title, character, ship, organisation or in-universe term, in
-  the theme's name, files or interface
-- any trademarked or in-universe name for the interface style itself
+- any franchise name, show title, character, ship, organisation or in-universe term in
+  the theme's name, manifest, stylesheet or interface
 - original screen graphics, artwork, logos, insignia, or tracings of them
 - proprietary typefaces, or digitisations of them
 - screenshots of any production, as assets or otherwise
@@ -149,12 +150,14 @@ The project deliberately avoids:
 Every shape in the theme is drawn with ordinary CSS: borders, radii and gradients. The
 colour values are listed above. Colours themselves are not copyrightable.
 
-The tests enforce this. They fail the build if a franchise name or in-universe term
-appears in the manifest, the stylesheet or the package metadata.
+The tests enforce this. They fail the build if a franchise name or in-universe term,
+LCARS included, appears in the manifest, the stylesheet or the package metadata.
 
 ### Trademarks
 
-All trademarks are the property of their respective owners. Obsidian is a trademark of
+LCARS is a term from a television franchise owned by Paramount Global / CBS Studios,
+and any rights in it belong to them. It is used here only descriptively. All other
+trademarks are the property of their respective owners. Obsidian is a trademark of
 Dynalist Inc. This theme is a community theme for Obsidian and is not produced or endorsed by
 Dynalist Inc.
 

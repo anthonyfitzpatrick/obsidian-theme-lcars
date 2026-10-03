@@ -6,7 +6,6 @@
 }
 
 .modal-title {
-  font-family: var(--font-interface);
   color: var(--hc-ink-orange);
 }
 
@@ -42,7 +41,6 @@
 }
 
 .prompt-instructions {
-  font-family: var(--font-interface);
   text-transform: uppercase;
   letter-spacing: var(--hc-label-tracking);
 }
@@ -81,7 +79,6 @@
   background: var(--hc-bar-gold);
   color: var(--hc-on-bar);
   border-radius: var(--hc-pill) 8px 8px var(--hc-pill);
-  font-family: var(--font-interface);
   font-weight: 600;
   padding-left: 1.4em;
 }
@@ -90,7 +87,6 @@
   background: var(--hc-bar-peach);
   color: var(--hc-on-bar);
   border-radius: var(--hc-pill);
-  font-family: var(--font-interface);
   font-weight: 600;
 }
 
@@ -105,12 +101,10 @@
 
 .vertical-tab-header-group-title {
   color: var(--hc-ink-gold);
-  font-family: var(--font-interface);
 }
 
 .vertical-tab-nav-item {
   border-radius: var(--hc-pill);
-  font-family: var(--font-interface);
 }
 
 .vertical-tab-nav-item.is-active {
@@ -121,7 +115,6 @@
 
 .setting-item-heading .setting-item-name {
   color: var(--hc-ink-orange);
-  font-family: var(--font-interface);
 }
 
 .setting-item {
