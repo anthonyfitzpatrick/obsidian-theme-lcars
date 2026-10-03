@@ -8,7 +8,7 @@ updated: 2026-10-03
 ---
 # Welcome to the console
 
-This vault shows every part of a note that Helm Console styles. Open it in light and dark mode to compare.
+This vault shows every part of a note that Starship Helm Console styles. Open it in light and dark mode to compare.
 
 ## Headings and text
 

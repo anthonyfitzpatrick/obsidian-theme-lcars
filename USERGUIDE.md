@@ -1,6 +1,6 @@
-# Helm Console — User Guide
+# Starship Helm Console — User Guide
 
-This guide covers everything you can see and change in Helm Console, an unofficial
+This guide covers everything you can see and change in Starship Helm Console, an unofficial
 Obsidian theme inspired by LCARS, the computer interface style from *Star Trek: The Next
 Generation*. For a shorter overview, see the [README](README.md).
 
@@ -9,7 +9,7 @@ Every screenshot comes from the demo vault in
 fonts. To follow along with the same notes, open that folder as a vault (vault switcher →
 **Open folder as vault**) and install the theme into it as described in section 1.
 
-> Helm Console is an independent, unofficial, fan-made theme. It is not affiliated with,
+> Starship Helm Console is an independent, unofficial, fan-made theme. It is not affiliated with,
 > endorsed by, sponsored by, or connected to Paramount Global, CBS Studios or any other
 > rights-holder. Star Trek and related marks are trademarks of CBS Studios Inc.; LCARS is
 > a term from that franchise. Both are used here only to describe the style.
@@ -45,27 +45,27 @@ fonts. To follow along with the same notes, open that folder as a vault (vault s
    - **Windows:** in Explorer, choose **View → Show → Hidden items**.
    - **Linux:** press `Ctrl + H` in most file managers.
 4. Inside `.obsidian`, open (or create) the `themes` folder.
-5. Create a folder named exactly **`Helm Console`**: a capital H, a capital C and one
-   space. Obsidian matches the folder name to the theme's name, and any difference
-   stops the theme appearing.
+5. Create a folder named exactly **`Starship Helm Console`**: three words, each starting
+   with a capital letter, separated by single spaces. Obsidian matches the folder name to
+   the theme's name, and any difference stops the theme appearing.
 6. Put `theme.css` and `manifest.json` in that folder.
 7. In Obsidian, open **Settings → Appearance**. Under **Themes**, choose
-   **Helm Console**.
+   **Starship Helm Console**.
 
 If the theme doesn't appear in the list, close Obsidian completely and reopen it.
 
 ### From the community directory
 
-Helm Console hasn't been submitted to Obsidian's community theme directory yet. Once it
+Starship Helm Console hasn't been submitted to Obsidian's community theme directory yet. Once it
 is listed, open **Settings → Appearance → Themes → Manage**, search for
-**Helm Console** and choose **Install and use**.
+**Starship Helm Console** and choose **Install and use**.
 
 ### Updating
 
 Replace both files with their new versions. Obsidian reads a theme once and doesn't
 notice when its file changes, so after updating either:
 
-- switch to another theme in **Settings → Appearance** and back to Helm Console, or
+- switch to another theme in **Settings → Appearance** and back to Starship Helm Console, or
 - restart Obsidian.
 
 ---
@@ -124,7 +124,7 @@ then back to **Dark**. Nothing moves; only the colours change.
 3. **The file explorer.** Folder names in gold capitals, notes in normal text, and the
    open note (**Welcome**) as a dim bar with an orange cap on its left.
 
-The **ribbon** is the column of icons at the far left of the window. Helm Console draws
+The **ribbon** is the column of icons at the far left of the window. Starship Helm Console draws
 it as a stack of coloured segments, one per icon, separated by thin gaps. The colours
 repeat in the order orange, peach, blue, gold. The buttons at the foot (help and
 settings) are violet. Icons are drawn in black on the segments, and a segment turns red
@@ -206,7 +206,7 @@ drag them.
 
 ## 4. A tour of your notes
 
-Helm Console never changes your note text. Its font is your font, and its case is your
+Starship Helm Console never changes your note text. Its font is your font, and its case is your
 case. Only the decorations around it change.
 
 The overview screenshots in [section 2](#2-choosing-dark-or-light) show the top of the
@@ -392,7 +392,7 @@ are gold, and setting headings are orange.
 3. **FONT** is a setting heading, in orange.
 4. The **font size slider** has an orange thumb, and the toggle at the bottom shows its
    off state: a dim pill with a visible knob.
-5. The **Accent colour** swatch shows Obsidian's own accent setting. Helm Console sets its
+5. The **Accent colour** swatch shows Obsidian's own accent setting. Starship Helm Console sets its
    accents itself, so changing this has no effect (see
    [Troubleshooting](#the-accent-colour-setting-does-nothing)).
 
@@ -421,7 +421,7 @@ Tooltips are peach pills with black text.
 
 ## 6. Fonts
 
-Helm Console sets **no fonts**. It always uses Obsidian's default fonts, or whatever you
+Starship Helm Console sets **no fonts**. It always uses Obsidian's default fonts, or whatever you
 choose under **Settings → Appearance → Font**:
 
 - **Interface font**: menus, tabs, sidebars, settings.
@@ -439,9 +439,9 @@ you'd like that look, install a condensed font on your computer and choose it as
 
 ## 7. Style Settings switches
 
-Helm Console works without plugins. If you install the free
+Starship Helm Console works without plugins. If you install the free
 [Style Settings](https://github.com/mgmeyers/obsidian-style-settings) plugin, open
-**Settings → Style Settings → Helm Console** for three switches:
+**Settings → Style Settings → Starship Helm Console** for three switches:
 
 ### Mixed-case interface labels
 
@@ -465,7 +465,7 @@ All three switches are off by default.
 
 ## 8. Customising with a CSS snippet
 
-Every colour and size in Helm Console is a CSS variable whose name starts with `--hc-`.
+Every colour and size in Starship Helm Console is a CSS variable whose name starts with `--hc-`.
 You can change any of them with a CSS snippet, without editing the theme. Your changes
 survive theme updates.
 
@@ -567,11 +567,11 @@ body {
 
 ## 9. Plugins
 
-Helm Console is designed to work with plugins without special support from them.
+Starship Helm Console is designed to work with plugins without special support from them.
 
 ### Plugin buttons
 
-Many plugins add buttons to their own views. Helm Console sets button colours through
+Many plugins add buttons to their own views. Starship Helm Console sets button colours through
 Obsidian's standard variables, scoped to each button, so a plugin that restyles its
 buttons with those variables still gets black labels on a coloured bar. A plugin's own
 active or selected style (an underline, say) still shows, because the theme's button
@@ -580,7 +580,7 @@ rule is deliberately low in priority.
 ### File-colour plugins
 
 Plugins that colour file and folder names in the explorer set those colours directly on
-each name. Helm Console shows the open file as a dim bar with an orange cap, so the
+each name. Starship Helm Console shows the open file as a dim bar with an orange cap, so the
 plugin's colour stays readable on it.
 
 ### Style Settings
@@ -594,7 +594,7 @@ Obsidian's variables. Try this:
 
 1. Switch to Obsidian's default theme. If the plugin still looks wrong, the problem is
    in the plugin, not the theme.
-2. If it only looks wrong with Helm Console, open an issue with a screenshot and the
+2. If it only looks wrong with Starship Helm Console, open an issue with a screenshot and the
    plugin's name.
 3. In the meantime, a CSS snippet can usually fix it (see
    [Customising with a CSS snippet](#8-customising-with-a-css-snippet)).
@@ -627,7 +627,7 @@ Obsidian's variables. Try this:
 
 ## 11. Printing and PDF export
 
-When you print a note or export it as a PDF, Helm Console drops its screen styling: the
+When you print a note or export it as a PDF, Starship Helm Console drops its screen styling: the
 page is white, all text and headings are black, links are black, and the heading caps are
 removed. Code keeps a pale grey background. Your printed notes look like an ordinary
 document, not a screenshot of the console.
@@ -638,7 +638,7 @@ document, not a screenshot of the console.
 
 ### The theme doesn't appear in Settings → Appearance
 
-- Check the folder name is exactly `Helm Console`, with the same capitals and one space.
+- Check the folder name is exactly `Starship Helm Console`, with the same capitals and single spaces.
 - Check the folder contains both `theme.css` and `manifest.json`, not a subfolder holding
   them.
 - Check the folder is inside `.obsidian/themes/` in the vault you have open.
@@ -651,7 +651,7 @@ or restart Obsidian.
 
 ### My fonts look different from the screenshots
 
-Helm Console uses your own font settings. Check **Settings → Appearance → Font**.
+Starship Helm Console uses your own font settings. Check **Settings → Appearance → Font**.
 
 ### Everything is in capitals and I don't want that
 
@@ -677,7 +677,7 @@ See [If a plugin looks wrong](#if-a-plugin-looks-wrong).
 
 ### The accent colour setting does nothing
 
-Helm Console sets its own accent colours (orange, gold and the other bars), so Obsidian's
+Starship Helm Console sets its own accent colours (orange, gold and the other bars), so Obsidian's
 **Accent colour** setting has no effect. To change the accent, use a snippet that sets
 `--hc-bar-orange` and `--hc-ink-orange` (see
 [Changing colours](#changing-colours)).
@@ -699,13 +699,13 @@ version (**Settings → General**).
 ## FAQ
 
 **Is this an official theme?**
-No. Helm Console is an independent, unofficial, fan-made theme. It isn't affiliated with,
+No. Starship Helm Console is an independent, unofficial, fan-made theme. It isn't affiliated with,
 endorsed by, sponsored by, or connected to Paramount Global, CBS Studios or any other
 rights-holder.
 
 **What is it inspired by?**
 LCARS, the computer interface style seen on screen in *Star Trek: The Next Generation*:
-flat coloured bars, rounded end caps and curved joins between panels. Helm Console
+flat coloured bars, rounded end caps and curved joins between panels. Starship Helm Console
 recreates the general style in original CSS. It copies no graphics from the show.
 
 **Why isn't it called LCARS?**
@@ -741,11 +741,11 @@ expensive visual effects such as blurs or animated backgrounds.
 ## 14. Uninstalling
 
 1. Open **Settings → Appearance** and choose another theme, or **Default**.
-2. Optionally, delete the `.obsidian/themes/Helm Console/` folder.
-3. If you made a snippet for Helm Console, turn it off or delete it under
+2. Optionally, delete the `.obsidian/themes/Starship Helm Console/` folder.
+3. If you made a snippet for Starship Helm Console, turn it off or delete it under
    **Settings → Appearance → CSS snippets**.
 
-Helm Console stores no settings of its own. Style Settings keeps its switch positions in
+Starship Helm Console stores no settings of its own. Style Settings keeps its switch positions in
 its own settings until you reset them there.
 
 ---

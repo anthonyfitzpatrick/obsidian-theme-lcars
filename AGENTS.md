@@ -1,4 +1,4 @@
-# Helm Console — repository guide
+# Starship Helm Console — repository guide
 
 An Obsidian community theme. Plain CSS, no runtime JavaScript. The scripts and tests are
 strict TypeScript, run directly by Node 22.18+ (no compile step). The only dependencies
@@ -11,7 +11,7 @@ are dev tools.
 - `npm run typecheck` runs `tsc --noEmit` (strict, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`).
 - `npm test` runs `node --test "tests/*.test.ts"`. It's a glob because Node 22 doesn't search a directory argument.
 - `npm run check` runs lint, typecheck, the stale-`theme.css` check and the tests. CI, the pre-commit hook and the release workflow run it. A `PostToolUse` hook in `.claude/settings.json` runs `npm run lint` after every edit Claude makes.
-- `HELM_CONSOLE_VAULT=<vault> npm run deploy` builds the theme and copies it to `<vault>/.obsidian/themes/Helm Console/`.
+- `HELM_CONSOLE_VAULT=<vault> npm run deploy` builds the theme and copies it to `<vault>/.obsidian/themes/Starship Helm Console/`.
 - `scripts/screenshots.sh` regenerates the documentation screenshots from the demo vault. See `docs/SCREENSHOTS.md`.
 
 ## Obsidian's theme guidelines (enforced; see .stylelintrc.json)
@@ -34,7 +34,7 @@ are dev tools.
 - Never edit `theme.css` by hand. Edit `src/` and rebuild.
 - Palettes (`src/02`, `src/03`) hold colours only. Structure goes in the component modules and uses `--hc-*` tokens.
 - Every new text/background pairing goes in `tests/contrast.test.ts` and must pass in both modes.
-- **Naming and IP:** the README and User Guide may say the theme is *inspired by LCARS, the interface style from Star Trek: The Next Generation*, always with the no-affiliation statement and the trademark notice ("Star Trek and related marks are trademarks of CBS Studios Inc."). Never "official", "licensed" or "the LCARS theme". The README's opening paragraph is the directory excerpt, so it carries the inspiration line and the disclaimer. Never put a franchise name, show title or in-universe term (LCARS and Star Trek included) into the theme name, manifest, CSS, package metadata or UI strings. `tests/naming.test.ts` enforces this. The theme name stays Helm Console: Obsidian's directory already lists a theme called "LCARS".
+- **Naming and IP:** the README and User Guide may say the theme is *inspired by LCARS, the interface style from Star Trek: The Next Generation*, always with the no-affiliation statement and the trademark notice ("Star Trek and related marks are trademarks of CBS Studios Inc."). Never "official", "licensed" or "the LCARS theme". The README's opening paragraph is the directory excerpt, so it carries the inspiration line and the disclaimer. Never put a franchise name, show title or in-universe term (LCARS and Star Trek included) into the theme name, manifest, CSS, package metadata or UI strings. `tests/naming.test.ts` enforces this. The theme name stays Starship Helm Console: Obsidian's directory already lists a theme called "LCARS".
 - Screenshots come only from the demo vault (`docs/Helm Console Demo`), never from a real vault.
 - `manifest.json` and `package.json` versions must match.
 - Remote `origin` pushes to both GitHub and Gitea. `github` is the fetch-only reference.

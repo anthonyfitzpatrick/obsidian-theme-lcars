@@ -1,4 +1,4 @@
-# Helm Console
+# Starship Helm Console
 
 **An unofficial theme for Obsidian inspired by LCARS, the computer interface style from
 *Star Trek: The Next Generation*. Not affiliated with or endorsed by Paramount Global or
@@ -41,7 +41,7 @@ clean, cool light mode alongside.
 
 ## What this is
 
-Helm Console is an Obsidian theme in the LCARS idiom, built from one idea: draw the
+Starship Helm Console is an Obsidian theme in the LCARS idiom, built from one idea: draw the
 interface as **flat coloured bars**.
 
 The style comes from LCARS, the panelled computer interface seen on screen in
@@ -76,7 +76,7 @@ because the theme sets none.
 ### The workspace
 
 <p align="center">
-  <img src="docs/images/01-overview-dark.png" alt="Helm Console in dark mode: the segmented ribbon, file explorer, pill tabs and a note with heading caps" width="900">
+  <img src="docs/images/01-overview-dark.png" alt="Starship Helm Console in dark mode: the segmented ribbon, file explorer, pill tabs and a note with heading caps" width="900">
 </p>
 
 <p align="center"><em><strong>Dark mode.</strong> From left to right: the segmented
@@ -86,7 +86,7 @@ active one in orange; and the note, with its orange and lavender heading caps. T
 orange status bar sits in the lower right.</em></p>
 
 <p align="center">
-  <img src="docs/images/01-overview-light.png" alt="Helm Console in light mode: the same layout on a near-white page with a light grey frame" width="900">
+  <img src="docs/images/01-overview-light.png" alt="Starship Helm Console in light mode: the same layout on a near-white page with a light grey frame" width="900">
 </p>
 
 <p align="center"><em><strong>Light mode.</strong> The same window. The page is
@@ -261,17 +261,17 @@ in both modes, at 4.5:1 for text and 3:1 for disabled controls.
 ### Manually
 
 1. Download `theme.css` and `manifest.json` from this repository.
-2. In your vault, create the folder `.obsidian/themes/Helm Console/`. The folder name
-   must be exactly `Helm Console`. The `.obsidian` folder is hidden on most systems.
+2. In your vault, create the folder `.obsidian/themes/Starship Helm Console/`. The folder name
+   must be exactly `Starship Helm Console`. The `.obsidian` folder is hidden on most systems.
 3. Put both files in that folder.
 4. In Obsidian, open **Settings → Appearance**. Under **Themes**, choose
-   **Helm Console**.
+   **Starship Helm Console**.
 5. If the theme isn't listed, close and reopen Obsidian.
 
 ### From Obsidian's community themes
 
 The theme hasn't been submitted to the directory yet. Once it's listed, open
-**Settings → Appearance → Themes → Manage**, search for **Helm Console** and choose
+**Settings → Appearance → Themes → Manage**, search for **Starship Helm Console** and choose
 **Install and use**.
 
 ### Updating
@@ -283,7 +283,7 @@ theme when its file changes, so switch to another theme and back, or restart Obs
 
 The theme needs no plugins. If you have the
 [Style Settings](https://github.com/mgmeyers/obsidian-style-settings) plugin, it adds a
-**Helm Console** section with three switches:
+**Starship Helm Console** section with three switches:
 
 | Switch | What it does |
 | --- | --- |
@@ -456,7 +456,7 @@ Issues and pull requests are welcome. Please:
 
 ### No affiliation
 
-Helm Console is an **independent, community-made theme** by a private individual. It is
+Starship Helm Console is an **independent, community-made theme** by a private individual. It is
 **not affiliated with, endorsed by, sponsored by, licensed by, or connected to** Paramount
 Global, CBS Studios, or any studio, network, production company or rights-holder of any
 television or film property. No such relationship exists or is implied.
@@ -470,7 +470,7 @@ nothing from the show.
 
 "Star Trek" and "LCARS" appear in this README and the User Guide only to describe the
 style the theme is inspired by. Neither is the theme's name, and neither appears in the
-theme itself. The theme's own name, Helm Console, is original.
+theme itself. The theme's own name, Starship Helm Console, is original.
 
 The project deliberately avoids:
 
