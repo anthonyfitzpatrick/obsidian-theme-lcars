@@ -1,6 +1,6 @@
 {
   "name": "Helm Console",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "minAppVersion": "1.6.0",
   "author": "Anthony Fitzpatrick",
   "authorUrl": "https://github.com/anthonyfitzpatrick"
