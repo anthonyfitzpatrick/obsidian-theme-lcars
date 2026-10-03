@@ -14,7 +14,7 @@ ev 'app.vault.setConfig("nativeMenus",false);app.vault.setConfig("settingsPopout
 ev 'app.customCss.setTheme("");setTimeout(()=>app.customCss.setTheme("Helm Console"),400);"reloaded"' 3
 if [ "$M" = dark ]; then ev 'app.changeTheme("obsidian");"dark"' 3; else ev 'app.changeTheme("moonstone");"light"' 3; fi
 # 1 overview
-ev '(async()=>{document.activeElement?.blur();const l=app.workspace.getLeavesOfType("markdown").find(x=>x.view.file?.basename==="Welcome");app.workspace.setActiveLeaf(l,{focus:true});await l.setViewState({type:"markdown",state:{file:"Welcome.md",mode:"source",source:false}});const ed=l.view.editor;const n=ed.getValue().split("\n").findIndex(s=>s.startsWith("This vault"));ed.setCursor({line:n,ch:0});setTimeout(()=>ed.scrollTo(0,0),200);return n})()' 5
+ev '(async()=>{document.activeElement?.blur();document.querySelectorAll(".has-focus").forEach(e=>e.classList.remove("has-focus"));const l=app.workspace.getLeavesOfType("markdown").find(x=>x.view.file?.basename==="Welcome");app.workspace.setActiveLeaf(l,{focus:true});await l.setViewState({type:"markdown",state:{file:"Welcome.md",mode:"source",source:false}});const ed=l.view.editor;const n=ed.getValue().split("\n").findIndex(s=>s.startsWith("This vault"));ed.setCursor({line:n,ch:0});setTimeout(()=>ed.scrollTo(0,0),200);return n})()' 5
 shot "01-overview-$M.png"
 # 2 content in reading view
 ev '(async()=>{const l=app.workspace.activeLeaf;await l.setViewState({type:"markdown",state:{file:"Welcome.md",mode:"preview"}});const n=l.view.data.split("\n").findIndex(s=>s.startsWith("## Callouts"));setTimeout(()=>l.view.previewMode.applyScroll(n),300);return n})()' 6
@@ -31,4 +31,4 @@ ev 'app.setting.close();"closed"' 3
 # 5 the file explorer's own context menu, a highlighted row, and a notice
 ev '(()=>{new Notice("Sync complete: 12 notes updated.",20000);const fe=app.workspace.getLeavesOfType("file-explorer")[0].view;const t=document.querySelector(".nav-file-title[data-path=\"Projects/Survey Station.md\"]");const r=t.getBoundingClientRect();fe.openFileContextMenu(new MouseEvent("contextmenu",{clientX:r.left+70,clientY:r.top+r.height/2}),t);setTimeout(()=>{const it=[...document.querySelectorAll(".menu .menu-item")];const m=it.find(e=>/Rename/i.test(e.textContent))||it[2];m?.classList.add("selected")},300);return document.querySelectorAll(".menu").length})()' 4
 sleep 2; shot "05-menu-notice-$M.png"
-ev 'document.dispatchEvent(new KeyboardEvent("keydown",{key:"Escape",bubbles:true}));document.querySelectorAll(".menu").forEach(m=>m.remove());document.querySelectorAll(".notice").forEach(n=>n.remove());document.activeElement?.blur();"cleaned"' 3
+ev 'document.dispatchEvent(new KeyboardEvent("keydown",{key:"Escape",bubbles:true}));document.querySelectorAll(".menu").forEach(m=>m.remove());document.querySelectorAll(".notice").forEach(n=>n.remove());document.querySelectorAll(".has-focus").forEach(e=>e.classList.remove("has-focus"));document.activeElement?.blur();"cleaned"' 3
