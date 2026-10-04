@@ -13,7 +13,7 @@ theme styles. Taking screenshots from a real vault would publish its notes, so d
    ```
 
 2. In Obsidian, open **docs/Helm Console Demo** as a vault (vault switcher → **Open
-   folder as vault**). Its `appearance.json` already selects Starship Console inspired by LCARS.
+   folder as vault**). Its `appearance.json` already selects Starship Helm Console.
 3. Make sure **Settings → General → Command line interface** is on, so the `obsidian`
    command can reach the running app.
 4. In the demo vault, open `Welcome`, `Glossary` and `Survey Station` as tabs, with

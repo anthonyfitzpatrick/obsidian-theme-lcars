@@ -1,4 +1,4 @@
-# Starship Console inspired by LCARS
+# Starship Helm Console: an LCARS-inspired Star Trek theme for Obsidian
 
 **An unofficial theme for Obsidian inspired by LCARS, the computer interface style from
 *Star Trek: The Next Generation*. Not affiliated with or endorsed by Paramount Global or
@@ -45,7 +45,7 @@ plugins and themes from Wolf 359 Press AB.
 
 ## What this is
 
-Starship Console is an Obsidian theme in the LCARS idiom, built from one idea: draw the
+Starship Helm Console is an Obsidian theme in the LCARS idiom, built from one idea: draw the
 interface as **flat coloured bars**.
 
 The style comes from LCARS, the panelled computer interface seen on screen in
@@ -80,7 +80,7 @@ because the theme sets none.
 ### The workspace
 
 <p align="center">
-  <img src="docs/images/01-overview-dark.png" alt="Starship Console in dark mode: the segmented ribbon, file explorer, pill tabs and a note with heading caps" width="900">
+  <img src="docs/images/01-overview-dark.png" alt="Starship Helm Console in dark mode: the segmented ribbon, file explorer, pill tabs and a note with heading caps" width="900">
 </p>
 
 <p align="center"><em><strong>Dark mode.</strong> From left to right: the segmented
@@ -90,7 +90,7 @@ active one in orange; and the note, with its orange and lavender heading caps. T
 orange status bar sits in the lower right.</em></p>
 
 <p align="center">
-  <img src="docs/images/01-overview-light.png" alt="Starship Console in light mode: the same layout on a near-white page with a light grey frame" width="900">
+  <img src="docs/images/01-overview-light.png" alt="Starship Helm Console in light mode: the same layout on a near-white page with a light grey frame" width="900">
 </p>
 
 <p align="center"><em><strong>Light mode.</strong> The same window. The page is
@@ -265,17 +265,17 @@ in both modes, at 4.5:1 for text and 3:1 for disabled controls.
 ### Manually
 
 1. Download `theme.css` and `manifest.json` from this repository.
-2. In your vault, create the folder `.obsidian/themes/Starship Console inspired by LCARS/`. The folder name
-   must be exactly `Starship Console inspired by LCARS`. The `.obsidian` folder is hidden on most systems.
+2. In your vault, create the folder `.obsidian/themes/Starship Helm Console/`. The folder name
+   must be exactly `Starship Helm Console`. The `.obsidian` folder is hidden on most systems.
 3. Put both files in that folder.
 4. In Obsidian, open **Settings → Appearance**. Under **Themes**, choose
-   **Starship Console inspired by LCARS**.
+   **Starship Helm Console**.
 5. If the theme isn't listed, close and reopen Obsidian.
 
 ### From Obsidian's community themes
 
 The theme hasn't been submitted to the directory yet. Once it's listed, open
-**Settings → Appearance → Themes → Manage**, search for **Starship Console inspired by LCARS** and choose
+**Settings → Appearance → Themes → Manage**, search for **Starship Helm Console** and choose
 **Install and use**.
 
 ### Updating
@@ -287,7 +287,7 @@ theme when its file changes, so switch to another theme and back, or restart Obs
 
 The theme needs no plugins. If you have the
 [Style Settings](https://github.com/mgmeyers/obsidian-style-settings) plugin, it adds a
-**Starship Console inspired by LCARS** section with three switches:
+**Starship Helm Console** section with three switches:
 
 | Switch | What it does |
 | --- | --- |
@@ -460,7 +460,7 @@ Issues and pull requests are welcome. Please:
 
 ### No affiliation
 
-Starship Console is an **independent, community-made theme** by a private individual. It is
+Starship Helm Console is an **independent, community-made theme** by a private individual. It is
 **not affiliated with, endorsed by, sponsored by, licensed by, or connected to** Paramount
 Global, CBS Studios, or any studio, network, production company or rights-holder of any
 television or film property. No such relationship exists or is implied.
@@ -472,16 +472,14 @@ Generation*: flat coloured bars, rounded end caps and curved panel joins. A gene
 visual style is not owned by anyone. This theme expresses it in original CSS and copies
 nothing from the show.
 
-"LCARS" appears in the theme's name only in the phrase "inspired by LCARS", which says
-which style it draws on, the way the Amiga Workbench themes name theirs. "Star Trek"
-appears only in this README and the User Guide, to describe the style. The theme's own
-name is Starship Console, which is original.
+"LCARS" and "Star Trek" appear only in this README, the User Guide and the theme's
+descriptions, to say which style it draws on, the way the Amiga Workbench themes name
+theirs. The theme's own name is Starship Helm Console, which is original.
 
 The project deliberately avoids:
 
 - any franchise name, show title, character, ship, organisation or in-universe term in
-  the theme's name, manifest, stylesheet or interface, beyond the descriptive "inspired by
-  LCARS"
+  the theme's name, manifest, stylesheet or interface
 - original screen graphics, artwork, logos, insignia, or tracings of them
 - proprietary typefaces, or digitisations of them
 - screenshots of any production, as assets or otherwise
@@ -490,8 +488,7 @@ Every shape in the theme is drawn with ordinary CSS: borders, radii and gradient
 colour values are listed above. Colours themselves are not copyrightable.
 
 The tests enforce this. They fail the build if a franchise name or in-universe term
-appears in the manifest, the stylesheet or the package metadata. LCARS is allowed only in
-the exact phrase "inspired by LCARS".
+appears in the manifest, the stylesheet or the package metadata.
 
 ### Trademarks
 

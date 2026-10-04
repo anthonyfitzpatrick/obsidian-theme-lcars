@@ -1,5 +1,5 @@
 name: Feature request
-description: Propose a focused improvement to Starship Console inspired by LCARS.
+description: Propose a focused improvement to Starship Helm Console.
 title: "[Feature]: "
 labels: ["enhancement"]
 body:
