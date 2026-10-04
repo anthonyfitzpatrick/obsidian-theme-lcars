@@ -7,6 +7,10 @@ CBS Studios.**
 Swept colour bars, rounded end caps and segmented panels on a black screen, with a
 clean, cool light mode alongside.
 
+Install it from Obsidian's [community themes](https://community.obsidian.md/themes/starship-helm-console).
+Its product page is on [wolf359.app](https://wolf359.app/starship-console/), with the other
+plugins and themes from Wolf 359 Press AB.
+
 > **This is an independent, unofficial, fan-made theme.** It is **inspired by** the LCARS
 > interface style seen in *Star Trek: The Next Generation*. It is **not affiliated with,
 > endorsed by, sponsored by, licensed by, or connected to** Paramount Global, CBS Studios,
