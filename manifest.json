@@ -1,6 +1,6 @@
 {
-  "name": "Starship Helm Console",
-  "version": "1.0.1",
+  "name": "Starship Console inspired by LCARS",
+  "version": "1.0.2",
   "minAppVersion": "1.6.0",
   "author": "Anthony Fitzpatrick",
   "authorUrl": "https://github.com/anthonyfitzpatrick"

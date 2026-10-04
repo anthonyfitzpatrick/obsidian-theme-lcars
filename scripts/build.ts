@@ -10,7 +10,7 @@ const outputPath = join(projectRoot, "theme.css");
 const modules = readdirSync(sourceDir)
   .filter((file) => file.endsWith(".css"))
   .sort();
-const banner = "/* Starship Helm Console for Obsidian. Generated from src/ by scripts/build.ts. Do not edit directly. */\n\n";
+const banner = "/* Starship Console inspired by LCARS for Obsidian. Generated from src/ by scripts/build.ts. Do not edit directly. */\n\n";
 const css = banner + modules.map((file) => `${readFileSync(join(sourceDir, file), "utf8").trimEnd()}\n`).join("\n");
 
 if (process.argv.includes("--check")) {

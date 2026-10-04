@@ -1,5 +1,5 @@
 name: Bug report
-description: Report a reproducible visual or rendering problem with Starship Helm Console.
+description: Report a reproducible visual or rendering problem with Starship Console inspired by LCARS.
 title: "[Bug]: "
 labels: ["bug"]
 body:

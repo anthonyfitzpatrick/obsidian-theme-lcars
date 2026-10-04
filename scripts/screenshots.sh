@@ -11,7 +11,7 @@ shot(){ (obsidian vault="$V" dev:screenshot path="$O/$1" > /dev/null 2>&1 &); sl
 cdp Emulation.setDeviceMetricsOverride '{"width":1600,"height":1000,"deviceScaleFactor":1,"mobile":false}' 2
 # Obsidian's own menus (native macOS menus aren't part of the page) and in-window Settings.
 ev 'app.vault.setConfig("nativeMenus",false);app.vault.setConfig("settingsPopoutWindow",false);"config"' 3
-ev 'app.customCss.setTheme("");setTimeout(()=>app.customCss.setTheme("Starship Helm Console"),400);"reloaded"' 3
+ev 'app.customCss.setTheme("");setTimeout(()=>app.customCss.setTheme("Starship Console inspired by LCARS"),400);"reloaded"' 3
 if [ "$M" = dark ]; then ev 'app.changeTheme("obsidian");"dark"' 3; else ev 'app.changeTheme("moonstone");"light"' 3; fi
 # 1 overview
 ev '(async()=>{document.activeElement?.blur();document.querySelectorAll(".has-focus").forEach(e=>e.classList.remove("has-focus"));const l=app.workspace.getLeavesOfType("markdown").find(x=>x.view.file?.basename==="Welcome");app.workspace.setActiveLeaf(l,{focus:true});await l.setViewState({type:"markdown",state:{file:"Welcome.md",mode:"source",source:false}});const ed=l.view.editor;const n=ed.getValue().split("\n").findIndex(s=>s.startsWith("This vault"));ed.setCursor({line:n,ch:0});setTimeout(()=>ed.scrollTo(0,0),200);return n})()' 5
